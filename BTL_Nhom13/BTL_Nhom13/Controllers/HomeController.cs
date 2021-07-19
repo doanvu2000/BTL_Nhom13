@@ -12,7 +12,7 @@ namespace BTL_Nhom13.Controllers
         TinhDauDB db = new TinhDauDB();
         public ActionResult Index()
         {
-            var sp = db.SanPhams.Select(s => s);
+            var sp = db.SanPhams.Select(s => s).ToList();
             return View(sp);
         }
 
