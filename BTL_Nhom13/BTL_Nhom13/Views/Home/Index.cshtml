@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BTL_Nhom13.Models.SanPham>
+
+<section class="section_all" id="page_bg">
+    <div class="div_index" id="page_width">
+        <article class="article_center">
+            <div class="index_info">
+                <div class="index_1">
+                    <select name="news_category"
+                            id="news_category"
+                            onChange="MM_jumpMenu('parent',this,0)"
+                            style="
+                  width: 250px;
+                  border: 1px solid #ece8e8;
+                  border-radius: 3px;
+                  padding: 7px;
+                  color: #333;
+                  margin-bottom: 10px;
+                  float: left;
+                     ">
+                        <option value="##" selected="selected">
+                            Sắp xếp sản phẩm theo
+                        </option>
+                        <option value="#">Khuyến mãi từ cao đến thấp</option>
+                        <option value="#">Sản phẩm bán chạy</option>
+                        <option value="#">Giá từ thấp đến cao</option>
+                        <option value="#">Giá từ cao đến thấp</option>
+                    </select>
+                    <div class="paging_news">
+                        <b>1</b> <a href="">2</a> <a href="#">3</a> <a href="#">4</a>
+                        <a href="#">5</a> <a href="#">6</a> <a href="#">7</a><a class="paging_news_sau" href="#">&raquo;</a>
+                    </div>
+                    <div itemscope>
+                        <ul class="foreach_P50" id="">
+                            <div>
+                                <h1 itemprop="name">
+                                    Tinh Dầu Thiên Nhiên Hương Sắc Việt - 100% tự nhiên,
+                                    nguyên chất
+                                </h1>
+                                <h2 itemprop="description">
+                                    Hương Sắc Việt là cửa hàng bán tinh dầu thiên nhiên, tinh
+                                    dầu thơm uy tín tại tpHCM, Hà Nội. Tinh dầu La Champa
+                                    Pháp, thương hiệu tinh dầu thiên nhiên số 1 Việt Nam.
+                                </h2>
+                                <link itemprop="image" href="#" />
+                                <div itemprop="brand"
+                                     itemscope></div>
+                                <div itemprop="offers"
+                                     itemscope=""></div>
+                                <div itemprop="aggregateRating"
+                                     itemscope></div>
+                            </div>
+                            @foreach (var item in Model)
+                            {
+                                <li class="foreach_P50_li">
+                                    <dl class="foreach_P50_img">
+                                        <a href="chitietsanpham.html">
+                                            @{ 
+                                                string path = "~/wwwroot/image/" + item.Anh;
+                                            }
+                                            <img src="@Url.Content(path)" alt="@Url.Content(item.TenSP)"/>
+                                        </a>
+                                    </dl>
+                                    <dl class="foreach_P50_title">
+                                        <a href="chitietsanpham.html">@Url.Content(item.TenSP)</a>
+                                    </dl>
+                                    <dl class="foreach_P50_price">
+                                        <p>
+                                            <span class="price-custom">@Url.Content(item.Gia.ToString()) VND</span>
+                                        </p>
+                                    </dl>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                    <div class="paging_news">
+                        <b>Xem thêm:</b> <b>1</b> <a href="#">2</a> <a href="#">3</a>
+                        <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>
+                        <a href="#">7</a><a class="paging_news_sau" href="#">&raquo;</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
