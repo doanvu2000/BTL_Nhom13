@@ -12,10 +12,9 @@ namespace BTL_Nhom13.Controllers
         TinhDauDB db = new TinhDauDB();
         public ActionResult Index()
         {
-            var sp = db.SanPhams.Select(s => s).ToList();
+            var sp = db.SanPhams.Select(s => s);
             return View(sp);
         }
-
         public ActionResult Login()
         {
 
@@ -26,6 +25,16 @@ namespace BTL_Nhom13.Controllers
         {
 
             return View();
+        }
+        public PartialViewResult _DanhMuc()
+        {
+            var danhmuc = db.DanhMucs.Select(d => d);
+            return PartialView(danhmuc);
+        }
+        public PartialViewResult _SearchDanhMuc()
+        {
+            var danhmuc = db.DanhMucs.Select(d => d);
+            return PartialView(danhmuc);
         }
     }
 }

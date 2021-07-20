@@ -61,65 +61,9 @@
                                 <li class="ul_menu_pc_border">
                                     <a title="Sản phẩm" href="#">Sản phẩm </a>
                                     <ul class="mn_child ul_menu_pc_ul">
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Tinh Dầu Nguyên Chất</a>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Tinh dầu từ thân, lá</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Tinh dầu từ hoa</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">
-                                                    &nbsp;&nbsp;&nbsp; &raquo; Tinh dầu từ vỏ, quả, hạt
-                                                </a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Tinh dầu từ gỗ</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Tinh dầu hỗn hợp</a>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Tinh Dầu Thơm Que Gỗ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Máy Khuếch Tán Tinh Dầu</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Đèn Xông Tinh Dầu</a>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Đèn xông tinh dầu nến</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">
-                                                    &nbsp;&nbsp;&nbsp; &raquo; Đèn xông tinh dầu điện
-                                                </a>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Xà Bông Thiên Nhiên</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Dầu Massage Luxury</a>
-                                            <p>
-                                                <a href="#">
-                                                    &nbsp;&nbsp;&nbsp; &raquo; Dầu Nền, Dầu Dẫn
-                                                </a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Dầu massage cơ thể</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Dầu dưỡng da mặt</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">
-                                                    &nbsp;&nbsp;&nbsp; &raquo; Dầu dưỡng tóc, mọc tóc
-                                                </a>
-                                            </p>
-                                        </li>
+                                        @{ 
+                                            Html.RenderAction("_DanhMuc", "Home");
+                                        }
                                     </ul>
                                 </li>
                                 <li class="ul_menu_pc_border">
@@ -307,57 +251,9 @@
                                     <option value="#" selected="selected">
                                         <strong>Tìm theo danh mục</strong>
                                     </option>
-                                    <option value="#">
-                                        <strong> Tinh Dầu Nguyên Chất</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu từ thân, lá</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu từ hoa</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu từ vỏ, quả, hạt</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu từ gỗ</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu hỗn hợp</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Tinh Dầu Thơm Que Gỗ</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Máy Khuếch Tán Tinh Dầu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Đèn Xông Tinh Dầu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Đèn xông tinh dầu nến</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Đèn xông tinh dầu điện</strong>
-                                    </option>
-                                    <option value="">
-                                        <strong> Xà Bông Thiên Nhiên</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Dầu Massage Luxury</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu Nền, Dầu Dẫn </strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu massage cơ thể</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu dưỡng da mặt</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu dưỡng tóc, mọc tóc</strong>
-                                    </option>
+                                    @{
+                                        Html.RenderAction("_SearchDanhMuc", "Home");
+                                    }
                                 </select>
                             </div>
 
