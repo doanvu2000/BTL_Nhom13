@@ -17,36 +17,36 @@ namespace BTL_Nhom13.Controllers
             var sp = db.SanPhams.ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
-                sp = (List<SanPham>)sp.Where(s => s.TenSP.Contains(searchString));
+                sp = sp.Where(s => s.TenSP.Contains(searchString)).ToList();
                 return View(sp.ToList());
             }
             if (madm > 0)
             {
-                sp = (List<SanPham>)sp.Where(s => s.MaDM == madm);
+                sp = sp.Where(s => s.MaDM == madm).ToList();
             }
             if (sortOrder != null)
             {
                 switch (sortOrder)
                 {
                     case "sortSL":
-                        sp = (List<SanPham>)sp.OrderBy(s => s.SoLuongTon); break;
+                        sp = sp.OrderBy(s => s.SoLuongTon).ToList(); break;
                     case "giaTang":
-                        sp = (List<SanPham>)sp.OrderBy(s => s.Gia); break;
+                        sp = sp.OrderBy(s => s.Gia).ToList(); break;
                     case "giaGiam":
-                        sp = (List<SanPham>)sp.OrderByDescending(s => s.Gia); break;
+                        sp = sp.OrderByDescending(s => s.Gia).ToList(); break;
                 }
             }
             if (beginPrice > 0 && endPrice == 0)
             {
-                sp = (List<SanPham>)sp.Where(s => s.Gia <= beginPrice).OrderBy(s => s.Gia);
+                sp = sp.Where(s => s.Gia <= beginPrice).OrderBy(s => s.Gia).ToList();
             }
             if (beginPrice > 0 && endPrice > 0)
             {
-                sp = (List<SanPham>)sp.Where(s => s.Gia >= beginPrice && s.Gia <= endPrice).OrderBy(s => s.Gia);
+                sp = sp.Where(s => s.Gia >= beginPrice && s.Gia <= endPrice).OrderBy(s => s.Gia).ToList();
             }
             if (beginPrice == 0 && endPrice > 0)
             {
-                sp = (List<SanPham>)sp.Where(s => s.Gia >= endPrice).OrderBy(s => s.Gia);
+                sp = sp.Where(s => s.Gia >= endPrice).OrderBy(s => s.Gia).ToList();
             }
             return View(sp.ToPagedList(pageNumber, pageSize));
         }
