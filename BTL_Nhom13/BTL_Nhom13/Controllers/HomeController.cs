@@ -62,11 +62,10 @@ namespace BTL_Nhom13.Controllers
 
             return View();
         }
-<<<<<<< HEAD
         public ActionResult DetailProduct()
         {
             return View();
-=======
+        }
         public PartialViewResult _DanhMuc()
         {
             var danhmuc = db.DanhMucs.Select(d => d);
@@ -76,7 +75,6 @@ namespace BTL_Nhom13.Controllers
         {
             var danhmuc = db.DanhMucs.Select(d => d);
             return PartialView(danhmuc);
->>>>>>> 706c51846d6a0bc2b85c76437e78666cc5752560
         }
     }
 }
