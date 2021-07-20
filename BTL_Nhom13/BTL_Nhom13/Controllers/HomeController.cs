@@ -12,12 +12,12 @@ namespace BTL_Nhom13.Controllers
         TinhDauDB db = new TinhDauDB();
         public ActionResult Index(string sortOrder, int? madm, int? beginPrice, int? endPrice,string searchString,int? page)
         {
-            int pageSize = 6;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             var sp = db.SanPhams.ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
-                sp = (List<SanPham>)sp.Where(s => s.TenSP.Contains(searchString) );
+                sp = (List<SanPham>)sp.Where(s => s.TenSP.Contains(searchString));
                 return View(sp.ToList());
             }
             if (madm > 0)
@@ -48,7 +48,7 @@ namespace BTL_Nhom13.Controllers
             {
                 sp = (List<SanPham>)sp.Where(s => s.Gia >= endPrice).OrderBy(s => s.Gia);
             }
-            return View(sp.ToPagedList(pageNumber,pageSize));
+            return View(sp.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Login()

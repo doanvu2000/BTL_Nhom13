@@ -59,7 +59,7 @@
                                     <a title="Giới thiệu" href="#">Giới thiệu </a>
                                 </li>
                                 <li class="ul_menu_pc_border">
-                                    <a title="Sản phẩm" href="#">Sản phẩm </a>
+                                    <a title="Sản phẩm" href="@Url.Action("Index","Home")">Sản phẩm </a>
                                     <ul class="mn_child ul_menu_pc_ul">
                                         @{
                                             Html.RenderAction("_DanhMuc", "Home");
@@ -94,7 +94,7 @@
                                 @using (Html.BeginForm())
                                 {
                                     <p>
-                                        @Html.TextBox("SearchString")
+                                        @Html.TextBox("searchString")
                                         <input type="submit"
                                                placeholder="Nhập nôi dung tìm kiếm"
                                                name="button"
