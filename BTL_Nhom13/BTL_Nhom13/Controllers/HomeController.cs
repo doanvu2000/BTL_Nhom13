@@ -15,6 +15,10 @@ namespace BTL_Nhom13.Controllers
             var sp = db.SanPhams.Select(s => s);
             return View(sp);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 672f420d0f97dcd04773cc8b10ed9494048a8931
         public ActionResult Login()
         {
 

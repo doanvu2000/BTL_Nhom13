@@ -210,8 +210,11 @@
     <Content Include="Views\Home\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Signin.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Shared\_DanhMuc.cshtml" />
     <Content Include="Views\Shared\_SearchDanhMuc.cshtml" />
+=======
+>>>>>>> 672f420d0f97dcd04773cc8b10ed9494048a8931
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
