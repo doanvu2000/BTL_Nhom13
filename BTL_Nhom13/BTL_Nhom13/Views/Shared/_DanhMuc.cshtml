@@ -2,7 +2,7 @@
 @foreach (var item in Model)
 {
     <li>
-        <a href="#">&nbsp;&raquo; @item.TenDM</a>
+        <a href="@Url.Action("Index","Home",new { maDM = item.MaDM})">&nbsp;&raquo; @item.TenDM</a>
     </li>
 }
 
