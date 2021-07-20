@@ -10,112 +10,107 @@ using BTL_Nhom13.Models;
 
 namespace BTL_Nhom13.Areas.Admin.Controllers
 {
-    public class AdminSanPhamsController : Controller
+    public class AdminTaiKhoansController : Controller
     {
         private TinhDauDB db = new TinhDauDB();
 
-        public ActionResult Product()
+        public ActionResult Account()
         {
-            var sanPhams = db.SanPhams.Include(s => s.DanhMuc);
-            return View(sanPhams.ToList());
+            return View(db.TaiKhoans.ToList());
         }
-        // GET: Admin/AdminSanPhams/Details/5
-        public ActionResult Details(int? id)
+        // GET: Admin/AdminTaiKhoans/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPham sanPham = db.SanPhams.Find(id);
-            if (sanPham == null)
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
             {
                 return HttpNotFound();
             }
-            return View(sanPham);
+            return View(taiKhoan);
         }
 
-        // GET: Admin/AdminSanPhams/Create
+        // GET: Admin/AdminTaiKhoans/Create
         public ActionResult Create()
         {
-            ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM");
             return View();
         }
 
-        // POST: Admin/AdminSanPhams/Create
+        // POST: Admin/AdminTaiKhoans/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaSP,MaDM,TenSP,NhaSX,TrongLuong,SoLuongTon,Gia,ChatLuong,MoTa,Anh")] SanPham sanPham)
+        public ActionResult Create([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
-                db.SanPhams.Add(sanPham);
+                db.TaiKhoans.Add(taiKhoan);
                 db.SaveChanges();
-                return RedirectToAction("Product");
+                return RedirectToAction("Index");
             }
 
-            ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
-            return View(sanPham);
+            return View(taiKhoan);
         }
 
-        // GET: Admin/AdminSanPhams/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Admin/AdminTaiKhoans/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPham sanPham = db.SanPhams.Find(id);
-            if (sanPham == null)
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
-            return View(sanPham);
+            return View(taiKhoan);
         }
 
-        // POST: Admin/AdminSanPhams/Edit/5
+        // POST: Admin/AdminTaiKhoans/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSP,MaDM,TenSP,NhaSX,TrongLuong,SoLuongTon,Gia,ChatLuong,MoTa,Anh")] SanPham sanPham)
+        public ActionResult Edit([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sanPham).State = EntityState.Modified;
+                db.Entry(taiKhoan).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Product");
+                return RedirectToAction("Account");
             }
-            ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
-            return View(sanPham);
+            return View(taiKhoan);
         }
 
-        // GET: Admin/AdminSanPhams/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Admin/AdminTaiKhoans/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPham sanPham = db.SanPhams.Find(id);
-            if (sanPham == null)
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
             {
                 return HttpNotFound();
             }
-            return View(sanPham);
+            return View(taiKhoan);
         }
 
-        // POST: Admin/AdminSanPhams/Delete/5
+        // POST: Admin/AdminTaiKhoans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            SanPham sanPham = db.SanPhams.Find(id);
-            db.SanPhams.Remove(sanPham);
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            db.TaiKhoans.Remove(taiKhoan);
             db.SaveChanges();
-            return RedirectToAction("Product");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -4,12 +4,11 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<h2>Details</h2>
+@section Title{
+    Chi tiết sản phẩm
+}
 
 <div>
-    <h4>SanPham</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.DanhMuc.TenDM)
@@ -82,10 +81,9 @@
         <dd>
             @Html.DisplayFor(model => model.Anh)
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }) |
+    @Html.ActionLink("Quay lại", "Product")
 </p>

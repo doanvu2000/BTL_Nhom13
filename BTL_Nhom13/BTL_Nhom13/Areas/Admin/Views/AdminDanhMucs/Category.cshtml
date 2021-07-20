@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<BTL_Nhom13.Models.DanhMuc>
 @{
     ViewBag.Title = "Category";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -8,7 +8,7 @@
     Danh mục
 }
 <div class="container-fluid">
-    <a href="#" class="btn btn-outline-primary" role="button" aria-pressed="true">Thêm mới</a>
+    <a href="@Url.Action("Create", "AdminDanhMucs")" class="btn btn-outline-primary" role="button" aria-pressed="true">Thêm mới</a>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -18,28 +18,24 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead class="text-primary">
                             <th>Mã danh mục</th>
                             <th>Tên danh mục</th>
                             <th>Hành động</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Đèn xông tinh dầu nến</td>
-                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Đèn xông tinh dầu bằng điện</td>
-                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Tinh dầu hoa quả</td>
-                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.MaDM)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TenDM)</td>
+                                        <td>
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaDM }) |
+                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaDM })
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

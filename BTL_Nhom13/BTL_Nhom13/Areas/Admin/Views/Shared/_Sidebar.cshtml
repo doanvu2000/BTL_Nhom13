@@ -7,37 +7,42 @@
 
       Tip 2: you can also add an image using data-image tag
     -->
-    <div class="logo">
+    <div class="logo" style="background-color: cornflowerblue;">
         <a href="index.html" class="simple-text logo-normal"> NHÓM 13 </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item active">
+            <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="Home"?
+                "nav-item active" : "nav-item")">
                 <a class="nav-link" href="@Url.Action("Index", "Home")">
                     <i class="material-icons">dashboard</i>
                     <p>Bảng điều khiển</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Product", "Home")">
+            <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminSanPhams"?
+                "nav-item active" : "nav-item")">
+                <a class="nav-link" href="@Url.Action("Product", "AdminSanPhams")">
                     <i class="material-icons"> inventory_2 </i>
                     <p>Sản phẩm</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Category", "Home")">
+            <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminDanhMucs"?
+                "nav-item active" : "nav-item")">
+                <a class="nav-link" href="@Url.Action("Category", "AdminDanhMucs")">
                     <i class="material-icons">category</i>
                     <p>Danh mục</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Receipt", "Home")">
+            <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminHoaDons"?
+                "nav-item active" : "nav-item")">
+                <a class="nav-link" href="@Url.Action("Receipt", "AdminHoaDons")">
                     <i class="material-icons">receipt</i>
                     <p>Hóa đơn</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Account", "Home")">
+            <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminTaiKhoans"?
+                "nav-item active" : "nav-item")">
+                <a class="nav-link" href="@Url.Action("Account", "AdminTaiKhoans")">
                     <i class="material-icons">portrait</i>
                     <p>Tài khoản</p>
                 </a>
