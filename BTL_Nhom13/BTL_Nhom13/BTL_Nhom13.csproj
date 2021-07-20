@@ -165,6 +165,7 @@
     <Content Include="wwwroot\image\DN01.jpg" />
     <Content Include="wwwroot\image\DN05.jpg" />
     <Content Include="wwwroot\image\DN06.jpg" />
+    <Content Include="wwwroot\image\gio_hang.png" />
     <Content Include="wwwroot\image\hoahong.jpg" />
     <Content Include="wwwroot\image\sentrang.jpg" />
     <Content Include="wwwroot\image\spike.jpg" />
@@ -209,6 +210,11 @@
     <Content Include="Views\Home\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Signin.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Shared\_DanhMuc.cshtml" />
+    <Content Include="Views\Shared\_SearchDanhMuc.cshtml" />
+=======
+>>>>>>> 672f420d0f97dcd04773cc8b10ed9494048a8931
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
