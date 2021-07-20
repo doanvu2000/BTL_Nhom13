@@ -37,5 +37,9 @@ namespace BTL_Nhom13.Controllers
             var danhmuc = db.DanhMucs.Select(d => d);
             return PartialView(danhmuc);
         }
+        public ActionResult DetailProduct()
+        {
+            return View();
+        }
     }
 }
