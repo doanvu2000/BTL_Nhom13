@@ -17,8 +17,8 @@ namespace BTL_Nhom13.Controllers
             var sp = db.SanPhams.ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
-                sp = sp.Where(s => s.TenSP.Contains(searchString)).ToList();
-                return View(sp.ToList());
+                sp = sp.Where(s => s.TenSP.ToLower().Contains(searchString.ToLower())).ToList();
+                return View(sp.ToPagedList(pageNumber, pageSize));
             }
             if (madm > 0)
             {
