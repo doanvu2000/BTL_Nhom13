@@ -1,8 +1,9 @@
-﻿
+﻿@model BTL_Nhom13.Models.SanPham
+
 @{
     ViewBag.Title = "DetailProduct";
+    string path = "~/wwwroot/image/" + Model.Anh;
 }
-
 <h2>DetailProduct</h2>
 
 
@@ -105,17 +106,17 @@
                         <div itemscope itemtype="http://schema.org/Product" class="detail_P02">
                             <div class="detail_P02_img  gallery clearfix">
                                 <dl>
-                                    <a itemprop="image" href="image/PR1223_may-khuech-tan-tinh-dau-cam-tu-cau-mkt20-1.jpg" rel="prettyPhoto[gallery1]"><img src="image/PR1223_may-khuech-tan-tinh-dau-cam-tu-cau-mkt20-1.jpg" alt="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng" title="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng" /></a>
+                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
                                 </dl>
 
                                 <ol>
-                                    <a href="image/PR0514_thong-so-may-khuech-tan-cam-tu-cau-mkt20.jpg" rel="prettyPhoto[gallery1]"><img src="image/PR0514_thong-so-may-khuech-tan-cam-tu-cau-mkt20.jpg" alt="Thông số kỹ thuật máy khuếch tán hoa Cẩm Tú Cầu" title="Thông số kỹ thuật máy khuếch tán hoa Cẩm Tú Cầu" /></a>
+                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)"  /></a>
                                 </ol>
                                 <ol>
-                                    <a href="image/PR0410_may-khuech-tan-tinh-dau-cam-tu-cau-mkt20-3.jpg" rel="prettyPhoto[gallery1]"><img src="image/PR0410_may-khuech-tan-tinh-dau-cam-tu-cau-mkt20-3.jpg" alt="Máy khuếch tán tinh dầu hoa Cẩm tú cầu MKT20 " title="Máy khuếch tán tinh dầu hoa Cẩm tú cầu MKT20 " /></a>
+                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
                                 </ol>
                                 <ol>
-                                    <a href="image/PR0435_may-khuech-tan-tinh-dau-cam-tu-cau-mkt20-2.jpg" rel="prettyPhoto[gallery1]"><img src="image/PR0435_may-khuech-tan-tinh-dau-cam-tu-cau-mkt20-2.jpg" alt="Máy khuếch tán tinh dầu hoa Cẩm tú cầu MKT20 " title="Máy khuếch tán tinh dầu hoa Cẩm tú cầu MKT20 " /></a>
+                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
                                 </ol>
 
                             </div>
@@ -133,24 +134,28 @@
                                 </i>
                                 <hr size="1">
                                 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="detail_P02_left">
-                                    <p>Mã sản phẩm: <strong>MKT20-H</strong></p>
+                                    <p>Mã sản phẩm: <strong>@Model.MaSP</strong></p>
                                     <span itemprop="name">Nhà sản xuất</span>
-                                    : <strong itemprop="value">Preserved Fresh Flower</strong>
+                                    : <strong itemprop="value">@Model.NhaSX</strong>
                                     </p>
-                                    <span itemprop="name">Loại sản phẩm</span>
-                                    : <strong itemprop="value">Máy khuếch tán siêu âm</strong>
+                                    <span itemprop="name">Tình trạng</span>
+                                    @{ 
+                                        int sl = Model.SoLuongTon;
+                                        var tt = sl > 0 ? "Có sẵn " + sl + " sản phẩm" : "Hết hàng";
+                                    }
+                                    : <strong itemprop="value">@tt</strong>
                                     </p>
                                     <span itemprop="name">Chất lượng</span>
-                                    : <strong itemprop="value">Hàng loại 1</strong>
+                                    : <strong itemprop="value">@Model.ChatLuong</strong>
                                     </p>
                                     <span itemprop="name">Trọng lượng</span>
-                                    : <strong itemprop="value">0.5 kg</strong>
+                                    : <strong itemprop="value">@Model.TrongLuong g</strong>
                                     </p>
                                     <p><span>Giá bán: </span></p>
                                     <p style="float:left; width:280px; margin-top:5px">
-                                        <strong class="detail_P02_gb" itemprop="price" content="650000">650.000 Đ</strong>
+                                        <strong class="detail_P02_gb">@Model.Gia VNĐ</strong>
                                         <strong itemprop="priceCurrency" content="VND"></strong>
-                                        <a href="GioHang.html"><span class="detail_P02_cart">Đặt Mua</span></a>
+                                        <a href="#"><span class="detail_P02_cart">Đặt Mua</span></a>
                                     </p>
 
                                 </div>
@@ -165,62 +170,8 @@
                                     <a title="Bảng giá bán lẻ tinh dầu" href="#"><p><strong>&bull;</strong> Bảng giá bán lẻ tinh dầu</p> </a>
                                 </div>
                                 <hr size="1">
-                                <div class="description" itemprop="description"><h2>Máy khuếch tán tinh dầu MKT20-H màu hồng là sản phẩm thuộc series máy khuếch tán có hình hoa cẩm tú cầu. Đây là mẫu máy nhỏ gọn và xinh xắn thích hợp cho phòng ngủ và không gian nhỏ.</h2></div>
+                                <div class="description" itemprop="description"><h2>@Model.MoTa</h2></div>
                                 <div class="detail_P02_share">
-                                </div>
-                            </div>
-
-                            <div class="detail_P02_description">
-                                <strong>Mô tả</strong>
-                                <hr size="1">
-                                <div class="detail_P02_description">
-                                    <div style="text-align: justify;">
-                                        <div>
-                                            <strong><a href="#">M&aacute;y khuếch t&aacute;n tinh dầu cẩm t&uacute; cầu MKT20</a></strong>&nbsp;c&oacute; kiểu d&aacute;ng đẹp, nhỏ gọn, thiết kế dễ thương, đường k&iacute;nh 12cm, cao 17cm, dung t&iacute;ch nước 100 ml. Loại m&aacute;y n&agrave;y th&iacute;ch hợp cho kh&ocirc;ng gian ph&ograve;ng dưới 25m2, một lần đổ đầy nước phun tối đa được 7h.<br />
-                                            &nbsp;
-                                        </div>
-                                        <div style="text-align: center;"><img src="image/may-khuech-tan-tinh-dau-cam-tu-cau-dep-gia-re-1.jpg" alt="M&aacute;y khuếch t&aacute;n tinh dầu hoa Cẩm t&uacute; cầu m&agrave;u xanh, m&agrave;u hồng - shop Hương Sắc Việt" width="600" height="400" title="M&aacute;y khuếch t&aacute;n tinh dầu hoa Cẩm t&uacute; cầu m&agrave;u xanh, m&agrave;u hồng - shop Hương Sắc Việt" /></div>
-                                        <div>&nbsp;</div>
-                                        <h3>Th&ocirc;ng số kỹ thuật m&aacute;y khuếch t&aacute;n tinh dầu Cẩm t&uacute; cầu MKT20:</h3>
-                                        <div>
-                                            <br />
-                                            - Điện &aacute;p: 100-220V<br />
-                                            - M&agrave;u sắc: hồng, xanh dương, xanh l&aacute;<br />
-                                            - K&iacute;ch thước (Đường k&iacute;nh x Cao): 12 x 17 cm<br />
-                                            - Diện t&iacute;ch khuếch t&aacute;n: 20-25 m2<br />
-                                            - Dung t&iacute;ch nước: 100ml<br />
-                                            - Thời gian hoạt động li&ecirc;n tục : 4-7 tiếng<br />
-                                            - M&aacute;y tự dừng khi hết nước<br />
-                                            - Bảo h&agrave;nh: 06 th&aacute;ng<br />
-                                            <br />
-                                            <div style="text-align: center;"><img src="image/may-khuech-tan-tinh-dau-cam-tu-cau-dep-gia-re-8.jpg" alt="M&aacute;y x&ocirc;ng khuếch t&aacute;n tinh dầu MKT20-H cẩm t&uacute; cầu hồng" title="M&aacute;y x&ocirc;ng khuếch t&aacute;n tinh dầu MKT20-H cẩm t&uacute; cầu hồng" />&nbsp;</div>
-                                        </div>
-                                        <h3>Ưu điểm của d&ograve;ng m&aacute;y khuếch t&aacute;n tinh dầu hoa Cẩm t&uacute; cầu MKT20:</h3>
-                                        <div>
-                                            <br />
-                                            - Kiểu d&aacute;ng đẹp, họa tiết dễ thương ph&ugrave; hợp với mọi kh&ocirc;ng gian trong ng&ocirc;i nh&agrave; bạn. Sử dụng được trong nhiều kh&ocirc;ng gian như: Ph&ograve;ng kh&aacute;ch, ph&ograve;ng ngủ, b&agrave;n l&agrave;m việc&hellip;<br />
-                                            - C&oacute; 2 chế độ m&agrave;u sắc để bạn thoải m&aacute;i lựa chọn chế độ ph&ugrave; hợp nhất.<br />
-                                            - C&oacute; 2 chế độ phun mạnh v&agrave; phun yếu th&iacute;ch hợp cho nhu cầu của từng người.<br />
-                                            - Gi&uacute;p ngủ ngon giấc, thư gi&atilde;n cơ thể, giảm căng thẳng mệt mỏi sau những giờ l&agrave;m việc vất vả.<br />
-                                            - L&agrave;m sạch, diệt khuẩn, lọc ion v&agrave; giảm bụi bẩn trong kh&ocirc;ng kh&iacute;.<br />
-                                            - Hết nước tự tắt, gi&uacute;p bạn an t&acirc;m hơn về độ an to&agrave;n của thiết bị.<br />
-                                            - C&aacute;ch sử dụng đơn giản, dễ d&agrave;ng.<br />
-                                            - L&agrave; một trong nhung mau may khuech tan tinh dau mini ban chay nhat, m&oacute;n qu&agrave; tặng &yacute; nghĩa cho bạn b&egrave; v&agrave; người th&acirc;n.<br />
-                                            &nbsp;
-                                        </div>
-                                        <div>
-                                            <strong>LƯU &Yacute; KHI&nbsp;SỬ DỤNG M&Aacute;Y KHUẾCH T&Aacute;N TINH DẦU CẨM T&Uacute; CẦU</strong><strong>:</strong><br />
-                                            <br />
-                                            -	M&aacute;y tự ngừng khi hết nước, kh&ocirc;ng chạy khi mức nước thấp hoặc nhiều hơn quy định<br />
-                                            <br />
-                                            -	Kh&ocirc;ng mở nắp khi m&aacute;y đang hoạt động<br />
-                                            <br />
-                                            -	Giữ vệ sinh m&aacute;y sạch sẽ, kh&ocirc;ng để nước v&agrave; tinh dầu tr&agrave;n ra ngo&agrave;i khoang chứa nước<br />
-                                            <br />
-                                            - Với may khuyech tan tinh dau sieu am, chỉ n&ecirc;n sử dụng c&aacute;c loại&nbsp;tinh dầu thi&ecirc;n nhi&ecirc;n, tinh dầu x&ocirc;ng thơm chuy&ecirc;n dụng
-                                        </div>
-                                        <div>&nbsp;</div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -240,101 +191,17 @@
                                 <h4>Danh mục sản phẩm</h4>
                                 <li>
                                     <ul class="menu_left_03_ul">
-                                        <li><a title="Tinh Dầu Nguyên Chất" href="#">Tinh Dầu Nguyên Chất</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Tinh dầu từ thân, lá</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Tinh dầu từ hoa</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Tinh dầu từ vỏ, quả, hạt</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Tinh dầu từ gỗ</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Tinh dầu hỗn hợp</a></li>
-
-                                        <li><a title="Tinh Dầu Thơm Que Gỗ" href="#">Tinh Dầu Thơm Que Gỗ</a></li>
-                                        <li><a title="Máy Khuếch Tán Tinh Dầu" href="#">Máy Khuếch Tán Tinh Dầu</a></li>
-                                        <li><a title="Đèn Xông Tinh Dầu" href="#">Đèn Xông Tinh Dầu</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Đèn xông tinh dầu nến</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Đèn xông tinh dầu điện</a></li>
-
-                                        <li><a title="Xà Bông Thiên Nhiên" href="#">Xà Bông Thiên Nhiên</a></li>
-                                        <li><a title="Dầu Massage Luxury" href="#">Dầu Massage Luxury</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Dầu Nền, Dầu Dẫn </a></li>
-                                        <li><a href="#">&nbsp;&raquo; Dầu massage cơ thể</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Dầu dưỡng da mặt</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Dầu dưỡng tóc, mọc tóc</a></li>
+                                        @{
+                                            Html.RenderAction("_DanhMuc", "Home");
+                                        }
                                     </ul>
                                 </li>
                             </ul>
                             <ul class="foreach_PTOP">
                                 <h4>Sản phẩm bán chạy</h4>
-                                <li>
-                                    <dl class="foreach_PTOP_img">
-                                        <a href="#" title="Máy khuếch tán Tulip trứng 500ml giá rẻ có remote FX034-TW">
-                                            <img src="image/PR1035_may-khuech-tan-tulip-gia-re-500ml-fx034-4.jpg" alt="Máy khuếch tán Tulip trứng 500ml giá rẻ có remote FX034-TW" />
-                                        </a>
-                                    </dl>
-                                    <dl class="foreach_PTOP_title">
-                                        <ol class="foreach_PTOP_name">
-                                            <a href="#" title="Máy khuếch tán Tulip trứng 500ml giá rẻ có remote FX034-TW"><span>Máy khuếch tán Tulip trứng 500ml giá...</span></a>
-                                            <p>480,000 Đ</p>
-                                        </ol>
-                                    </dl>
-                                </li>
-                                <li>
-                                    <dl class="foreach_PTOP_img">
-                                        <a href="#" title="Tinh dầu Sả Chanh tinh chất">
-                                            <img src="image/PR0909_tinh-dau-sa-chanh.jpg" alt="Tinh dầu Sả Chanh tinh chất" />
-                                        </a>
-                                    </dl>
-                                    <dl class="foreach_PTOP_title">
-                                        <ol class="foreach_PTOP_name">
-                                            <a href="#" title="Tinh dầu Sả Chanh tinh chất"><span>Tinh dầu Sả Chanh tinh chất</span></a>
-                                            <p>75,000 Đ</p>
-                                        </ol>
-                                    </dl>
-                                </li>
-                                <li>
-                                    <dl class="foreach_PTOP_img">
-                                        <a href="#" title="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng">
-                                            <img src="image/PR1223_may-khuech-tan-tinh-dau-cam-tu-cau-mkt20-1.jpg" alt="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng" />
-                                        </a>
-                                    </dl>
-                                    <dl class="foreach_PTOP_title">
-                                        <ol class="foreach_PTOP_name">
-                                            <a href="#" title="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng"><span>Máy khuếch tán tinh dầu MKT20-H cẩm...</span></a>
-                                            <p>650,000 Đ</p>
-                                        </ol>
-                                    </dl>
-                                </li>
-                            </ul>
-
-                            <ul class="foreach_NTOP">
-                                <h4>
-                                    Bí quyết dùng tinh dầu
-                                </h4>
-                                <li>
-                                    <dl class="foreach_NTOP_img">
-                                        <a href="#" title="Những loại tinh dầu tốt nhất cho trẻ sơ sinh và trẻ nhỏ">
-                                            <img src="image/NE0422_tinh-dau-tot-va-an-toan-cho-tre-so-sinh-va-tre-nho-1.jpg" alt="Những loại tinh dầu tốt nhất cho trẻ sơ sinh và trẻ nhỏ" title="Những loại tinh dầu tốt nhất cho trẻ sơ sinh và trẻ nhỏ" />
-                                        </a>
-                                    </dl>
-                                    <dl class="foreach_NTOP_title">
-                                        <ol class="foreach_NTOP_name">
-                                            <a href="#" title="Những loại tinh dầu tốt nhất cho trẻ sơ sinh và trẻ nhỏ"><span>Những loại tinh dầu tốt nhất cho trẻ...</span></a>
-                                            <i>14467 Lượt xem.</i>
-                                        </ol>
-                                    </dl>
-                                </li>
-                                <li>
-                                    <dl class="foreach_NTOP_img">
-                                        <a href="#" title="TOP 10 máy khuếch tán xông tinh dầu tốt nhất hiện nay 2021">
-                                            <img src="image/NE0646_may-khuyech-tan-tinh-dau-binh-hoa-tulip-400ml-3.jpg" alt="TOP 10 máy khuếch tán xông tinh dầu tốt nhất hiện nay 2021" title="TOP 10 máy khuếch tán xông tinh dầu tốt nhất hiện nay 2021" />
-                                        </a>
-                                    </dl>
-                                    <dl class="foreach_NTOP_title">
-                                        <ol class="foreach_NTOP_name">
-                                            <a href="#" title="TOP 10 máy khuếch tán xông tinh dầu tốt nhất hiện nay 2021"><span>TOP 10 máy khuếch tán xông tinh dầu tốt...</span></a>
-                                            <i>99695 Lượt xem.</i>
-                                        </ol>
-                                    </dl>
-                                </li>
+                                @{
+                                    Html.RenderAction("_SP_BanChay", "Home");
+                                }
                             </ul>
                         </div>
                     </div>

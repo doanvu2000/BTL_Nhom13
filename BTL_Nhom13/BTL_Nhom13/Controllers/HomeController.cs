@@ -62,9 +62,18 @@ namespace BTL_Nhom13.Controllers
 
             return View();
         }
-        public ActionResult DetailProduct()
+        public ActionResult DetailProduct(int masp)
         {
-            return View();
+            if (masp == 0)
+            {
+                return View("Index", db.SanPhams.ToList().ToPagedList(1, 10));
+            }
+            SanPham sp = db.SanPhams.Find(masp);
+            if (sp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sp);
         }
         public PartialViewResult _DanhMuc()
         {
@@ -75,6 +84,11 @@ namespace BTL_Nhom13.Controllers
         {
             var danhmuc = db.DanhMucs.Select(d => d);
             return PartialView(danhmuc);
+        }
+        public PartialViewResult _SP_BanChay()
+        {
+            var sp = db.SanPhams.Select(d => d).OrderBy(s => s.SoLuongTon).Take(3);
+            return PartialView(sp);
         }
     }
 }

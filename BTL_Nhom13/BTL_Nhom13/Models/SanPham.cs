@@ -32,6 +32,7 @@ namespace BTL_Nhom13.Models
 
         public int SoLuongTon { get; set; }
 
+        [DisplayFormat(DataFormatString ="{0:#,###}")]
         public decimal Gia { get; set; }
 
         [Required]

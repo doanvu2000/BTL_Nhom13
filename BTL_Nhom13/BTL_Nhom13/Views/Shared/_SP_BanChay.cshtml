@@ -1,0 +1,21 @@
+﻿@model IEnumerable<BTL_Nhom13.Models.SanPham>
+   
+@foreach (var item in Model)
+{
+    <li>
+        <dl class="foreach_PTOP_img">
+            @{
+                string path = "~/wwwroot/image/" + item.Anh;
+            }
+            <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })">
+                <img src="@Url.Content(path)" />
+            </a>
+        </dl>
+        <dl class="foreach_PTOP_title">
+            <ol class="foreach_PTOP_name">
+                <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })"><span>@item.TenSP</span></a>
+                <p>@item.Gia VNĐ</p>
+            </ol>
+        </dl>
+    </li>
+}
