@@ -165,6 +165,7 @@
     <Content Include="wwwroot\image\DN01.jpg" />
     <Content Include="wwwroot\image\DN05.jpg" />
     <Content Include="wwwroot\image\DN06.jpg" />
+    <Content Include="wwwroot\image\gio_hang.png" />
     <Content Include="wwwroot\image\hoahong.jpg" />
     <Content Include="wwwroot\image\sentrang.jpg" />
     <Content Include="wwwroot\image\spike.jpg" />
