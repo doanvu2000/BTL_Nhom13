@@ -4,27 +4,24 @@
     ViewBag.Title = "DetailProduct";
     string path = "~/wwwroot/image/" + Model.Anh;
 }
-<h2>DetailProduct</h2>
-
-
 <section class="section_all" id="page_bg">
     <div class="div_index" id="page_width">
         <article class="article_center">
             <div class="index_info">
                 <div class="index_1" style="margin-bottom:0px">
-                    <div class="breadcrumbs breadcrumb_url" itemscope itemtype="http://schema.org/BreadcrumbList">
-                        <div itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a href="index.html" itemprop="item">
+                    <div class="breadcrumbs breadcrumb_url" >
+                        <div itemprop="itemListElement" >
+                            <a href="@Url.Action("Index","Home")" itemprop="item">
                                 <span itemprop="name">Trang chủ</span>
                             </a>›
                         </div>
-                        <div itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a href="index.html" itemprop="item">
+                        <div itemprop="itemListElement" >
+                            <a href="@Url.Action("Index","Home")" itemprop="item">
                                 <span itemprop="name">Sản phẩm</span>
                             </a>›
                         </div>
-                        <div itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a href="chitietsanpham.html" itemprop="item"><span itemprop="name">Máy Khuếch Tán Tinh Dầu</span></a>
+                        <div itemprop="itemListElement" >
+                            <a href="#" itemprop="item"><span itemprop="name">@Model.TenSP</span></a>
                         </div>
                         </span>
                     </div>

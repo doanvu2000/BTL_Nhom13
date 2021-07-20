@@ -45,9 +45,7 @@
                         </ul>
                     </div>
                     <div class="paging_news">
-                        <b>Xem thêm:</b> <b>1</b> <a href="#">2</a> <a href="#">3</a>
-                        <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>
-                        <a href="#">7</a><a class="paging_news_sau" href="#">&raquo;</a>
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                     </div>
                 </div>
             </div>
