@@ -29,5 +29,9 @@ namespace BTL_Nhom13.Controllers
 
             return View();
         }
+        public ActionResult DetailProduct()
+        {
+            return View();
+        }
     }
 }
