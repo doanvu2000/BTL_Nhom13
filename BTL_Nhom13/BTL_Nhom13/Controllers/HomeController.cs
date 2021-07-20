@@ -10,7 +10,7 @@ namespace BTL_Nhom13.Controllers
     public class HomeController : Controller
     {
         TinhDauDB db = new TinhDauDB();
-        public ActionResult Index(string sortOrder, int? madm, int? beginPrice, int? endPrice, string searchString, int? page)
+        public ActionResult Index(string sortOrder, int? madm, int? beginPrice, int? endPrice,string searchString,int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -62,16 +62,7 @@ namespace BTL_Nhom13.Controllers
 
             return View();
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f080c17 (a)
-        public ActionResult DetailProduct()
-=======
         public ActionResult DetailProduct(int masp)
->>>>>>> 054e8a5 (done-basic-detail-product)
         {
             if (masp == 0)
             {
@@ -84,10 +75,6 @@ namespace BTL_Nhom13.Controllers
             }
             return View(sp);
         }
-<<<<<<< HEAD
->>>>>>> 634691d (change-home)
-=======
->>>>>>> f080c17 (a)
         public PartialViewResult _DanhMuc()
         {
             var danhmuc = db.DanhMucs.Select(d => d);
@@ -97,16 +84,6 @@ namespace BTL_Nhom13.Controllers
         {
             var danhmuc = db.DanhMucs.Select(d => d);
             return PartialView(danhmuc);
-<<<<<<< HEAD
-<<<<<<< HEAD
-        }
-        public ActionResult DetailProduct()
-        {
-            return View();
-=======
->>>>>>> 634691d (change-home)
-=======
->>>>>>> f080c17 (a)
         }
         public PartialViewResult _SP_BanChay()
         {
