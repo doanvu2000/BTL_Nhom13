@@ -25,7 +25,7 @@
                             {
                                 <li class="foreach_P50_li">
                                     <dl class="foreach_P50_img">
-                                        <a href="chitietsanpham.html">
+                                        <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })">
                                             @{
                                                 string path = "~/wwwroot/image/" + item.Anh;
                                             }
@@ -33,7 +33,7 @@
                                         </a>
                                     </dl>
                                     <dl class="foreach_P50_title">
-                                        <a href="chitietsanpham.html">@Url.Content(item.TenSP)</a>
+                                        <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })">@Url.Content(item.TenSP)</a>
                                     </dl>
                                     <dl class="foreach_P50_price">
                                         <p>

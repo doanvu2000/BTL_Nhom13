@@ -219,6 +219,7 @@
     <Content Include="Views\Shared\_DanhMuc.cshtml" />
     <Content Include="Views\Shared\_SearchDanhMuc.cshtml" />
     <Content Include="Views\Home\DetailProduct.cshtml" />
+    <Content Include="Views\Shared\_SP_BanChay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

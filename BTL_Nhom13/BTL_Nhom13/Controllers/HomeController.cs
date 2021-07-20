@@ -10,7 +10,7 @@ namespace BTL_Nhom13.Controllers
     public class HomeController : Controller
     {
         TinhDauDB db = new TinhDauDB();
-        public ActionResult Index(string sortOrder, int? madm, int? beginPrice, int? endPrice,string searchString,int? page)
+        public ActionResult Index(string sortOrder, int? madm, int? beginPrice, int? endPrice, string searchString, int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -64,12 +64,25 @@ namespace BTL_Nhom13.Controllers
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> f080c17 (a)
         public ActionResult DetailProduct()
+=======
+        public ActionResult DetailProduct(int masp)
+>>>>>>> 054e8a5 (done-basic-detail-product)
         {
-            return View();
+            if (masp == 0)
+            {
+                return View("Index", db.SanPhams.ToList().ToPagedList(1, 10));
+            }
+            SanPham sp = db.SanPhams.Find(masp);
+            if (sp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sp);
         }
 <<<<<<< HEAD
 >>>>>>> 634691d (change-home)
@@ -94,6 +107,11 @@ namespace BTL_Nhom13.Controllers
 >>>>>>> 634691d (change-home)
 =======
 >>>>>>> f080c17 (a)
+        }
+        public PartialViewResult _SP_BanChay()
+        {
+            var sp = db.SanPhams.Select(d => d).OrderBy(s => s.SoLuongTon).Take(3);
+            return PartialView(sp);
         }
     }
 }
