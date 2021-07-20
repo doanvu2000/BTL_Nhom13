@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Title{
+    Danh mục
+}
+<div class="container-fluid">
+    <a href="#" class="btn btn-outline-primary" role="button" aria-pressed="true">Thêm mới</a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Quản lý danh mục</h4>
+                    <p class="card-category">Danh sách các danh mục</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Mã danh mục</th>
+                            <th>Tên danh mục</th>
+                            <th>Hành động</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Đèn xông tinh dầu nến</td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Đèn xông tinh dầu bằng điện</td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Tinh dầu hoa quả</td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

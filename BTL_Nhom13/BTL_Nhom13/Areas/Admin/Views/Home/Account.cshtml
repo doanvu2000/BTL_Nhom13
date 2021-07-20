@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Title{
+    Tài khoản
+}
+<div class="container-fluid">
+    <a href="#" class="btn btn-outline-primary" role="button" aria-pressed="true">Thêm mới</a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Quản lý tài khoản</h4>
+                    <p class="card-category">Danh sách tài khoản</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Tên tài khoản</th>
+                            <th>Mật khẩu</th>
+                            <th>Quyền</th>
+                            <th>Trạng thái(kích hoạt)</th>
+                            <th>Tên khách hàng</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
+                            <th>Hành động</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>huyhoangit3</td>
+                                    <td>1234567</td>
+                                    <td>Admin</td>
+                                    <td>1</td>
+                                    <td></td>
+                                    <td>hoang2kthptlk@gmail.com</td>
+                                    <td>0377317662</td>
+                                    <td></td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                                <tr>
+                                    <td>abc</td>
+                                    <td>1234567</td>
+                                    <td>User</td>
+                                    <td>1</td>
+                                    <td>Nguyễn Văn Ánh</td>
+                                    <td>vana@gmail.com</td>
+                                    <td>0377317662</td>
+                                    <td>Hà Nội</td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                                <tr>
+                                    <td>abc</td>
+                                    <td>1234567</td>
+                                    <td>User</td>
+                                    <td>1</td>
+                                    <td>Trần Ngọc Tân</td>
+                                    <td>vana@gmail.com</td>
+                                    <td>0377317662</td>
+                                    <td>Hà Nội</td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

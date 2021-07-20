@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Title{
+    Sản phẩm
+}
+<div class="container-fluid">
+    <a href="@Url.Action("Create", "AdminSanPhams")" class="btn btn-outline-primary" role="button" aria-pressed="true">Thêm mới</a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Quản lý sản phẩm.</h4>
+                    <p class="card-category">Danh sách sản phẩm hiện có.</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Mã danh mục</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Nhà sản xuất</th>
+                            <th>Trọng lượng</th>
+                            <th>Số lượng tồn</th>
+                            <th>Giá bán</th>
+                            <th>Chất lượng</th>
+                            <th>Mô tả</th>
+                            <th>Hành động</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Đèn xông tinh dầu NX1</td>
+                                    <td>NSX Phú Cường B1</td>
+                                    <td>500g</td>
+                                    <td>100</td>
+                                    <td>450.000đ</td>
+                                    <td>Loại 1</td>
+                                    <td>Đèn xông tinh dầu nến.</td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Đèn xông tinh dầu NX2</td>
+                                    <td>NSX Phú Cường B2</td>
+                                    <td>500g</td>
+                                    <td>100</td>
+                                    <td>450.000đ</td>
+                                    <td>Loại 1</td>
+                                    <td>Đèn xông tinh dầu nến.</td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Đèn xông tinh dầu NX3</td>
+                                    <td>NSX Phú Cường B2</td>
+                                    <td>500g</td>
+                                    <td>100</td>
+                                    <td>450.000đ</td>
+                                    <td>Loại 1</td>
+                                    <td>Đèn xông tinh dầu nến.</td>
+                                    <td><a href="#">Sửa </a> | <a href="#">Xóa</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

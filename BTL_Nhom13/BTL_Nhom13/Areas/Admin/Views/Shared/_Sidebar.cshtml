@@ -1,0 +1,47 @@
+﻿<div class="sidebar"
+     data-color="purple"
+     data-background-color="white"
+     data-image="img/sidebar-1.jpg">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+    -->
+    <div class="logo">
+        <a href="index.html" class="simple-text logo-normal"> NHÓM 13 </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Home")">
+                    <i class="material-icons">dashboard</i>
+                    <p>Bảng điều khiển</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Product", "Home")">
+                    <i class="material-icons"> inventory_2 </i>
+                    <p>Sản phẩm</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Category", "Home")">
+                    <i class="material-icons">category</i>
+                    <p>Danh mục</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Receipt", "Home")">
+                    <i class="material-icons">receipt</i>
+                    <p>Hóa đơn</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Account", "Home")">
+                    <i class="material-icons">portrait</i>
+                    <p>Tài khoản</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
