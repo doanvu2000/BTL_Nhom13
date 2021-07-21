@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<BTL_Nhom13.Models.SanPham>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<section class="section_all" id="page_bg">
+    <div class="div_index" id="page_width">
+        <article class="article_center">
+            <div class="index_info">
+                <div class="index_1">
+                    <span><a href="@Url.Action("Index","Home",new { sortOrder = "sortSL"})">Sản phẩm bán chạy</a></span>
+                    <span style="margin-left:20px;"><a href="@Url.Action("Index","Home",new { sortOrder = "giaTang"})">Giá từ thấp đến cao</a></span>
+                    <span style="margin-left:20px"><a href="@Url.Action("Index","Home",new { sortOrder = "giaGiam"})">Giá từ cao xuống thấp</a></span>
+                    <div class="paging_news">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                    <div itemscope>
+                        <ul class="foreach_P50" id="">
+                            <div>
+                                <h1 itemprop="name">
+                                    Tinh Dầu Thiên Nhiên Hương Sắc Việt - 100% tự nhiên,
+                                    nguyên chất
+                                </h1>
+                            </div>
+                            @foreach (var item in Model)
+                            {
+                                <li class="foreach_P50_li">
+                                    <dl class="foreach_P50_img">
+                                        <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })">
+                                            @{
+                                                string path = "~/wwwroot/image/" + item.Anh;
+                                            }
+                                            <img src="@Url.Content(path)" alt="@Url.Content(item.TenSP)" />
+                                        </a>
+                                    </dl>
+                                    <dl class="foreach_P50_title">
+                                        <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })">@Url.Content(item.TenSP)</a>
+                                    </dl>
+                                    <dl class="foreach_P50_price">
+                                        <p>
+                                            @{
+                                                string gia = string.Format("{0:0,000}", item.Gia);
+                                            }
+                                            <span class="price-custom">@Url.Content(@gia) VND</span>
+                                        </p>
+                                    </dl>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="paging_news">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
