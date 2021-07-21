@@ -37,7 +37,10 @@
                                     </dl>
                                     <dl class="foreach_P50_price">
                                         <p>
-                                            <span class="price-custom">@Url.Content(item.Gia.ToString()) VND</span>
+                                            @{ 
+                                                string gia = string.Format("{0:0,000}", item.Gia);
+                                            }
+                                            <span class="price-custom">@Url.Content(@gia) VND</span>
                                         </p>
                                     </dl>
                                 </li>

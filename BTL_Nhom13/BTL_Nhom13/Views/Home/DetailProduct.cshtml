@@ -30,69 +30,6 @@
         </article>
     </div>
 </section>
-<section class="section_all" id="page_bg">
-    <div class="div_index" id="page_width">
-        <article class="article_center">
-            <div class="index_info">
-                <div class="index_1" style="background:#E6E6E6; margin-bottom:0px">
-                    <div class="boloc">
-                        <div class="div_search">
-                            <form name="frmsearch" method="post" action="#">
-                                <input type="text" name="name_product_search" id="name_product_search" value="" class="div_search_input" placeholder="Nhập nôi dung tìm kiếm" />
-                                <input type="submit" name="button" id="button" value="TÌM KIẾM" class="div_search_submit" />
-                            </form>
-                        </div>
-                        <div class="div_boloc">
-                            <select name="one_boloc" id="one_boloc" onChange="MM_jumpMenu('parent',this,0)">
-                                <option value="index.html" selected="selected"> <strong>Tìm theo danh mục</strong></option>
-                                <option value="#"> <strong> Tinh Dầu Nguyên Chất</strong></option>
-                                <option value="#"> <strong>&raquo; Tinh dầu từ thân, lá</strong></option>
-                                <option value="#"> <strong>&raquo; Tinh dầu từ hoa</strong></option>
-                                <option value="#"> <strong>&raquo; Tinh dầu từ vỏ, quả, hạt</strong></option>
-                                <option value="#"> <strong>&raquo; Tinh dầu từ gỗ</strong></option>
-                                <option value="#"> <strong>&raquo; Tinh dầu hỗn hợp</strong></option>
-                                <option value="#"> <strong> Tinh Dầu Thơm Que Gỗ</strong></option>
-                                <option value="#"> <strong> Đèn Xông Tinh Dầu</strong></option>
-                                <option value="#"> <strong>&raquo; Đèn xông tinh dầu nến</strong></option>
-                                <option value="#"> <strong>&raquo; Dầu massage cơ thể</strong></option>
-                                <option value="#"> <strong>&raquo; Dầu dưỡng da mặt</strong></option>
-                                <option value="#"> <strong>&raquo; Dầu dưỡng tóc, mọc tóc</strong></option>
-                            </select>
-                        </div>
-                        <!---->
-                        <div class="div_boloc">
-                            <select name="four_boloc" id="four_boloc" onChange="MM_jumpMenu('parent',this,0)">
-                                <option value="#" selected="selected"> <strong>Tìm Theo mức giá</strong></option>
-                                <option value="#"> <strong>Dưới 100.000Đ</strong></option>
-                                <option value="#"> <strong>100.000Đ - 200.000Đ</strong></option>
-                                <option value="#"> <strong>200.000Đ - 300.000Đ</strong></option>
-                                <option value="#"> <strong>Trên 300.000Đ</strong></option>
-
-                            </select>
-                        </div>
-                        <div class="div_boloc">
-                            <select name="one_boloc" id="one_boloc" onChange="MM_jumpMenu('parent',this,0)">
-                                <option value="#" selected="selected"> <strong>Tìm theo loại hương</strong></option>
-                                <option value="#"> <strong>Hương Hoa</strong></option>
-                                <option value="#"> <strong>Hương Pha Trộn</strong></option>
-                                <option value="#"> <strong>Hương Từ Lá</strong></option>
-                                <option value="#"> <strong>Hương Trái Cây</strong></option>
-                                <option value="#"> <strong>Hương Gỗ</strong></option>
-                            </select>
-                        </div>
-                    </div>
-                    <script type="text/javascript" charset="utf-8">
-                            function MM_jumpMenu(targ, selObj, restore) {
-                                eval(targ + ".location='" + selObj.options[selObj.selectedIndex].value + "'"); if
-                                    (restore) selObj.selectedIndex = 0;
-                            }
-                    </script>
-
-                </div>
-            </div>
-        </article>
-    </div>
-</section>
 
 <section class="section_all" id="page_bg">
     <div class="div_index" id="page_width">
@@ -119,7 +56,7 @@
                             </div>
 
                             <div class="detail_P02_content">
-                                <h1 itemprop="name" content="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng">Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng</h1>
+                                <h1>@Url.Content(Model.TenSP) </h1>
                                 <hr size="1">
                                 <dl class="detail_P02_rating">
                                     <div class="detail_P02_rating_box">
@@ -130,7 +67,7 @@
                                     (128 Lượt đánh giá) - 5631 lượt mua
                                 </i>
                                 <hr size="1">
-                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="detail_P02_left">
+                                <div class="detail_P02_left">
                                     <p>Mã sản phẩm: <strong>@Model.MaSP</strong></p>
                                     <span itemprop="name">Nhà sản xuất</span>
                                     : <strong itemprop="value">@Model.NhaSX</strong>
@@ -150,7 +87,10 @@
                                     </p>
                                     <p><span>Giá bán: </span></p>
                                     <p style="float:left; width:280px; margin-top:5px">
-                                        <strong class="detail_P02_gb">@Model.Gia VNĐ</strong>
+                                        @{ 
+                                            string gia = string.Format("{0:0,000}", Model.Gia);
+                                        }
+                                        <strong class="detail_P02_gb">@gia VNĐ</strong>
                                         <strong itemprop="priceCurrency" content="VND"></strong>
                                         <a href="#"><span class="detail_P02_cart">Đặt Mua</span></a>
                                     </p>
