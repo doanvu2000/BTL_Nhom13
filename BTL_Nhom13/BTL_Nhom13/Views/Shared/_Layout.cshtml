@@ -33,10 +33,24 @@
         <div class="div_index" id="page_width">
             <article class="article_center">
                 <div class="index_top top_full">
-                    <div class="header_lang">
-                        <a href="@Url.Action("Signin","Home")" title=""> Đăng Ký </a> |
-                        <a href="@Url.Action("Login","Home")" title=""> Đăng Nhập </a>
-                    </div>
+                    @if (Session["TenTaiKhoan"] != null)
+                    {
+                        @*<ul class="nav navbar-nav navbar-right">
+                            <li><a>Xin chào, @Session["TenTaiKhoan"]</a></li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Home", htmlAttributes: new { @style = "fornt-size:small,color:yellow" })</li>
+                        </ul>*@
+                        <div class="header_lang">
+                            <a href="" title="">Xin chào, @Session["TenTaiKhoan"] </a> |
+                            <a href="@Url.Action("LogOut","Home")" title="">Đăng xuất</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="header_lang">
+                            <a href="@Url.Action("Signin","Home")" title=""> Đăng Ký </a> |
+                            <a href="@Url.Action("Login","Home")" title=""> Đăng Nhập </a>
+                        </div>
+                    }
                 </div>
             </article>
         </div>
