@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<BTL_Nhom13.Models.SanPham>
 @using PagedList.Mvc;
 
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <section class="section_all" id="page_bg">
     <div class="div_index" id="page_width">
         <article class="article_center">
@@ -37,7 +37,7 @@
                                     </dl>
                                     <dl class="foreach_P50_price">
                                         <p>
-                                            @{ 
+                                            @{
                                                 string gia = string.Format("{0:0,000}", item.Gia);
                                             }
                                             <span class="price-custom">@Url.Content(@gia) VND</span>

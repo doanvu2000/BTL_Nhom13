@@ -1,0 +1,8 @@
+﻿@model IEnumerable<BTL_Nhom13.Models.DanhMuc>
+@foreach (var item in Model)
+{
+    <li>
+        <a href="@Url.Action("Index","Home",new { maDM = item.MaDM})">&nbsp;&raquo; @item.TenDM</a>
+    </li>
+}
+

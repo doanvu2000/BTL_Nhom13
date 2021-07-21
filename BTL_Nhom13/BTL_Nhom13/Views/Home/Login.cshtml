@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+@section ImportLibraryLogin {
+    Layout = null;
+}
+<link rel="stylesheet" href="~/wwwroot/css/style.css" />
+
+<style>
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .signin-form {
+        margin-top: 50px;
+    }
+
+    .signin-form .form-group {
+        margin-bottom: 35px !important;
+    }
+
+    body .signin-form .form-group label {
+        text-transform: none !important;
+        font-size: 16px !important;
+        color: gray !important;
+    }
+
+    body {
+        font-family: Arial !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <div class="wrap">
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="w-200">
+                        <h3 class="mb-4 title"
+                            style="
+                      font-family: Arial;
+                      text-align: center;
+                      font-weight: 700;
+                      color: #01d28e;
+                      margin-top: 30px;
+                    ">
+                            ĐĂNG NHẬP
+                        </h3>
+                    </div>
+                    <form action="#" class="signin-form">
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" />
+                            <label class="form-control-placeholder" for="username">Tên đăng nhập</label>
+                        </div>
+                        <div class="form-group">
+                            <input id="password-field"
+                                   type="password"
+                                   class="form-control" />
+                            <label class="form-control-placeholder" for="password">Mật khẩu</label>
+                            <span toggle="#password-field"
+                                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <button style="font-family: 14px" class="form-control btn btn-primary rounded submit px-3" onclick="toAdmin()">ĐĂNG NHẬP</button>
+                        </div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50 text-left">
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           style="margin-top: 7px"
+                                           type="checkbox"
+                                           value=""
+                                           id="flexCheckChecked"
+                                           checked />
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Lưu lại mật khẩu
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a href="#">Quên mật khẩu</a>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="text-center">
+                        Bạn chưa có tài khoản hãy kích vào
+                        <a href="Signin">Đăng ký</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/wwwroot/js/jquery.min.js"></script>
+<script src="~/wwwroot/js/popper.js"></script>
+<script src="~/wwwroot/js/bootstrap.min.js"></script>
+<script src="~/wwwroot/js/main.js"></script>
+<script>
+    function toAdmin() {
+        event.preventDefault()
+        window.location.href = "../Admin/index.html"
+    }</script>
+

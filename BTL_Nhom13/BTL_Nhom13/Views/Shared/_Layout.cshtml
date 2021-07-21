@@ -10,16 +10,32 @@
     <link rel="stylesheet" href="~/wwwroot/css/theme/ditacom_index.css" />
     <link rel="stylesheet" href="~/wwwroot/css/theme/ditacom_pulic.css" />
     <link rel="stylesheet" href="~/wwwroot/css/index.css" />
+    @RenderSection("ImportLibraryLogin", required: false)
+    <style>
+        .active {    
+            background: green;
+        }
+        .active:hover{
+            background: green !important;
+        }
+        .active a {
+            color: white !important;
+        }
+    </style>
 </head>
 <body class="bg_full">
+    <div style="position:relative;padding:0;margin:0;">
+        <img src="~/wwwroot/image/logo.png" style="position:absolute;top:-5px!important;left:18%;
+                                padding:0;margin:0" height ="90px" width="90px"/>
+    </div>
     <!-------------------------------------header--------------------------------------------->
-    <section class="section_all top_full" id="page_bg">
+    <section class="section_all top_full" id="page_bg" style="">
         <div class="div_index" id="page_width">
             <article class="article_center">
                 <div class="index_top top_full">
                     <div class="header_lang">
-                        <a href="../BackEnd/Login/signin.html" title=""> Đăng Ký </a> |
-                        <a href="../BackEnd/Login/login.html" title=""> Đăng Nhập </a>
+                        <a href="@Url.Action("Signin","Home")" title=""> Đăng Ký </a> |
+                        <a href="@Url.Action("Login","Home")" title=""> Đăng Nhập </a>
                     </div>
                 </div>
             </article>
@@ -45,231 +61,36 @@
                     shopping_01_ipad
                     shopping_01_mb
                   ">
-                                <a href="giohang.html">
+                                <a href="@Url.Action("GioHang", "Home")">
                                     <span>Giỏ hàng</span> <strong>0</strong>
-                                    <img src="image/gio_hang.png" alt="" />
+                                    <img src="~/wwwroot/image/gio_hang.png" />
                                 </a>
                             </div>
                             <ul class="ul_menu_pc" id="none_display_mb">
-                                <li class="ul_menu_pc_border" id="ul_menu_pc_active">
-                                    <a href="#" title="Trang chủ">Trang chủ</a>
+                                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Home"? "active" : "") ul_menu_pc_border_active">
+                                    <a href="@Url.Action("Home","Home")" title="Trang chủ">Trang chủ</a>
                                 </li>
-                                <li class="ul_menu_pc_border">
-                                    <a title="Giới thiệu" href="#">Giới thiệu </a>
+                                <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "About"? "active" : "")">
+                                    <a title="Giới thiệu" href="@Url.Action("About","Home")">Giới thiệu </a>
                                 </li>
-                                <li class="ul_menu_pc_border">
-                                    <a title="Sản phẩm" href="#">Sản phẩm </a>
+                                <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "Index"? "active" : "")">
+                                    <a title="Sản phẩm" href="@Url.Action("Index","Home")">Sản phẩm </a>
                                     <ul class="mn_child ul_menu_pc_ul">
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Tinh Dầu Nguyên Chất</a>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Tinh dầu từ thân, lá</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Tinh dầu từ hoa</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">
-                                                    &nbsp;&nbsp;&nbsp; &raquo; Tinh dầu từ vỏ, quả, hạt
-                                                </a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Tinh dầu từ gỗ</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Tinh dầu hỗn hợp</a>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Tinh Dầu Thơm Que Gỗ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Máy Khuếch Tán Tinh Dầu</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Đèn Xông Tinh Dầu</a>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Đèn xông tinh dầu nến</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">
-                                                    &nbsp;&nbsp;&nbsp; &raquo; Đèn xông tinh dầu điện
-                                                </a>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Xà Bông Thiên Nhiên</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Dầu Massage Luxury</a>
-                                            <p>
-                                                <a href="#">
-                                                    &nbsp;&nbsp;&nbsp; &raquo; Dầu Nền, Dầu Dẫn
-                                                </a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Dầu massage cơ thể</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">&nbsp;&nbsp;&nbsp; &raquo; Dầu dưỡng da mặt</a>
-                                            </p>
-                                            <p>
-                                                <a href="#">
-                                                    &nbsp;&nbsp;&nbsp; &raquo; Dầu dưỡng tóc, mọc tóc
-                                                </a>
-                                            </p>
-                                        </li>
+                                    @{
+                                        Html.RenderAction("_DanhMuc", "Home");
+                                    }
                                     </ul>
                                 </li>
-                                <li class="ul_menu_pc_border">
+                                <li class="ul_menu_pc_border_active">
                                     <a title="Kinh nghiệm" href="#">Kinh nghiệm </a>
                                 </li>
-                                <li class="ul_menu_pc_border">
+                                <li class="ul_menu_pc_border_active">
                                     <a title="Hỗ trợ" href="#">Hỗ trợ </a>
-                                    <ul class="mn_child ul_menu_pc_ul">
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Hướng dẫn mua hàng</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Hướng dẫn thanh toán</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Phương thức giao hàng</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Thông tin khuyến mãi</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Cách dùng đèn xông tinh dầu</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Chính sách đổi trả</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Bảng giá máy khuếch tán</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Bảng giá bán lẻ tinh dầu</a>
-                                        </li>
-                                    </ul>
                                 </li>
-                                <li class="ul_menu_pc_border">
-                                    <a title="Liên hệ" href="#">Liên hệ </a>
+                                <li class="ul_menu_pc_border_active">
+                                    <a href="https://github.com/doanvu2000/BTL_Nhom13" target="_blank">Liên hệ </a>
                                 </li>
                             </ul>
-                            <ul class="ul_menu_mb" id="none_display_pc">
-                                <li>
-                                    <a href="#"><strong>Menu</strong></a>
-                                    <ul class="mn_child ul_menu_mb_ul">
-                                        <li><a href="#" title="Trang chủ">Trang chủ</a></li>
-                                        <li><a title="Giới thiệu" href="#">Giới thiệu</a></li>
-                                        <li><a title="#">Sản phẩm</a></li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Tinh Dầu Nguyên Chất</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Tinh Dầu Thơm Que Gỗ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Máy Khuếch Tán Tinh Dầu</a>
-                                        </li>
-                                        <li><a href="#">&nbsp;&raquo; Đèn Xông Tinh Dầu</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Xà Bông Thiên Nhiên</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Dầu Massage Luxury</a></li>
-                                        <li><a title="Kinh nghiệm" href="#">Kinh nghiệm</a></li>
-                                        <li><a title="Hỗ trợ" href="#">Hỗ trợ</a></li>
-                                        <li><a href="#">&nbsp;&raquo; Hướng dẫn mua hàng</a></li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Hướng dẫn thanh toán</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Phương thức giao hàng</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Thông tin khuyến mãi</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Cách dùng đèn xông tinh dầu</a>
-                                        </li>
-                                        <li><a href="#">&nbsp;&raquo; Chính sách đổi trả</a></li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Bảng giá máy khuếch tán</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&nbsp;&raquo; Bảng giá bán lẻ tinh dầu</a>
-                                        </li>
-                                        <li><a title="Liên hệ" href="#">Liên hệ</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <div id="none_display_pc"
-                                 class="div_menu_drop"
-                                 style="display: none">
-                                <select name="one_boloc"
-                                        id="one_boloc"
-                                        onChange="MM_jumpMenu('parent',this,0)">
-                                    <option value="#" selected="selected">
-                                        <strong>Trang chủ</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>Giới thiệu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>Sản phẩm</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh Dầu Nguyên Chất</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh Dầu Thơm Que Gỗ</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Máy Khuếch Tán Tinh Dầu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Đèn Xông Tinh Dầu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Xà Bông Thiên Nhiên</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu Massage Luxury</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>Kinh nghiệm</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>Hỗ trợ</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Hướng dẫn mua hàng</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Hướng dẫn thanh toán</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Phương thức giao hàng</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Thông tin khuyến mãi</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Cách dùng đèn xông tinh dầu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Chính sách đổi trả</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Bảng giá máy khuếch tán</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Bảng giá bán lẻ tinh dầu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>Liên hệ</strong>
-                                    </option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -285,111 +106,48 @@
                          style="background: #e6e6e6; margin-bottom: 0px">
                         <div class="boloc">
                             <div class="div_search">
-                                <form name="frmsearch" method="post">
-                                    <input type="text"
-                                           name="name_product_search"
-                                           id="name_product_search"
-                                           value=""
-                                           class="div_search_input"
-                                           placeholder="Nhập nôi dung tìm kiếm" />
-                                    <input type="submit"
-                                           name="button"
-                                           id="button"
-                                           value="TÌM KIẾM"
-                                           class="div_search_submit" />
-                                </form>
+                                @using (Html.BeginForm())
+                                {
+                                    <p>
+                                        @Html.TextBox("searchString")
+                                        <input type="submit"
+                                               placeholder="Nhập nôi dung tìm kiếm"
+                                               name="button"
+                                               id="button"
+                                               value="TÌM KIẾM"
+                                               class="div_search_submit" />
+                                    </p>
+                                }
                             </div>
                             <div class="div_boloc">
-                                <select name="one_boloc"
-                                        id="one_boloc"
-                                        onChange="MM_jumpMenu('parent',this,0)">
-                                    <option value="#" selected="selected">
-                                        <strong>Tìm theo danh mục</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Tinh Dầu Nguyên Chất</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu từ thân, lá</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu từ hoa</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu từ vỏ, quả, hạt</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu từ gỗ</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Tinh dầu hỗn hợp</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Tinh Dầu Thơm Que Gỗ</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Máy Khuếch Tán Tinh Dầu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Đèn Xông Tinh Dầu</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Đèn xông tinh dầu nến</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Đèn xông tinh dầu điện</strong>
-                                    </option>
-                                    <option value="">
-                                        <strong> Xà Bông Thiên Nhiên</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong> Dầu Massage Luxury</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu Nền, Dầu Dẫn </strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu massage cơ thể</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu dưỡng da mặt</strong>
-                                    </option>
-                                    <option value="#">
-                                        <strong>&raquo; Dầu dưỡng tóc, mọc tóc</strong>
-                                    </option>
-                                </select>
-                            </div>
-
-                            <div class="div_boloc">
-                                <select name="four_boloc"
-                                        id="four_boloc"
-                                        onChange="MM_jumpMenu('parent',this,0)">
-                                    <option value="" selected="selected">
-                                        <strong>Tìm Theo mức giá</strong>
-                                    </option>
-                                    <option value="#"><strong>Dưới 100.000Đ</strong></option>
-                                    <option value="#">
-                                        <strong>100.000Đ - 200.000Đ</strong>
-                                    </option>
-                                    <option value="#"><strong>Trên 300.000Đ</strong></option>
-                                    <option value="#">
-                                        <strong>200.000Đ - 300.000Đ</strong>
-                                    </option>
-                                </select>
+                                <ul class="ul_menu_pc" id="none_display_mb">
+                                    <li class="ul_menu_pc_border">
+                                        <a href="@Url.Action("Index", "Home")">Danh Mục </a>
+                                        <ul class="mn_child ul_menu_pc_ul">
+                                            @{
+                                                Html.RenderAction("_DanhMuc", "Home");
+                                            }
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="div_boloc">
-                                <select name="one_boloc"
-                                        id="one_boloc"
-                                        onChange="MM_jumpMenu('parent',this,0)">
-                                    <option value="#" selected="selected">
-                                        <strong>Tìm theo loại hương</strong>
-                                    </option>
-                                    <option value="#"><strong>Hương Hoa</strong></option>
-                                    <option value="#"><strong>Hương Pha Trộn</strong></option>
-                                    <option value="#"><strong>Hương Từ Lá</strong></option>
-                                    <option value="#"><strong>Hương Trái Cây</strong></option>
-                                    <option value="#"><strong>Hương Gỗ</strong></option>
-                                </select>
+                                <ul class="ul_menu_pc" id="none_display_mb">
+                                    <li class="ul_menu_pc_border">
+                                        <a href="#">Tìm theo mức giá </a>
+                                        <ul class="mn_child ul_menu_pc_ul">
+                                            <li>
+                                                <a href="@Url.Action("Index","Home",new { beginPrice = 100000, endPrice = 0})">Dưới 100.000 VNĐ</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Index","Home",new { beginPrice = 100000, endPrice = 300000})">100.000 VNĐ - 300.000 VNĐ</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Index","Home",new {beginPrice = 0, endPrice = 300000})">Trên 300.000 VNĐ</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -399,7 +157,7 @@
     </section>
     <!-------------------------------------Body--------------------------------------------->
     @RenderBody()
-    
+
     ﻿<!-------------------------------------Footer--------------------------------------------->
     <section class="section_all" id="page_bg">
         <div class="div_index" id="page_width">
@@ -440,4 +198,15 @@
     </section>
 </body>
 <script src="~/wwwroot/js/index.js"></script>
+<script>
+    var header = document.getElementById("none_display_mb");
+    var lis = header.getElementsByClassName("ul_menu_pc_border_active");
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+</script>
 </html>
