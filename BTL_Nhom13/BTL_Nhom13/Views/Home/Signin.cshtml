@@ -1,4 +1,4 @@
-﻿
+﻿@model BTL_Nhom13.Models.TaiKhoan
 @{
     ViewBag.Title = "Signin";
     Layout = null;
@@ -7,83 +7,102 @@
 @section ImportLibraryLogin {
     Layout = null;
 }
-    <link rel="stylesheet" href="~/wwwroot/css/style.css" />
+<link rel="stylesheet" href="~/wwwroot/css/style.css" />
 
-    <style>
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .signin-form {
-            margin-top: 50px;
-        }
+<style>
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .signin-form {
+        margin-top: 50px;
+    }
 
         .signin-form .form-group {
             margin-bottom: 35px !important;
         }
 
-        body .signin-form .form-group label {
-            text-transform: none !important;
-            font-size: 16px !important;
-            color: gray !important;
-        }
+    body .signin-form .form-group label {
+        text-transform: none !important;
+        font-size: 16px !important;
+        color: gray !important;
+    }
 
-        body {
-            font-family: Arial !important;
-        }
-    </style>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-7 col-lg-5">
-            <div class="wrap">
-                <div class="login-wrap p-4 p-md-5">
-                    <div class="w-200">
-                        <h3 class="mb-4" style="font-family: Arial;text-align: center; font-weight: 700; color: #01d28e;margin-top: 30px;">ĐĂNG KÝ</h3>
-                    </div>
+    body {
+        font-family: Arial !important;
+    }
+    .edit_lable {
+        color: #01d28e;
+    }
+</style>
 
-                    <form action="#" class="signin-form">
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control">
-                            <label class="form-control-placeholder" for="username">Tên đăng nhập</label>
-                        </div>
-                        <div class="form-group">
-                            <input id="password-field" type="password" class="form-control">
-                            <label class="form-control-placeholder" for="password">Mật khẩu</label>
-                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="email" class="form-control">
-                            <label class="form-control-placeholder" for="email">Email</label>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control">
-                            <label class="form-control-placeholder" for="phoneNumber">Số điện thoại</label>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea class="md-textarea form-control" rows="3"></textarea>
-                            <label class="form-control-placeholder" for="address">Địa chỉ</label>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+                <div class="wrap">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="w-200">
+                            <h3 class="mb-4" style="font-family: Arial;text-align: center; font-weight: 700; color: #01d28e;margin-top: 30px;">ĐĂNG KÝ</h3>
                         </div>
 
-                        <div class="form-group">
-                            <button type="submit" class="form-control btn btn-primary rounded submit px-3">ĐĂNG KÝ</button>
-                        </div>
+                        @using (Html.BeginForm("Signin", "Home", FormMethod.Post, new { @class = "signin-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group mt-3">
+                                @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                                <label class="form-control-placeholder" for="username">Tên đăng nhập</label>
+                                @Html.ValidationMessageFor(model => model.TenTaiKhoan, "", new { @class = "text-danger" })
+                                
+                                @if(ViewBag.ErrorSign != null)
+                                {
+                                    <p class="text-danger">@ViewBag.ErrorSign</p>
+                                }
+                            </div>
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                                <label class="form-control-placeholder" for="password" name="MatKhau">Mật khẩu</label>
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group mt-3">
+                                @Html.EditorFor(model => model.TenKhachHang, new { htmlAttributes = new { @class = "form-control" } })
+                                <label class="form-control-placeholder" for="phoneNumber">Tên khách hàng</label>
+                                @Html.ValidationMessageFor(model => model.TenKhachHang, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group mt-3">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                <label class="form-control-placeholder" for="email">Email</label>
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group mt-3">
+                                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                                <label class="form-control-placeholder" for="phoneNumber">Số điện thoại</label>
+                                @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group mt-3">
+                                @Html.TextAreaFor(model => model.DiaChi, new { @class = "md-textarea form-control", @rows = 3 })
+                                <label class="form-control-placeholder" for="address">Địa chỉ</label>
+                                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                            </div>
+                            <input type="hidden" name="TinhTrang" value="true" />
+                            <input type="hidden" name="Quyen" value="0" />
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">ĐĂNG KÝ</button>
+                            </div>
 
-                    </form>
-                    <p class="text-center">Quay trở lại <a href="Login">Đăng nhập</a></p>
+                        }
+                            <p class="text-center">Quay trở lại <a href="Login">Đăng nhập</a></p>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 
 <script src="~/wwwroot/js/jquery.min.js"></script>
 <script src="~/wwwroot/js/popper.js"></script>
 <script src="~/wwwroot/js/bootstrap.min.js"></script>
 <script src="~/wwwroot/js/main.js"></script>
-<script>
-    function toAdmin() {
-        event.preventDefault()
-        window.location.href = "../Admin/index.html"
-    }</script>

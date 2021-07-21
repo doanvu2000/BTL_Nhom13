@@ -1,4 +1,4 @@
-﻿
+﻿@model BTL_Nhom13.Models.TaiKhoan
 @{
     ViewBag.Title = "Login";
     Layout = null;
@@ -15,13 +15,14 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
     .signin-form {
         margin-top: 50px;
     }
 
-    .signin-form .form-group {
-        margin-bottom: 35px !important;
-    }
+        .signin-form .form-group {
+            margin-bottom: 35px !important;
+        }
 
     body .signin-form .form-group label {
         text-transform: none !important;
@@ -51,21 +52,24 @@
                             ĐĂNG NHẬP
                         </h3>
                     </div>
-                    <form action="#" class="signin-form">
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "signin-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group mt-3">
-                            <input type="text" class="form-control" />
+                            @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
                             <label class="form-control-placeholder" for="username">Tên đăng nhập</label>
+                            @Html.ValidationMessageFor(model => model.TenTaiKhoan, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <input id="password-field"
-                                   type="password"
-                                   class="form-control" />
+                            @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
                             <label class="form-control-placeholder" for="password">Mật khẩu</label>
                             <span toggle="#password-field"
                                   class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <button style="font-family: 14px" class="form-control btn btn-primary rounded submit px-3" onclick="toAdmin()">ĐĂNG NHẬP</button>
+                            <button style="font-family: 14px" class="form-control btn btn-primary rounded submit px-3" type="submit">ĐĂNG NHẬP</button>
                         </div>
                         <div class="form-group d-md-flex">
                             <div class="w-50 text-left">
@@ -85,7 +89,7 @@
                                 <a href="#">Quên mật khẩu</a>
                             </div>
                         </div>
-                    </form>
+                    }
                     <p class="text-center">
                         Bạn chưa có tài khoản hãy kích vào
                         <a href="Signin">Đăng ký</a>
@@ -99,9 +103,7 @@
 <script src="~/wwwroot/js/popper.js"></script>
 <script src="~/wwwroot/js/bootstrap.min.js"></script>
 <script src="~/wwwroot/js/main.js"></script>
-<script>
-    function toAdmin() {
-        event.preventDefault()
-        window.location.href = "../Admin/index.html"
-    }</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 

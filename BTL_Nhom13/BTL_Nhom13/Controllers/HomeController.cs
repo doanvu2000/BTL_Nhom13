@@ -50,17 +50,69 @@ namespace BTL_Nhom13.Controllers
             }
             return View(sp.ToPagedList(pageNumber, pageSize));
         }
-
+        [HttpGet]
         public ActionResult Login()
         {
 
             return View();
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string TenTaiKhoan, string MatKhau)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.TaiKhoans.Where(t => t.TenTaiKhoan.Equals(TenTaiKhoan) && t.MatKhau.Equals(MatKhau)).ToList();
+                if (user.Count() > 0)
+                {
+                    //Su dung session: add Session
+                    Session["TenKhachHang"] = user.FirstOrDefault().TenKhachHang;
+                    Session["TenTaiKhoan"] = user.FirstOrDefault().TenTaiKhoan;
+                    if(user.FirstOrDefault().Quyen == 1)
+                    {
+                        // Sang Admin
+                        return RedirectToAction("Home","Admin");
+                    }
+                    // Sang trang ch
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Đăng nhập không thành công";
+                }
+            }
+            return View();
+        }
+        [HttpGet]
         public ActionResult Signin()
         {
 
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Signin([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
+        {
+            if (ModelState.IsValid)
+            {
+                var taiKhoanFind = db.TaiKhoans.Find(taiKhoan.TenTaiKhoan);
+                if(taiKhoanFind == null)
+                {
+                    db.TaiKhoans.Add(taiKhoan);
+                    db.SaveChanges();
+                    return RedirectToAction("Login");
+                } else
+                {
+                    ViewBag.ErrorSign = "Tên tài khoản trùng. Vui lòng nhập tên khác";
+                }
+            }
+            //ViewBag.Infor = taiKhoan.ToString();
+            return View(taiKhoan);
+        }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
         }
         public ActionResult DetailProduct(int masp)
         {
