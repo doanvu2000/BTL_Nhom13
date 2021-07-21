@@ -90,5 +90,49 @@ namespace BTL_Nhom13.Controllers
             var sp = db.SanPhams.Select(d => d).OrderBy(s => s.SoLuongTon).Take(3);
             return PartialView(sp);
         }
+        public ActionResult Home(string sortOrder, int? madm, int? beginPrice, int? endPrice, string searchString, int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var sp = db.SanPhams.ToList();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                sp = sp.Where(s => s.TenSP.ToLower().Contains(searchString.ToLower())).ToList();
+                return View(sp.ToPagedList(pageNumber, pageSize));
+            }
+            if (madm > 0)
+            {
+                sp = sp.Where(s => s.MaDM == madm).ToList();
+            }
+            if (sortOrder != null)
+            {
+                switch (sortOrder)
+                {
+                    case "sortSL":
+                        sp = sp.OrderBy(s => s.SoLuongTon).ToList(); break;
+                    case "giaTang":
+                        sp = sp.OrderBy(s => s.Gia).ToList(); break;
+                    case "giaGiam":
+                        sp = sp.OrderByDescending(s => s.Gia).ToList(); break;
+                }
+            }
+            if (beginPrice > 0 && endPrice == 0)
+            {
+                sp = sp.Where(s => s.Gia <= beginPrice).OrderBy(s => s.Gia).ToList();
+            }
+            if (beginPrice > 0 && endPrice > 0)
+            {
+                sp = sp.Where(s => s.Gia >= beginPrice && s.Gia <= endPrice).OrderBy(s => s.Gia).ToList();
+            }
+            if (beginPrice == 0 && endPrice > 0)
+            {
+                sp = sp.Where(s => s.Gia >= endPrice).OrderBy(s => s.Gia).ToList();
+            }
+            return View(sp.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult About()
+        {
+            return View();
+        }
     }
 }

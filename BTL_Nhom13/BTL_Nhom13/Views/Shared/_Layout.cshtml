@@ -67,13 +67,13 @@
                                 </a>
                             </div>
                             <ul class="ul_menu_pc" id="none_display_mb">
-                                <li class="ul_menu_pc_border_active active">
-                                    <a href="@Url.Action("Index","Home")" title="Trang chủ">Trang chủ</a>
+                                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Home"? "active" : "") ul_menu_pc_border_active">
+                                    <a href="@Url.Action("Home","Home")" title="Trang chủ">Trang chủ</a>
                                 </li>
-                                <li class="ul_menu_pc_border_active">
-                                    <a title="Giới thiệu" href="#">Giới thiệu </a>
+                                <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "About"? "active" : "")">
+                                    <a title="Giới thiệu" href="@Url.Action("About","Home")">Giới thiệu </a>
                                 </li>
-                                <li class="ul_menu_pc_border_active">
+                                <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "Index"? "active" : "")">
                                     <a title="Sản phẩm" href="@Url.Action("Index","Home")">Sản phẩm </a>
                                     <ul class="mn_child ul_menu_pc_ul">
                                     @{
