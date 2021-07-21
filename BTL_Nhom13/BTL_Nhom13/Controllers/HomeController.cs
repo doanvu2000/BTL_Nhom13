@@ -60,6 +60,14 @@ namespace BTL_Nhom13.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string TenTaiKhoan, string MatKhau)
         {
+            if (string.IsNullOrEmpty(TenTaiKhoan))
+            {
+                ViewBag.ErrorTenTaiKhoan = "Tên tài khoản không được để trống";
+            }
+            if (string.IsNullOrEmpty(TenTaiKhoan))
+            {
+                ViewBag.ErrorMatKhau = "Mật khẩu không được để trống";
+            }
             if (ModelState.IsValid)
             {
                 var user = db.TaiKhoans.Where(t => t.TenTaiKhoan.Equals(TenTaiKhoan) && t.MatKhau.Equals(MatKhau)).ToList();

@@ -11,6 +11,9 @@
 
 <style>
     .container {
+        margin-top: 100px;
+    }
+    .container {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -50,6 +53,7 @@
 
                         @using (Html.BeginForm("Signin", "Home", FormMethod.Post, new { @class = "signin-form" }))
                         {
+
                             @Html.AntiForgeryToken()
                             <div class="form-group mt-3">
                                 @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
