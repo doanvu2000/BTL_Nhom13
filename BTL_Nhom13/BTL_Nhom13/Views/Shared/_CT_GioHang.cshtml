@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BTL_Nhom13.Models.GioTam>
+
+@{
+    Decimal tongtien = 0;
+    Decimal a;
+}
+@foreach (var item in Model)
+{
+    <tr id="box_cart">
+        <td align="center" class="dita_td_info" id="display_cat_img" style="max-width:110px !important">
+            <a href="chitietsanpham.html">
+                <img src="@Url.Content("~/wwwroot/image/" + item.anh)" alt="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng" style="max-width:100px; width:100%">
+            </a>
+        </td>
+        <td class="dita_td_info" valign="top">
+            <p><a href="chitietsanpham.html">@Html.DisplayFor(Model => item.tensp)</a></p>
+            <p>Giá bán: <strong>@{
+                a = decimal.Parse(@Html.DisplayFor(Model => item.gia).ToString());
+                string b = string.Format("{0:0,000}", @a);
+            } @b Đ &nbsp;</strong></p>
+            <p>
+                Số lượng :
+                <select name="Amount" class="dita_cart_input">
+                    <option value="">@Html.DisplayFor(Model => item.sl)</option>
+                </select>
+            </p>
+            <p>Thành tiền: <strong>
+    @{
+        a = decimal.Parse(@Html.DisplayFor(Model => item.tt).ToString());
+        b = string.Format("{0:0,000}", @a);
+            } @b Đ  &nbsp;
+        </strong></p>
+            <p> <a href="#"><span>» Xóa</span></a></p>
+        </td>
+    </tr>
+    <input type="hidden" name="userid_u" value="">
+    <input type="hidden" name="firstname_u" value="">
+    <!--<input type="hidden" name="email_u" value="" >-->
+    <input type="hidden" name="mobile_u" value="">
+    <input type="hidden" name="news_id" value="254">
+    <input type="hidden" name="news_name" value="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng">
+    <input type="hidden" name="gia_ban" value="650,000">
+    tongtien += decimal.Parse(@Html.DisplayFor(Model => item.tt).ToString());
+}
+@{ string tt = string.Format("{0:0,000}", @tongtien);}
+<tr>
+    <td colspan="2" align="left">
+        <div style="float:left; border:0px solid #F00; width:100%; height:auto; ">
+            <div style="float:left; padding:10px">
+            </div>
+            <div style="float:right; padding:10px; min-width:350px">
+                <table class="table_shipping">
+                    <tbody>
+                        <tr>
+                            <td align="right" width="200">Tổng giá trị thanh toán:</td>
+                            <td align="left">
+                                <input type="hidden" name="tong_tien_cat" value="">
+                                <strong>@tt Đ</strong>
+                                <p style="color:darkred;">Lưu ý: HSV chỉ nhận ship với đơn hàng tối thiểu &gt; 100.000vnđ </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table_shipping" id="fee_shipping">
+                    <tbody>
+                        <tr>
+                            <td align="right" width="200">Phí Giao Hàng:</td>
+                            <td align="left">
+                                <span> Phí ship 20.000đ - 40.000đ tùy khu vực, nhân viên của HSV sẽ liên hệ để báo cụ thể cho khách hàng</span>
+                                <p>Miễn phí ship cho đơn hàng &gt;500.000đ tại nội thành HCM, HN và &gt;800.000đ tại ngoại tỉnh </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </td>
+</tr>
