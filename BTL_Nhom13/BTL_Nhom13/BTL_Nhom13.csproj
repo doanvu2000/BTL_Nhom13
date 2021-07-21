@@ -139,6 +139,7 @@
     <Compile Include="Models\ChiTietGioHang.cs" />
     <Compile Include="Models\DanhMuc.cs" />
     <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\GioTam.cs" />
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
@@ -223,6 +224,9 @@
     <Content Include="Views\Shared\_SearchDanhMuc.cshtml" />
     <Content Include="Views\Home\DetailProduct.cshtml" />
     <Content Include="Views\Shared\_SP_BanChay.cshtml" />
+    <Content Include="Views\Home\GioHang.cshtml" />
+    <Content Include="Views\Shared\_CT_GioHang.cshtml" />
+    <Content Include="Views\Shared\_DC_GiaoHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
