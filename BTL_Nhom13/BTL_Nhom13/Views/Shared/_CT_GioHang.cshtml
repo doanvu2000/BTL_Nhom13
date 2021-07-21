@@ -8,12 +8,12 @@
 {
     <tr id="box_cart">
         <td align="center" class="dita_td_info" id="display_cat_img" style="max-width:110px !important">
-            <a href="chitietsanpham.html">
-                <img src="@Url.Content("~/wwwroot/image/" + item.anh)" alt="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng" style="max-width:100px; width:100%">
+            <a href="@Url.Action("DetailProduct","Home", new { masp = item.masp})">
+                <img src="@Url.Content("~/wwwroot/image/" + item.anh)" alt="@item.tensp" style="max-width:100px; width:100%">
             </a>
         </td>
         <td class="dita_td_info" valign="top">
-            <p><a href="chitietsanpham.html">@Html.DisplayFor(Model => item.tensp)</a></p>
+            <p><a href="@Url.Action("DetailProduct","Home", new { masp = item.masp})">@Html.DisplayFor(Model => item.tensp)</a></p>
             <p>Giá bán: <strong>@{
                 a = decimal.Parse(@Html.DisplayFor(Model => item.gia).ToString());
                 string b = string.Format("{0:0,000}", @a);
@@ -33,13 +33,6 @@
             <p> <a href="#"><span>» Xóa</span></a></p>
         </td>
     </tr>
-    <input type="hidden" name="userid_u" value="">
-    <input type="hidden" name="firstname_u" value="">
-    <!--<input type="hidden" name="email_u" value="" >-->
-    <input type="hidden" name="mobile_u" value="">
-    <input type="hidden" name="news_id" value="254">
-    <input type="hidden" name="news_name" value="Máy khuếch tán tinh dầu MKT20-H cẩm tú cầu hồng">
-    <input type="hidden" name="gia_ban" value="650,000">
     tongtien += decimal.Parse(@Html.DisplayFor(Model => item.tt).ToString());
 }
 @{ string tt = string.Format("{0:0,000}", @tongtien);}

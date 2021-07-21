@@ -131,6 +131,7 @@ namespace BTL_Nhom13.Controllers
             {
                 return PartialView(tk);
             }
+        }
         public ActionResult Home(string sortOrder, int? madm, int? beginPrice, int? endPrice, string searchString, int? page)
         {
             int pageSize = 10;
