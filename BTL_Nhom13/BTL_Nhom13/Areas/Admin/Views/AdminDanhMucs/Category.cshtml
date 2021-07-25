@@ -7,14 +7,18 @@
 @section Title{
     Danh mục
 }
+<style>
+    .normal-text {
+        text-transform: none;
+    }
+</style>
 <div class="container-fluid">
-    <a href="@Url.Action("Create", "AdminDanhMucs")" class="btn btn-outline-primary" role="button" aria-pressed="true">Thêm mới</a>
+    <a href="@Url.Action("Create", "AdminDanhMucs")" class="btn btn-primary btn-sm normal-text" role="button">Thêm mới</a>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Quản lý danh mục</h4>
-                    <p class="card-category">Danh sách các danh mục</p>
+                    <h4 class="card-title">Danh sách các danh mục</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -31,8 +35,8 @@
                                         <td>@Html.DisplayFor(modelItem => item.MaDM)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TenDM)</td>
                                         <td>
-                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaDM }) |
-                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaDM })
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaDM }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaDM }, new { @class = "btn btn-sm btn-primary normal-text" })
                                         </td>
                                     </tr>
                                 }

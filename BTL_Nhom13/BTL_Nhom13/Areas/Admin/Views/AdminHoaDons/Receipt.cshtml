@@ -7,14 +7,17 @@
 @section Title{
     Hóa đơn
 }
-
+<style>
+    .normal-text {
+        text-transform: none;
+    }
+</style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Quản lý hóa đơn</h4>
-                    <p class="card-category">Danh sách hóa đơn</p>
+                    <h4 class="card-title">Danh sách hóa đơn</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -37,8 +40,8 @@
                                     <td>@Html.DisplayFor(modelItem => item.PhiShip)</td>
                                     <td>@Html.DisplayFor(modelItem => item.GhiChu)</td>
                                     <td>
-                                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaHoaDon }) |
-                                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaHoaDon })
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
                                     </td>
                                 </tr>
                                 }
