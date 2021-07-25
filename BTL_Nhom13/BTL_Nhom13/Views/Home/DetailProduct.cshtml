@@ -4,26 +4,29 @@
     ViewBag.Title = "DetailProduct";
     string path = "~/wwwroot/image/" + Model.Anh;
 }
+
+@{
+    Html.RenderPartial("_Banner");
+}
 <section class="section_all" id="page_bg">
     <div class="div_index" id="page_width">
         <article class="article_center">
             <div class="index_info">
                 <div class="index_1" style="margin-bottom:0px">
-                    <div class="breadcrumbs breadcrumb_url" >
-                        <div itemprop="itemListElement" >
+                    <div class="breadcrumbs breadcrumb_url">
+                        <div itemprop="itemListElement">
                             <a href="@Url.Action("Index","Home")" itemprop="item">
                                 <span itemprop="name">Trang chủ</span>
                             </a>›
                         </div>
-                        <div itemprop="itemListElement" >
+                        <div itemprop="itemListElement">
                             <a href="@Url.Action("Index","Home")" itemprop="item">
                                 <span itemprop="name">Sản phẩm</span>
                             </a>›
                         </div>
-                        <div itemprop="itemListElement" >
+                        <div itemprop="itemListElement">
                             <a href="#" itemprop="item"><span itemprop="name">@Model.TenSP</span></a>
                         </div>
-                        </span>
                     </div>
                 </div>
             </div>
@@ -44,7 +47,7 @@
                                 </dl>
 
                                 <ol>
-                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)"  /></a>
+                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
                                 </ol>
                                 <ol>
                                     <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
@@ -73,7 +76,7 @@
                                     : <strong itemprop="value">@Model.NhaSX</strong>
                                     </p>
                                     <span itemprop="name">Tình trạng</span>
-                                    @{ 
+                                    @{
                                         int sl = Model.SoLuongTon;
                                         var tt = sl > 0 ? "Có sẵn " + sl + " sản phẩm" : "Hết hàng";
                                     }
@@ -87,7 +90,7 @@
                                     </p>
                                     <p><span>Giá bán: </span></p>
                                     <p style="float:left; width:280px; margin-top:5px">
-                                        @{ 
+                                        @{
                                             string gia = string.Format("{0:0,000}", Model.Gia);
                                         }
                                         <strong class="detail_P02_gb">@gia VNĐ</strong>
