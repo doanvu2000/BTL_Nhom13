@@ -12,21 +12,23 @@
     <link rel="stylesheet" href="~/wwwroot/css/index.css" />
     @RenderSection("ImportLibraryLogin", required: false)
     <style>
-        .active {    
+        .active {
             background: green;
         }
-        .active:hover{
-            background: green !important;
-        }
-        .active a {
-            color: white !important;
-        }
+
+            .active:hover {
+                background: green !important;
+            }
+
+            .active a {
+                color: white !important;
+            }
     </style>
 </head>
 <body class="bg_full">
     <div style="position:relative;padding:0;margin:0;">
         <img src="~/wwwroot/image/logo.png" style="position:absolute;top:-5px!important;left:18%;
-                                padding:0;margin:0" height ="90px" width="90px"/>
+                                padding:0;margin:0" height="90px" width="90px" />
     </div>
     <!-------------------------------------header--------------------------------------------->
     <section class="section_all top_full" id="page_bg" style="">
@@ -36,11 +38,12 @@
                     @if (Session["TenTaiKhoan"] != null)
                     {
                         @*<ul class="nav navbar-nav navbar-right">
-                            <li><a>Xin chào, @Session["TenTaiKhoan"]</a></li>
-                            <li>@Html.ActionLink("Logout", "Logout", "Home", htmlAttributes: new { @style = "fornt-size:small,color:yellow" })</li>
-                        </ul>*@
+                                <li><a>Xin chào, @Session["TenTaiKhoan"]</a></li>
+                                <li>@Html.ActionLink("Logout", "Logout", "Home", htmlAttributes: new { @style = "fornt-size:small,color:yellow" })</li>
+                            </ul>*@
                         <div class="header_lang">
-                            <a href="" title="">Xin chào, @Session["TenTaiKhoan"] </a> |
+                            @*<a href="@Url.Action("DetailAccount","Home", new {TenTaiKhoan= Session["TenTaiKhoan"]})" title="Xem thông tin tài khoản">Xin chào, @Session["TenTaiKhoan"] </a>*@
+                            <a href="@Url.Action("DetailAccount","Home")" title="Xem thông tin tài khoản">Xin chào, @Session["TenTaiKhoan"] </a>|
                             <a href="@Url.Action("LogOut","Home")" title="">Đăng xuất</a>
                         </div>
                     }
@@ -77,12 +80,12 @@
                   ">
                                 <a href="@Url.Action("GioHang", "Home")">
                                     <span>Giỏ hàng</span> <strong>0</strong>
-                                    <img src="~/wwwroot/image/gio_hang.png" />
+                                    <img src="/wwwroot/image/gio_hang.png" />
                                 </a>
                             </div>
                             <ul class="ul_menu_pc" id="none_display_mb">
                                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Home"? "active" : "") ul_menu_pc_border_active">
-                                    <a href="@Url.Action("Home","Home")" title="Trang chủ">Trang chủ</a>
+                                    <a href="@Url.Action("Index","Home")" title="Trang chủ">Trang chủ</a>
                                 </li>
                                 <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "About"? "active" : "")">
                                     <a title="Giới thiệu" href="@Url.Action("About","Home")">Giới thiệu </a>
@@ -90,9 +93,9 @@
                                 <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "Index"? "active" : "")">
                                     <a title="Sản phẩm" href="@Url.Action("Index","Home")">Sản phẩm </a>
                                     <ul class="mn_child ul_menu_pc_ul">
-                                    @{
-                                        Html.RenderAction("_DanhMuc", "Home");
-                                    }
+                                        @{
+                                            Html.RenderAction("_DanhMuc", "Home");
+                                        }
                                     </ul>
                                 </li>
                                 <li class="ul_menu_pc_border_active">
@@ -112,63 +115,7 @@
         </div>
     </section>
     <!-------------------------------------banner--------------------------------------------->
-    <section class="section_all" id="page_bg">
-        <div class="div_index" id="page_width">
-            <article class="article_center">
-                <div class="index_info">
-                    <div class="index_1"
-                         style="background: #e6e6e6; margin-bottom: 0px">
-                        <div class="boloc">
-                            <div class="div_search">
-                                @using (Html.BeginForm())
-                                {
-                                    <p>
-                                        @Html.TextBox("searchString")
-                                        <input type="submit"
-                                               placeholder="Nhập nôi dung tìm kiếm"
-                                               name="button"
-                                               id="button"
-                                               value="TÌM KIẾM"
-                                               class="div_search_submit" />
-                                    </p>
-                                }
-                            </div>
-                            <div class="div_boloc">
-                                <ul class="ul_menu_pc" id="none_display_mb">
-                                    <li class="ul_menu_pc_border">
-                                        <a href="@Url.Action("Index", "Home")">Danh Mục </a>
-                                        <ul class="mn_child ul_menu_pc_ul">
-                                            @{
-                                                Html.RenderAction("_DanhMuc", "Home");
-                                            }
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="div_boloc">
-                                <ul class="ul_menu_pc" id="none_display_mb">
-                                    <li class="ul_menu_pc_border">
-                                        <a href="#">Tìm theo mức giá </a>
-                                        <ul class="mn_child ul_menu_pc_ul">
-                                            <li>
-                                                <a href="@Url.Action("Index","Home",new { beginPrice = 100000, endPrice = 0})">Dưới 100.000 VNĐ</a>
-                                            </li>
-                                            <li>
-                                                <a href="@Url.Action("Index","Home",new { beginPrice = 100000, endPrice = 300000})">100.000 VNĐ - 300.000 VNĐ</a>
-                                            </li>
-                                            <li>
-                                                <a href="@Url.Action("Index","Home",new {beginPrice = 0, endPrice = 300000})">Trên 300.000 VNĐ</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
+    
     <!-------------------------------------Body--------------------------------------------->
     @RenderBody()
 
@@ -211,6 +158,7 @@
         </div>
     </section>
 </body>
+@RenderSection("Scripts", required: false)
 <script src="~/wwwroot/js/index.js"></script>
 <script>
     var header = document.getElementById("none_display_mb");
