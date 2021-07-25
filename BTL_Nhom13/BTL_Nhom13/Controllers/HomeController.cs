@@ -152,7 +152,7 @@ namespace BTL_Nhom13.Controllers
             Session.Clear();
             return RedirectToAction("Login");
         }
-        public ActionResult DetailProduct(int masp)
+        public ActionResult DetailProduct(int? masp)
         {
             if (masp == 0)
             {
