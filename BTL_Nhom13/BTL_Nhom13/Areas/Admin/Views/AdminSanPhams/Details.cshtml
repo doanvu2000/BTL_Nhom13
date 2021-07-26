@@ -7,9 +7,28 @@
 @section Title{
     Chi tiết sản phẩm
 }
-
+<style>
+    .dl-horizontal {
+        padding-left: 10rem;
+    }
+    dl dd {
+        padding-left: 7rem;
+    }
+</style>
 <div>
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Anh)
+        </dt>
+
+        <dd>
+            @{
+                string imagePath = "~/wwwroot/image/" + Model.Anh;
+            }
+            <img src="@Url.Content(imagePath)" width="150" class="img-thumbnail" />
+            <br />
+            @Html.HiddenFor(model => model.Anh)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.DanhMuc.TenDM)
         </dt>
@@ -73,17 +92,9 @@
         <dd>
             @Html.DisplayFor(model => model.MoTa)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Anh)
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })
+            @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Anh)
-        </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }) |
-    @Html.ActionLink("Quay lại", "Product")
-</p>

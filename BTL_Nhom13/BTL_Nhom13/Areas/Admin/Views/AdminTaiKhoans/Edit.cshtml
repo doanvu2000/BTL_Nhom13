@@ -7,7 +7,19 @@
 @section Title{
     Sửa thông tin tài khoản
 }
+<style>
+    .form-horizontal {
+        padding-left: 7rem;
+    }
 
+    .col-md-10 {
+        padding-left: 7rem;
+    }
+
+    .control-label, .bmd-form-group label {
+        color: black;
+    }
+</style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

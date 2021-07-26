@@ -8,7 +8,15 @@
 @section Title{
     Xóa sản phẩm
 }
+<style>
+    .dl-horizontal {
+        padding-left: 10rem;
+    }
 
+    dl dd {
+        padding-left: 7rem;
+    }
+</style>
 <h3>Bạn có chắc muốn xóa sản phẩm này?</h3>
 <div>
     <dl class="dl-horizontal">
@@ -90,9 +98,9 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Quay lại", "Product")
-        </div>
+<div class="form-actions">
+    <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
+    @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
+</div>
     }
 </div>

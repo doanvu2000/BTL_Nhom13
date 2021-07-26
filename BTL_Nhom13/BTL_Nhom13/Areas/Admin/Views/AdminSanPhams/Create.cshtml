@@ -8,15 +8,27 @@
 @section Title{
     Thêm sản phẩm mới
 }
+<style>
+    .form-horizontal {
+        padding-left: 7rem;
+    }
 
-@using (Html.BeginForm())
+    .col-md-10 {
+        padding-left: 7rem;
+    }
+
+    .control-label, .bmd-form-group label {
+        color: black;
+    }
+</style>
+@using (Html.BeginForm("Create", "AdminSanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.MaDM, "MaDM", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaDM, "Mã danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("MaDM", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MaDM, "", new { @class = "text-danger" })
@@ -28,6 +40,25 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Anh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <img id="output" class="img-rounded" alt="Ảnh" width="150" height="150"
+                     src="~/wwwroot/image/image_not_found.png" />
+                <br />
+                <label for="ufile" style="cursor: pointer; text-transform: none;" class="btn btn-sm btn-primary">Chọn tệp</label>
+                <input name="ImageFile" id="ufile" type="file" style="display: none;"
+                       onchange="loadFile(event)" />
             </div>
         </div>
 
@@ -80,21 +111,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Anh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm" class="btn btn-default" />
+                <input type="submit" value="Thêm" class="btn btn-sm btn-primary normal-text" />
+                @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Quay lại", "Product")
-</div>
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    var loadFile = function (event) {
+        var image = document.getElementById("output");
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>

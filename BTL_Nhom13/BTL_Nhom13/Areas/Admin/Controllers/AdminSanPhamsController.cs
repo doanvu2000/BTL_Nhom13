@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BTL_Nhom13.Models;
+using PagedList;
 
 namespace BTL_Nhom13.Areas.Admin.Controllers
 {
@@ -14,10 +15,13 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
     {
         private TinhDauDB db = new TinhDauDB();
 
-        public ActionResult Product()
+        public ActionResult Product(int? page)
         {
             var sanPhams = db.SanPhams.Include(s => s.DanhMuc);
-            return View(sanPhams.ToList());
+            sanPhams = sanPhams.OrderBy(s => s.MaSP);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(sanPhams.ToPagedList(pageNumber, pageSize));
         }
         // GET: Admin/AdminSanPhams/Details/5
         public ActionResult Details(int? id)
@@ -48,15 +52,28 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaSP,MaDM,TenSP,NhaSX,TrongLuong,SoLuongTon,Gia,ChatLuong,MoTa,Anh")] SanPham sanPham)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.SanPhams.Add(sanPham);
-                db.SaveChanges();
+                if(ModelState.IsValid)
+                {
+                    sanPham.Anh = "";
+                    var f = Request.Files["ImageFile"];
+                    if (f != null && f.ContentLength > 0)
+                    {
+                        string FileName = System.IO.Path.GetFileName(f.FileName);
+                        string UploadPath = Server.MapPath("~/wwwroot/image/" + FileName);
+                        f.SaveAs(UploadPath);
+                        sanPham.Anh = FileName;
+                    }
+                    db.SanPhams.Add(sanPham);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Product");
+            } catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                return View(sanPham);
             }
-
-            ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
-            return View(sanPham);
         }
 
         // GET: Admin/AdminSanPhams/Edit/5
@@ -82,14 +99,34 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaSP,MaDM,TenSP,NhaSX,TrongLuong,SoLuongTon,Gia,ChatLuong,MoTa,Anh")] SanPham sanPham)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(sanPham).State = EntityState.Modified;
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    var f = Request.Files["ImageFile"];
+                    if (f != null && f.ContentLength > 0)
+                    {
+                        string FileName = System.IO.Path.GetFileName(f.FileName);
+                        string UploadPath = Server.MapPath("~/wwwroot/image/" + FileName);
+                        f.SaveAs(UploadPath);
+                        sanPham.Anh = FileName;
+                    }
+                    else
+                    {
+                        string UploadPath = Server.MapPath("~/wwwroot/image/" + sanPham.Anh);
+                        f.SaveAs(UploadPath);
+                    }
+                    db.Entry(sanPham).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Product");
+            } catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                return View(sanPham);
             }
-            ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
-            return View(sanPham);
+            /*ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
+            return View(sanPham);*/
         }
 
         // GET: Admin/AdminSanPhams/Delete/5

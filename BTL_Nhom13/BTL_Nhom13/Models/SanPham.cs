@@ -6,6 +6,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("SanPham")]
     public partial class SanPham
@@ -17,40 +18,45 @@
         }
 
         [Key]
-        [DisplayName("Mã sản phẩm")]
         public int MaSP { get; set; }
         [DisplayName("Mã danh mục")]
+        [Required(ErrorMessage = "Mã danh mục không được để trống!")]
         public int MaDM { get; set; }
 
-        [Required]
         [StringLength(100)]
+        [Required(ErrorMessage = "Tên sản phẩm không được để trống!")]
         [DisplayName("Tên sản phẩm")]
         public string TenSP { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Nhà sản xuất không được để trống!")]
         [StringLength(100)]
         [DisplayName("Nhà sản xuất")]
         public string NhaSX { get; set; }
 
         [DisplayName("Trọng lượng")]
+        [Required(ErrorMessage = "Trọng lượng không được để trống!")]
+        [RegularExpression("^[0-9]*\\.?[0-9]*$", ErrorMessage = "Trọng lượng phải là một số.")]
         public double TrongLuong { get; set; }
         [DisplayName("Số lượng tồn")]
+        [Required(ErrorMessage = "Số lượng tồn không được để trống!")]
+        [RegularExpression("^[0-9]*\\.?[0-9]*$", ErrorMessage = "Số lượng phải là một số.")]
         public int SoLuongTon { get; set; }
         [DisplayName("Giá")]
-        [DisplayFormat(DataFormatString ="{0:#,###}")]
+        [Required(ErrorMessage = "Giá sản phẩm không được để trống!")]
+        [RegularExpression("^[0-9]*\\.?[0-9]*$", ErrorMessage = "Giá sản phẩm phải là một số.")]
+        [DisplayFormat(DataFormatString = "{0:#,###}")]
         public decimal Gia { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Chất lượng không được để trống!")]
         [StringLength(100)]
         [DisplayName("Chất lượng")]
         public string ChatLuong { get; set; }
 
         [Column(TypeName = "ntext")]
+        [DataType(DataType.MultilineText)]
         [DisplayName("Mô tả")]
         public string MoTa { get; set; }
 
-        [Column(TypeName = "ntext")]
-        [Required]
         [DisplayName("Hình ảnh")]
         public string Anh { get; set; }
 
