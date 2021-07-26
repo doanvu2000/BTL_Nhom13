@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<BTL_Nhom13.Models.SanPham>*@
-@model PagedList.IPagedList<BTL_Nhom13.Models.SanPham>
+﻿@model PagedList.IPagedList<BTL_Nhom13.Models.SanPham>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Product";
@@ -61,7 +60,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.TenSP)</td>
                                         <td>@Html.DisplayFor(modelItem => item.NhaSX)</td>
                                         <td>@Html.DisplayFor(modelItem => item.SoLuongTon)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.Gia)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Gia) VND</td>
                                         <td>
                                             @Html.ActionLink("Chi tiết", "Details", new { id = item.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })
                                             @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })

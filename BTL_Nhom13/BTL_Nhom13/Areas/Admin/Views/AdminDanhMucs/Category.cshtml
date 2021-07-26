@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BTL_Nhom13.Models.DanhMuc>
+﻿@model PagedList.IPagedList<BTL_Nhom13.Models.DanhMuc>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Category";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -7,13 +8,25 @@
 @section Title{
     Danh mục
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 <style>
     .normal-text {
         text-transform: none;
     }
+
+    .pagination {
+        margin: 0px 0px;
+    }
 </style>
 <div class="container-fluid">
-    <a href="@Url.Action("Create", "AdminDanhMucs")" class="btn btn-primary btn-sm normal-text" role="button">Thêm mới</a>
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="@Url.Action("Create", "AdminDanhMucs")" class="btn btn-primary btn-sm normal-text" role="button">Thêm mới</a>
+        </div>
+        <div class="col-sm-6" style="text-align:right">
+            @Html.PagedListPager(Model, page => Url.Action("Category", new { page }))
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -46,6 +59,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div style="text-align: right">
+        @Html.PagedListPager(Model, page => Url.Action("Category", new { page }))
     </div>
 </div>
 

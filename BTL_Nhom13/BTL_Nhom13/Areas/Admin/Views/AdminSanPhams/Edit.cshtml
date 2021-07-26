@@ -119,6 +119,9 @@
     <br />
     <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
 }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 <script>
     var loadFile = function (event) {
         var image = document.getElementById("output");

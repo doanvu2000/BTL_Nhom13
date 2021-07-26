@@ -20,7 +20,7 @@
         [DisplayName("Mã danh mục")]
         public int MaDM { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Tên danh mục không được để trống!")]
         [StringLength(100)]
         [DisplayName("Tên danh mục")]
         public string TenDM { get; set; }

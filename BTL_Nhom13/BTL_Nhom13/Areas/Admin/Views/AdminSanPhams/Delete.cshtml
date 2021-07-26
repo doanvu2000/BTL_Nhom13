@@ -37,6 +37,18 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Anh)
+        </dt>
+
+        <dd>
+            @{
+                string imagePath = "~/wwwroot/image/" + Model.Anh;
+            }
+            <img src="@Url.Content(imagePath)" width="150" class="img-thumbnail" />
+            <br />
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.NhaSX)
         </dt>
 
@@ -85,22 +97,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Anh)
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
+                @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
+            }
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Anh)
-        </dd>
-
     </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-<div class="form-actions">
-    <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
-    @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
-</div>
-    }
 </div>

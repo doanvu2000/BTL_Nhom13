@@ -419,7 +419,6 @@
     <Content Include="Areas\Admin\Views\AdminSanPhams\Product.cshtml" />
     <Content Include="Areas\Admin\Views\AdminDanhMucs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\AdminDanhMucs\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminDanhMucs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AdminDanhMucs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHoaDons\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHoaDons\Details.cshtml" />
