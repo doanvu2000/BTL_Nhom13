@@ -111,11 +111,10 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
                         f.SaveAs(UploadPath);
                         sanPham.Anh = FileName;
                     }
-                    else
+                    /*else
                     {
                         string UploadPath = Server.MapPath("~/wwwroot/image/" + sanPham.Anh);
-                        f.SaveAs(UploadPath);
-                    }
+                    }*/
                     db.Entry(sanPham).State = EntityState.Modified;
                     db.SaveChanges();
                 }
