@@ -1,12 +1,12 @@
 ﻿@model PagedList.IPagedList<BTL_Nhom13.Models.TaiKhoan>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Account";
+    ViewBag.Title = "Customer";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Title{
-    Tài khoản
+    Khách hàng
 }
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <style>
@@ -21,10 +21,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6">
-            <a href="@Url.Action("Create", "AdminTaiKhoans")" class="btn btn-sm btn-primary normal-text" role="button">Thêm mới</a>
         </div>
         <div class="col-sm-6" style="text-align:right">
-            @Html.PagedListPager(Model, page => Url.Action("Account", new { page }))
+            @Html.PagedListPager(Model, page => Url.Action("Customer", new { page }))
         </div>
     </div>
 
@@ -32,7 +31,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Danh sách tài khoản</h4>
+                    <h4 class="card-title">Danh sách khách hàng</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -41,6 +40,8 @@
                             <th>Tên tài khoản</th>
                             <th>Mật khẩu</th>
                             <th>Tình trạng</th>
+                            <th>Tên khách hàng</th>
+                            <th>Email</th>
                             <th>Hành động</th>
                             </thead>
                             <tbody>
@@ -50,16 +51,11 @@
                                         <td>@Html.DisplayFor(modelItem => item.TenTaiKhoan)</td>
                                         <td>@Html.DisplayFor(modelItem => item.MatKhau)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TinhTrang)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TenKhachHang)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
                                         <td>
-                                            @if (!item.TenTaiKhoan.Equals(Session["TenTaiKhoan"]))
-                                            {
-                                                @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                                @Html.ActionLink("Xóa", "Delete", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            }
-                                            else
-                                            {
-                                                @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            }
+                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                         </td>
                                     </tr>
                                 }
@@ -71,6 +67,6 @@
         </div>
     </div>
     <div style="text-align: right">
-        @Html.PagedListPager(Model, page => Url.Action("Account", new { page }))
+        @Html.PagedListPager(Model, page => Url.Action("Customer", new { page }))
     </div>
 </div>

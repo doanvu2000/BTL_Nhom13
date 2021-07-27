@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BTL_Nhom13.Models;
+using PagedList;
 
 namespace BTL_Nhom13.Areas.Admin.Controllers
 {
@@ -14,25 +15,15 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
     {
         private TinhDauDB db = new TinhDauDB();
 
-        public ActionResult Account()
+        public ActionResult Account(int? page)
         {
-            return View(db.TaiKhoans.ToList());
+            // select only admin account
+            var taiKhoans = db.TaiKhoans.Where(t => t.Quyen == 1).Select(t => t);
+            taiKhoans = taiKhoans.OrderBy(t => t.TenTaiKhoan);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(taiKhoans.ToPagedList(pageNumber, pageSize));
         }
-        // GET: Admin/AdminTaiKhoans/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
-            if (taiKhoan == null)
-            {
-                return HttpNotFound();
-            }
-            return View(taiKhoan);
-        }
-
         // GET: Admin/AdminTaiKhoans/Create
         public ActionResult Create()
         {
@@ -44,16 +35,24 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
+        public ActionResult Create([Bind(Include = "TenTaiKhoan,MatKhau," +
+            "Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
-            if (ModelState.IsValid)
+            taiKhoan.Quyen = 1;
+            try
             {
-                db.TaiKhoans.Add(taiKhoan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.TaiKhoans.Add(taiKhoan);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Account");
             }
-
-            return View(taiKhoan);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                return View(taiKhoan);
+            }
         }
 
         // GET: Admin/AdminTaiKhoans/Edit/5
@@ -78,13 +77,20 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(taiKhoan).State = EntityState.Modified;
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    db.Entry(taiKhoan).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Account");
             }
-            return View(taiKhoan);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                return View(taiKhoan);
+            }
         }
 
         // GET: Admin/AdminTaiKhoans/Delete/5
@@ -108,9 +114,11 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+
             db.TaiKhoans.Remove(taiKhoan);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Account");
+
         }
 
         protected override void Dispose(bool disposing)

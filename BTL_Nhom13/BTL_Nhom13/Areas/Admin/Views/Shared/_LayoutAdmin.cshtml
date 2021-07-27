@@ -54,6 +54,12 @@
                                     </button>
                                 </div>
                             </form>*@
+                        @if (Session["TenTaiKhoan"] != null)
+                        {
+                            
+                                <p style="padding-top:1rem;">Xin chào, @Session["TenTaiKhoan"]</p>
+                            
+                        }
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link"
@@ -69,7 +75,7 @@
                                      aria-labelledby="navbarDropdownProfile">
                                     <a class="dropdown-item" href="#">Tài khoản</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="@Url.Action()">Đăng xuất</a>
+                                    <a class="dropdown-item" href="@Url.Action("Logout", "Home")">Đăng xuất</a>
                                 </div>
                             </li>
                         </ul>

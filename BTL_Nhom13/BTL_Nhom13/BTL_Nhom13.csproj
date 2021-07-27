@@ -135,6 +135,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminDanhMucsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHoaDonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminKhachHangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminSanPhamsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -424,9 +425,17 @@
     <Content Include="Areas\Admin\Views\AdminHoaDons\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHoaDons\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AdminTaiKhoans\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminTaiKhoans\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AdminTaiKhoans\Edit.cshtml" />
     <Content Include="wwwroot\js\popper.js" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminTaiKhoans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminKhachHangs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminKhachHangs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminKhachHangs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminKhachHangs\Customer.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

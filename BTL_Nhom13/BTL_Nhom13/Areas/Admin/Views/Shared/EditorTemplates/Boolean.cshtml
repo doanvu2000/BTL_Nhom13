@@ -1,0 +1,4 @@
+﻿@model Nullable<bool>
+<label style="color: black;">@Html.RadioButtonFor(model => model, true, @Model == true) Kích hoạt</label>
+<br />
+<label style="color: black;">@Html.RadioButtonFor(model => model, false, @Model == true) Vô hiệu hóa</label>

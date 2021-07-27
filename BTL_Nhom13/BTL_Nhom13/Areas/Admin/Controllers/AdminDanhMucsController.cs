@@ -19,7 +19,7 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         {
             var danhMucs = db.DanhMucs.Select(d => d);
             danhMucs = danhMucs.OrderBy(s => s.MaDM);
-            int pageSize = 4;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(danhMucs.ToPagedList(pageNumber, pageSize));
         }

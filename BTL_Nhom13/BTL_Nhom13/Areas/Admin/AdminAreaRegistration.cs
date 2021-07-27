@@ -17,7 +17,7 @@ namespace BTL_Nhom13.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", controllers="Home", id = UrlParameter.Optional }
+                new { action = "Login", controllers="Home", id = UrlParameter.Optional }
             );
         }
     }
