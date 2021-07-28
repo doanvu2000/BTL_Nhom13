@@ -72,6 +72,7 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             } catch (Exception ex)
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
                 return View(sanPham);
             }
         }
@@ -122,6 +123,7 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             } catch (Exception ex)
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
                 return View(sanPham);
             }
             /*ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);

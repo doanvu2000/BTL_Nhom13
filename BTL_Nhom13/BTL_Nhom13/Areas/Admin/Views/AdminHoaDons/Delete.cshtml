@@ -8,17 +8,24 @@
 @section Title{
     Xóa hóa đơn
 }
+<style>
+    .dl-horizontal {
+        padding-left: 10rem;
+    }
+
+    dl dd {
+        padding-left: 8rem;
+    }
+</style>
 <h3>Bạn có chắc muốn xóa hóa đơn này??</h3>
 <div>
-    <h4>HoaDon</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.GioHang.TenTaiKhoan)
+            @Html.DisplayNameFor(model => model.GioHang.TaiKhoan.TenKhachHang)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GioHang.TenTaiKhoan)
+            @Html.DisplayFor(model => model.GioHang.TaiKhoan.TenKhachHang)
         </dd>
 
         <dt>
@@ -42,7 +49,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhiShip)
+            @Html.DisplayFor(model => model.PhiShip) VND
         </dd>
 
         <dt>
@@ -53,15 +60,13 @@
             @Html.DisplayFor(model => model.GhiChu)
         </dd>
 
+        <dt>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
+                @Html.ActionLink("Quay lại", "Receipt", null, new { @class = "btn btn-sm btn-primary normal-text" })
+            }
+        </dt>
     </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-default" /> |
-            @Html.ActionLink("Quay lại", "Receipt")
-        </div>
-    }
 </div>
