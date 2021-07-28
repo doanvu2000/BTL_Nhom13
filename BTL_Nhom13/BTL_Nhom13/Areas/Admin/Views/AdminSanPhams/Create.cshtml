@@ -21,6 +21,7 @@
                     <div class="card-body">
                         <form>
                             <div class="row">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -33,7 +34,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.TenSP, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control",@style="margin-top:2.6rem" } })
+                                                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", @style = "margin-top:2.6rem" } })
                                                 @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -47,7 +48,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group is-focused">
+                                            <div class="form-group">
                                                 @Html.LabelFor(model => model.TrongLuong, htmlAttributes: new { @class = "bmd-label-floating" })
                                                 @Html.EditorFor(model => model.TrongLuong, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.TrongLuong, "", new { @class = "text-danger" })
@@ -56,7 +57,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="form-group is-focused">
+                                            <div class="form-group">
                                                 @Html.LabelFor(model => model.SoLuongTon, htmlAttributes: new { @class = "bmd-label-floating" })
                                                 @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
@@ -88,7 +89,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="col-md-12" >
+                                    <div class="col-md-12">
                                         @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "bmd-label-floating" })
                                         <br />
                                         <img id="output" class="img-rounded" alt="Ảnh" width="250" height="250"
