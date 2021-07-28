@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -79,13 +79,18 @@
                         string tong = thanhTien.ToString("#,###", cul.NumberFormat);
                     }
                     <hr />
-                    <p style="text-align:right;font-weight:bold">Thành tiền: @tong VND</p>
+                    <div class="row">
+                        <div class="col-md-9">
+                            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                            @Html.ActionLink("Quay lại", "Receipt", null, new { @class = "btn btn-sm btn-primary normal-text" })
+                        </div>
+                        <div class="col-md-3" style="font-weight:bold;">
+                            Thành tiền: @tong VND
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
-<p>
-    @Html.ActionLink("Sửa", "Edit", new { id = Model.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
-    @Html.ActionLink("Quay lại", "Receipt", null, new { @class = "btn btn-sm btn-primary normal-text" })
-</p>
