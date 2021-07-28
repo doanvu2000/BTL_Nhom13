@@ -7,94 +7,93 @@
 @section Title{
     Chi tiết sản phẩm
 }
-<style>
-    .dl-horizontal {
-        padding-left: 10rem;
-    }
-    dl dd {
-        padding-left: 8rem;
-    }
-</style>
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Anh)
-        </dt>
-
-        <dd>
-            @{
-                string imagePath = "~/wwwroot/image/" + Model.Anh;
-            }
-            <img src="@Url.Content(imagePath)" width="150" class="img-thumbnail" />
-            <br />
-            @Html.HiddenFor(model => model.Anh)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DanhMuc.TenDM)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DanhMuc.TenDM)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TenSP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenSP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NhaSX)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NhaSX)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrongLuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrongLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuongTon)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SoLuongTon)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ChatLuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ChatLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
-        <dt>
-            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })
-            @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
-        </dt>
-    </dl>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Thông tin chi tiết sản phẩm</h4>
+                </div>
+                <div class="card-body">
+                    <form style="cursor:default">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.DanhMuc.TenDM, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.DanhMuc.TenDM, new { htmlAttributes = new { @class = "form-control", @style = "margin-top:2.6rem", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TenSP, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", @style = "margin-top:2.6rem", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.NhaSX, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.NhaSX, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TrongLuong, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.TrongLuong, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.SoLuongTon, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ChatLuong, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.ChatLuong, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control", rows = 3, disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-12">
+                                    @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "bmd-label-floating" })
+                                    <br />
+                                    @{
+                                        string imagePath = "~/wwwroot/image/" + Model.Anh;
+                                    }
+                                    <img id="output" class="img-rounded" alt="Ảnh" width="250" height="250"
+                                         src="@Url.Content(imagePath)" />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })
+                        @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
