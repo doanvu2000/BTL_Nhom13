@@ -861,11 +861,10 @@
   color: #fff;
 }
 .ul_menu_pc {
-  width: 80%;
-  float: left;
-  border-radius: 2px;
-  height: 30px;
-  margin-top: 20px;
+  width: 60%
+  display: flex;
+  justify-content: space-around;
+  border-radius: 2px;   
 }
 .ul_menu_pc li {
   float: left;
@@ -882,7 +881,7 @@
   color: #333;
   width: auto;
   height: auto;
-  padding: 5px 20px;
+  padding: 5px 10px;
   text-transform: uppercase;
   white-space: nowrap;
   font-size: 90%;

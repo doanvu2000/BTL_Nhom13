@@ -3,19 +3,21 @@
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
 
-@{ 
-    Html.RenderPartial("_Banner");
-}
+
 <section class="section_all" id="page_bg">
     <div class="div_index" id="page_width">
         <article class="article_center">
             <div class="index_info">
                 <div class="index_1">
-                    <span><a href="@Url.Action("Index","Home",new { sortOrder = "sortSL"})">Sản phẩm còn nhiều</a></span>
-                    <span style="margin-left:20px;"><a href="@Url.Action("Index","Home",new { sortOrder = "giaTang"})">Giá từ thấp đến cao</a></span>
-                    <span style="margin-left:20px"><a href="@Url.Action("Index","Home",new { sortOrder = "giaGiam"})">Giá từ cao xuống thấp</a></span>
-                    <div class="paging_news">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span><a href="@Url.Action("Index","Home",new { sortOrder = "sortSL"})">Sản phẩm còn nhiều</a></span>
+                            <span style="margin-left:20px;"><a href="@Url.Action("Index","Home",new { sortOrder = "giaTang"})">Giá từ thấp đến cao</a></span>
+                            <span style="margin-left:20px"><a href="@Url.Action("Index","Home",new { sortOrder = "giaGiam"})">Giá từ cao xuống thấp</a></span>
+                        </div>
+                        <div>
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
                     </div>
                     <div itemscope>
                         <ul class="foreach_P50" id="">

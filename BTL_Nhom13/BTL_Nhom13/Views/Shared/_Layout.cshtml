@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/wwwroot/css/theme/ditacom_pulic.css" />
     <link rel="stylesheet" href="~/wwwroot/css/index.css" />
     @RenderSection("ImportLibraryLogin", required: false)
-    <style>
+<style>
         .active {
             background: green;
         }
@@ -23,11 +23,42 @@
             .active a {
                 color: white !important;
             }
-    </style>
+
+        .logo_web {
+            position: relative;
+            padding: 0;
+            margin: 0;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .shopping-cart {
+            display: flex;
+            align-items: center;
+            background: #f3f3f3;
+            box-shadow: 0 0 2px #999999;
+            height: 50px;
+            padding: 5px 5px 0px 5px;
+            width: 127px;
+        }
+
+        @@media (min-width: 980px) and (max-width: 1080px) {
+            .logo_web {
+                width: 1000px;
+            }
+        }
+
+        @@media (min-width: 1080px) {
+            .logo_web {
+                width: 1200px;
+            }
+        }
+ 
+</style>
 </head>
 <body class="bg_full">
-    <div style="position:relative;padding:0;margin:0;">
-        <img src="~/wwwroot/image/logo.png" style="position:absolute;top:-5px!important;left:18%;
+    <div class="logo_web" style="">
+        <img src="~/wwwroot/image/logo.png" style="position:absolute;top:-6px!important;left:0;
                                 padding:0;margin:0" height="90px" width="90px" />
     </div>
     <!-------------------------------------header--------------------------------------------->
@@ -37,10 +68,6 @@
                 <div class="index_top top_full">
                     @if (Session["TenTaiKhoan"] != null)
                     {
-                        @*<ul class="nav navbar-nav navbar-right">
-                                <li><a>Xin chào, @Session["TenTaiKhoan"]</a></li>
-                                <li>@Html.ActionLink("Logout", "Logout", "Home", htmlAttributes: new { @style = "fornt-size:small,color:yellow" })</li>
-                            </ul>*@
                         <div class="header_lang">
                             @*<a href="@Url.Action("DetailAccount","Home", new {TenTaiKhoan= Session["TenTaiKhoan"]})" title="Xem thông tin tài khoản">Xin chào, @Session["TenTaiKhoan"] </a>*@
                             <a href="@Url.Action("DetailAccount","Home")" title="Xem thông tin tài khoản">Xin chào, @Session["TenTaiKhoan"] </a>|
@@ -67,55 +94,70 @@
                         <div class="index_header_left">
                             <a href="#"
                                title=""
-                               style="float: left; margin-top: -10px; margin-bottom: 10px">
+                               style="float: left;">
                             </a>
                         </div>
-                        <div class="index_header_right">
-                            <div class="
-                    shopping_01
-                    shopping_01_pc
-                    shopping_01_ipad
-                    shopping_01_ipad
-                    shopping_01_mb
-                  ">
+                        <div class="index_header_right" style="height: auto !important">
+                            <div class="shopping-cart">
                                 <a href="@Url.Action("GioHang", "Home")">
                                     <span>Giỏ hàng</span> <strong>0</strong>
-                                    <img src="/wwwroot/image/gio_hang.png" />
                                 </a>
+                                <img src="/wwwroot/image/gio_hang.png" />
                             </div>
-                            <ul class="ul_menu_pc" id="none_display_mb">
-                                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Home"? "active" : "") ul_menu_pc_border_active">
-                                    <a href="@Url.Action("Index","Home")" title="Trang chủ">Trang chủ</a>
-                                </li>
-                                <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "About"? "active" : "")">
-                                    <a title="Giới thiệu" href="@Url.Action("About","Home")">Giới thiệu </a>
-                                </li>
-                                <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "Index"? "active" : "")">
-                                    <a title="Sản phẩm" href="@Url.Action("Index","Home")">Sản phẩm </a>
-                                    <ul class="mn_child ul_menu_pc_ul">
-                                        @{
-                                            Html.RenderAction("_DanhMuc", "Home");
-                                        }
-                                    </ul>
-                                </li>
-                                <li class="ul_menu_pc_border_active">
-                                    <a title="Kinh nghiệm" href="#">Kinh nghiệm </a>
-                                </li>
-                                <li class="ul_menu_pc_border_active">
-                                    <a title="Hỗ trợ" href="#">Hỗ trợ </a>
-                                </li>
-                                <li class="ul_menu_pc_border_active">
-                                    <a href="https://github.com/doanvu2000/BTL_Nhom13" target="_blank">Liên hệ </a>
-                                </li>
-                            </ul>
+                            <div class="div_search">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.TextBox("searchString")
+                                    <input type="submit"
+                                           placeholder="Nhập nôi dung tìm kiếm"
+                                           name="button"
+                                           id="button"
+                                           value="TÌM KIẾM"
+                                           class="div_search_submit" />
+                                }
+                            </div>
+                            <div class="boloc">
+                                <ul class="ul_menu_pc" id="none_display_mb">
+                                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Home"? "active" : "") ul_menu_pc_border_active">
+                                        <a href="@Url.Action("Index","Home")" title="Trang chủ">Trang chủ</a>
+                                    </li>
+                                    <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "About"? "active" : "")">
+                                        <a title="Giới thiệu" href="@Url.Action("About","Home")">Giới thiệu </a>
+                                    </li>
+                                    <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "Index"? "active" : "")">
+                                        <a title="Danh mục" href="@Url.Action("Index","Home")">Danh mục </a>
+                                        <ul class="mn_child ul_menu_pc_ul">
+                                            @{
+                                                Html.RenderAction("_DanhMuc", "Home");
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li class="ul_menu_pc_border_active">
+                                        <a href="#">Lọc theo giá </a>
+                                        <ul class="mn_child ul_menu_pc_ul">
+                                            <li>
+                                                <a href="@Url.Action("Index","Home",new { beginPrice = 100000, endPrice = 0})">Dưới 100.000 VNĐ</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Index","Home",new { beginPrice = 100000, endPrice = 300000})">100.000 VNĐ - 300.000 VNĐ</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Index","Home",new {beginPrice = 0, endPrice = 300000})">Trên 300.000 VNĐ</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="ul_menu_pc_border_active">
+                                        <a href="https://github.com/doanvu2000/BTL_Nhom13" target="_blank">Liên hệ </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </article>
         </div>
     </section>
     <!-------------------------------------banner--------------------------------------------->
-    
+
     <!-------------------------------------Body--------------------------------------------->
     @RenderBody()
 
