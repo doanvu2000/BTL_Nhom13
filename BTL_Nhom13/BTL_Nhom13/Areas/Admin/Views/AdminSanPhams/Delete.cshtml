@@ -96,6 +96,10 @@
             </div>
         </div>
     </div>
-    @Html.ActionLink("Xóa", "Delete", new { id = Model.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })
-    @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
+        @Html.ActionLink("Quay lại", "Product", null, new { @class = "btn btn-sm btn-primary normal-text" })
+    }
 </div>
