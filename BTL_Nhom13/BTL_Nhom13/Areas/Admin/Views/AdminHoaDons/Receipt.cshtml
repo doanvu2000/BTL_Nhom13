@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BTL_Nhom13.Models.HoaDon>
+@{
+    ViewBag.Title = "Receipt";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Title{
+    Hóa đơn
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Quản lý hóa đơn</h4>
+                    <p class="card-category">Danh sách hóa đơn</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-primary">
+                            <th>Mã hóa đơn</th>
+                            <th>Ngày đặt</th>
+                            <th>Tình trạng</th>
+                            <th>Phí vận chuyển</th>
+                            <th>Ghi chú</th>
+                            <th>Hành động</th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.MaHoaDon)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.NgayDat)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TinhTrang)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PhiShip)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.GhiChu)</td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaHoaDon }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaHoaDon })
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

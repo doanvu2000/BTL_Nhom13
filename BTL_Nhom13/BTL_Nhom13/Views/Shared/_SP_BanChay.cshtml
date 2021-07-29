@@ -14,7 +14,10 @@
         <dl class="foreach_PTOP_title">
             <ol class="foreach_PTOP_name">
                 <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })"><span>@item.TenSP</span></a>
-                <p>@item.Gia VNĐ</p>
+                @{ 
+                    string gia = string.Format("{0:0,000}", @item.Gia);
+                }
+                <p>@gia VNĐ</p>
             </ol>
         </dl>
     </li>

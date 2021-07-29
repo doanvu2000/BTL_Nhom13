@@ -2,12 +2,16 @@
 @using PagedList.Mvc;
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
+
+@{ 
+    Html.RenderPartial("_Banner");
+}
 <section class="section_all" id="page_bg">
     <div class="div_index" id="page_width">
         <article class="article_center">
             <div class="index_info">
                 <div class="index_1">
-                    <span><a href="@Url.Action("Index","Home",new { sortOrder = "sortSL"})">Sản phẩm bán chạy</a></span>
+                    <span><a href="@Url.Action("Index","Home",new { sortOrder = "sortSL"})">Sản phẩm còn nhiều</a></span>
                     <span style="margin-left:20px;"><a href="@Url.Action("Index","Home",new { sortOrder = "giaTang"})">Giá từ thấp đến cao</a></span>
                     <span style="margin-left:20px"><a href="@Url.Action("Index","Home",new { sortOrder = "giaGiam"})">Giá từ cao xuống thấp</a></span>
                     <div class="paging_news">
@@ -37,7 +41,10 @@
                                     </dl>
                                     <dl class="foreach_P50_price">
                                         <p>
-                                            <span class="price-custom">@Url.Content(item.Gia.ToString()) VND</span>
+                                            @{ 
+                                                string gia = string.Format("{0:0,000}", item.Gia);
+                                            }
+                                            <span class="price-custom">@Url.Content(@gia) VND</span>
                                         </p>
                                     </dl>
                                 </li>
@@ -45,9 +52,7 @@
                         </ul>
                     </div>
                     <div class="paging_news">
-                        <b>Xem thêm:</b> <b>1</b> <a href="#">2</a> <a href="#">3</a>
-                        <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>
-                        <a href="#">7</a><a class="paging_news_sau" href="#">&raquo;</a>
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                     </div>
                 </div>
             </div>
