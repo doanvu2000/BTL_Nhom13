@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Data.Entity;
+
 namespace BTL_Nhom13.Controllers
 {
     public class HomeController : Controller
@@ -14,7 +16,7 @@ namespace BTL_Nhom13.Controllers
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var sp = db.SanPhams.ToList();
+            var sp = db.SanPhams.Select(s=>s).ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
                 sp = sp.Where(s => s.TenSP.ToLower().Contains(searchString.ToLower())).ToList();
@@ -74,6 +76,7 @@ namespace BTL_Nhom13.Controllers
                 if (user.Count() > 0)
                 {
                     //Su dung session: add Session
+                    Session["TaiKhoan"] = user.FirstOrDefault();
                     Session["TenKhachHang"] = user.FirstOrDefault().TenKhachHang;
                     Session["TenTaiKhoan"] = user.FirstOrDefault().TenTaiKhoan;
                     if(user.FirstOrDefault().Quyen == 1)
@@ -117,12 +120,39 @@ namespace BTL_Nhom13.Controllers
             //ViewBag.Infor = taiKhoan.ToString();
             return View(taiKhoan);
         }
+        [HttpGet]
+        public ActionResult DetailAccount()
+        {
+            if(Session["TenTaiKhoan"] == null)
+            {
+                return RedirectToAction("Login");
+            } else
+            {
+                TaiKhoan taiKhoan = (TaiKhoan)Session["TaiKhoan"];
+                return View(taiKhoan);
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DetailAccount([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(taiKhoan).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "Cập nhật thông tin thành công";
+            } else
+            {
+                ViewBag.Message = "Cập nhật thông tin thất bại";
+            }
+            return View(taiKhoan);
+        }
         public ActionResult Logout()
         {
             Session.Clear();
             return RedirectToAction("Login");
         }
-        public ActionResult DetailProduct(int masp)
+        public ActionResult DetailProduct(int? masp)
         {
             if (masp == 0)
             {
