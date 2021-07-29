@@ -134,12 +134,7 @@
   background: #333 !important;
   line-height: 25px;
 }
-.boloc {
-  width: 96%;
-  float: left;
-  border-radius: 2px;
-  margin: 0% 2%;
-}
+
 @media (max-width: 480px) {
   .div_boloc {
     margin: 5px 0% 5px 0%;
@@ -155,9 +150,7 @@
     float: left;
   }
   .div_search {
-    margin: 15px 0px 5px 0px;
-    width: 100%;
-    float: left;
+    margin-right: 9%;
   }
   .div_search form {
     float: left;
@@ -288,9 +281,7 @@
     float: left;
   }
   .div_search {
-    margin: 15px 0px 0px 0px;
-    width: 100%;
-    float: left;
+    display: none;
   }
   .div_search form {
     float: left;
@@ -332,9 +323,9 @@
     float: left;
   }
   .div_search {
-    margin: 15px 0px 15px 0px;
     width: 30%;
     float: right;
+    display: none;
   }
   .div_search form {
     float: left;
@@ -373,13 +364,9 @@
     color: #333;
     float: left;
   }
-  .div_search {
-    margin: 15px 0px 15px 0px;
-    width: 30%;
-    float: right;
-  }
+    
   .div_search form {
-    float: left;
+    display: flex;
   }
   .div_search_input {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -579,6 +566,9 @@
   }
   .foreach_P50_display {
     display: none;
+  }
+  .boloc {
+      display: block !important;   
   }
 }
 @media (min-width: 980px) and (max-width: 1080px) {
