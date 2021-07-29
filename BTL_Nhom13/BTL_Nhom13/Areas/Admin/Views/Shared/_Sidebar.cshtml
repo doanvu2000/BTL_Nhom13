@@ -49,6 +49,13 @@
                     <p>Tài khoản</p>
                 </a>
             </li>
+            <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminKhachHangs"?
+                "nav-item active" : "nav-item")">
+                <a class="nav-link" href="@Url.Action("Customer", "AdminKhachHangs")">
+                    <i class="material-icons">supervisor_account</i>
+                    <p>Khách hàng</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

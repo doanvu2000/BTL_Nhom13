@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BTL_Nhom13.Models;
+using PagedList;
 
 namespace BTL_Nhom13.Areas.Admin.Controllers
 {
@@ -14,10 +15,13 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
     {
         private TinhDauDB db = new TinhDauDB();
 
-        public ActionResult Receipt()
+        public ActionResult Receipt(int? page)
         {
-            var hoaDons = db.HoaDons.Include(h => h.GioHang);
-            return View(hoaDons.ToList());
+            var hoaDons = db.HoaDons.Select(h => h);
+            hoaDons = hoaDons.OrderByDescending(s => s.NgayDat);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(hoaDons.ToPagedList(pageNumber, pageSize));
         }
         // GET: Admin/AdminHoaDons/Details/5
         public ActionResult Details(int? id)
@@ -45,7 +49,7 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaGioHang = new SelectList(db.GioHangs, "MaGioHang", "TenTaiKhoan", hoaDon.MaGioHang);
+            //ViewBag.MaGioHang = new SelectList(db.GioHangs, "MaGioHang", "TenTaiKhoan", hoaDon.MaGioHang);
             return View(hoaDon);
         }
 
@@ -56,14 +60,20 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaHoaDon,NgayDat,TinhTrang,PhiShip,GhiChu,MaGioHang")] HoaDon hoaDon)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(hoaDon).State = EntityState.Modified;
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    db.Entry(hoaDon).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Receipt");
             }
-            ViewBag.MaGioHang = new SelectList(db.GioHangs, "MaGioHang", "TenTaiKhoan", hoaDon.MaGioHang);
-            return View(hoaDon);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                return View(hoaDon);
+            }
         }
 
         // GET: Admin/AdminHoaDons/Delete/5

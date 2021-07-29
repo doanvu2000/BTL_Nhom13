@@ -8,7 +8,19 @@
 @section Title{
     Thêm danh mục mới
 }
+<style>
+    .form-horizontal {
+        padding-left: 7rem;
+    }
 
+    .col-md-10 {
+        padding-left: 7rem;
+    }
+
+    .control-label, .bmd-form-group label {
+        color: black;
+    }
+</style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -25,12 +37,17 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm" class="btn btn-default" />
+                <input type="submit" value="Thêm" class="btn btn-sm btn-primary normal-text" />
+                @Html.ActionLink("Quay lại", "Category", null, new { @class = "btn btn-sm btn-primary normal-text" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Quay lại", "Category")
-</div>
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BTL_Nhom13.Models.SanPham>
+﻿@model PagedList.IPagedList<BTL_Nhom13.Models.SanPham>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Product";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -7,39 +8,61 @@
 @section Title{
     Sản phẩm
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<style>
+    .normal-text {
+        text-transform: none;
+    }
+    .pagination {
+        margin: 0px 0px;
+    }
+</style>
 <div class="container-fluid">
-    <a href="@Url.Action("Create", "AdminSanPhams")" class="btn btn-outline-primary" role="button" aria-pressed="true">Thêm mới</a>
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="@Url.Action("Create", "AdminSanPhams")" class="btn btn-primary btn-sm normal-text" role="button">Thêm mới</a>
+        </div>
+        <div class="col-sm-6" style="text-align:right">
+            @Html.PagedListPager(Model, page => Url.Action("Product", new { page }))
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Quản lý sản phẩm.</h4>
-                    <p class="card-category">Danh sách sản phẩm hiện có.</p>
+                    <h4 class="card-title">Danh sách sản phẩm</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="text-primary">
+                            <th>Hình ảnh</th>
                             <th>Tên sản phẩm</th>
                             <th>Nhà sản xuất</th>
                             <th>Số lượng tồn</th>
                             <th>Giá bán</th>
-                            <th>Chất lượng</th>
                             <th>Hành động</th>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr onclick="window.location =
-        '@Url.Action("Details", "AdminSanPhams", new { id=item.MaSP })';" style="cursor: pointer;">
+                                    <tr>
+                                        <td>
+                                            @{
+                                                string imagePath = "~/wwwroot/image/" + item.Anh;
+                                            }
+                                            <img src="@Url.Content(imagePath)" width="70" class="img-thumbnail" />
+                                            <br />
+                                            @Html.HiddenFor(modelItem => item.Anh)
+                                        </td>
                                         <td>@Html.DisplayFor(modelItem => item.TenSP)</td>
                                         <td>@Html.DisplayFor(modelItem => item.NhaSX)</td>
                                         <td>@Html.DisplayFor(modelItem => item.SoLuongTon)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.Gia)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.ChatLuong)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Gia) VND</td>
                                         <td>
-                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP }) |
-                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaSP })
+                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaSP }, new { @class = "btn btn-sm btn-primary normal-text" })
                                         </td>
                                     </tr>
                                 }
@@ -50,7 +73,11 @@
             </div>
         </div>
     </div>
+    <div style="text-align: right">
+        @Html.PagedListPager(Model, page => Url.Action("Product", new { page }))
+    </div>
 </div>
+
 
 
 

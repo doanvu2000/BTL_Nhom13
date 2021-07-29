@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BTL_Nhom13.Models.DanhMuc>
+﻿@model PagedList.IPagedList<BTL_Nhom13.Models.DanhMuc>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Category";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -7,14 +8,30 @@
 @section Title{
     Danh mục
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<style>
+    .normal-text {
+        text-transform: none;
+    }
+
+    .pagination {
+        margin: 0px 0px;
+    }
+</style>
 <div class="container-fluid">
-    <a href="@Url.Action("Create", "AdminDanhMucs")" class="btn btn-outline-primary" role="button" aria-pressed="true">Thêm mới</a>
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="@Url.Action("Create", "AdminDanhMucs")" class="btn btn-primary btn-sm normal-text" role="button">Thêm mới</a>
+        </div>
+        <div class="col-sm-6" style="text-align:right">
+            @Html.PagedListPager(Model, page => Url.Action("Category", new { page }))
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Quản lý danh mục</h4>
-                    <p class="card-category">Danh sách các danh mục</p>
+                    <h4 class="card-title">Danh sách các danh mục</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -31,8 +48,8 @@
                                         <td>@Html.DisplayFor(modelItem => item.MaDM)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TenDM)</td>
                                         <td>
-                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaDM }) |
-                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaDM })
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaDM }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaDM }, new { @class = "btn btn-sm btn-primary normal-text" })
                                         </td>
                                     </tr>
                                 }
@@ -42,6 +59,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div style="text-align: right">
+        @Html.PagedListPager(Model, page => Url.Action("Category", new { page }))
     </div>
 </div>
 

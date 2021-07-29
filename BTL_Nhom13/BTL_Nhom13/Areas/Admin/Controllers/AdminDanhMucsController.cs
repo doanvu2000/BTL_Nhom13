@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BTL_Nhom13.Models;
+using PagedList;
 
 namespace BTL_Nhom13.Areas.Admin.Controllers
 {
@@ -14,23 +15,13 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
     {
         private TinhDauDB db = new TinhDauDB();
 
-        public ActionResult Category()
+        public ActionResult Category(int? page)
         {
-            return View(db.DanhMucs.ToList());
-        }
-        // GET: Admin/AdminDanhMucs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DanhMuc danhMuc = db.DanhMucs.Find(id);
-            if (danhMuc == null)
-            {
-                return HttpNotFound();
-            }
-            return View(danhMuc);
+            var danhMucs = db.DanhMucs.Select(d => d);
+            danhMucs = danhMucs.OrderBy(s => s.MaDM);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(danhMucs.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/AdminDanhMucs/Create
@@ -46,14 +37,20 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaDM,TenDM")] DanhMuc danhMuc)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.DanhMucs.Add(danhMuc);
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    db.DanhMucs.Add(danhMuc);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Category");
             }
-
-            return View(danhMuc);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                return View(danhMuc);
+            }
         }
 
         // GET: Admin/AdminDanhMucs/Edit/5
@@ -78,13 +75,20 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaDM,TenDM")] DanhMuc danhMuc)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(danhMuc).State = EntityState.Modified;
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    db.Entry(danhMuc).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Category");
             }
-            return View(danhMuc);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                return View(danhMuc);
+            }
         }
 
         // GET: Admin/AdminDanhMucs/Delete/5
@@ -108,9 +112,17 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             DanhMuc danhMuc = db.DanhMucs.Find(id);
-            db.DanhMucs.Remove(danhMuc);
-            db.SaveChanges();
-            return RedirectToAction("Category");
+            try
+            {
+                db.DanhMucs.Remove(danhMuc);
+                db.SaveChanges();
+                return RedirectToAction("Category");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Đã xảy ra lỗi! " + ex.Message;
+                return View(danhMuc);
+            }
         }
 
         protected override void Dispose(bool disposing)

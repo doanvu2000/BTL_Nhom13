@@ -4,56 +4,93 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@section Title{
+    Chi tiết hóa đơn
+}
 
-<h2>Details</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.GioHang.TaiKhoan.TenKhachHang, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.GioHang.TaiKhoan.TenKhachHang, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.NgayDat, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.TinhTrang, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
 
-<div>
-    <h4>HoaDon</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.GioHang.TenTaiKhoan)
-        </dt>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhiShip, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.PhiShip, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.GioHang.TenTaiKhoan)
-        </dd>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Sản phẩm</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-primary">
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Chất lượng</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.GioHang.ChiTietGioHangs)
+                                {
+                                    <tr>
+                                        <td>
+                                            @{
+                                                string imagePath = "~/wwwroot/image/" + item.SanPham.Anh;
+                                            }
+                                            <img src="@Url.Content(imagePath)" width="50" class="img-thumbnail" />
+                                            <br />
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.SanPham.TenSP)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SanPham.ChatLuong)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SanPham.Gia) VND</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SoLuongMua)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    @{
+                        decimal thanhTien = Model.GioHang.ChiTietGioHangs.Select(c => c.SoLuongMua * c.SanPham.Gia).Sum() + Model.PhiShip;
+                        System.Globalization.CultureInfo cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");   // try with "en-US"
+                        string tong = thanhTien.ToString("#,###", cul.NumberFormat);
+                    }
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-9">
+                            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                            @Html.ActionLink("Quay lại", "Receipt", null, new { @class = "btn btn-sm btn-primary normal-text" })
+                        </div>
+                        <div class="col-md-3" style="font-weight:bold;">
+                            Thành tiền: @tong VND
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayDat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TinhTrang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhiShip)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhiShip)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GhiChu)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaHoaDon }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

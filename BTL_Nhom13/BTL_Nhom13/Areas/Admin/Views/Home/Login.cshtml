@@ -1,0 +1,100 @@
+﻿@model BTL_Nhom13.Models.TaiKhoan
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/wwwroot/css/style.css" />
+
+<style>
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .signin-form {
+        margin-top: 50px;
+    }
+
+        .signin-form .form-group {
+            margin-bottom: 35px !important;
+        }
+
+    body .signin-form .form-group label {
+        text-transform: none !important;
+        font-size: 16px !important;
+        color: gray !important;
+    }
+
+    body {
+        font-family: Arial !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <div class="wrap">
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="w-200">
+                        <h3 class="mb-4 title"
+                            style="
+                      font-family: Arial;
+                      text-align: center;
+                      font-weight: 700;
+                      color: #01d28e;
+                      margin-top: 30px;
+                    ">
+                            Đăng nhập
+                        </h3>
+                    </div>
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "signin-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group mt-3">
+                            @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                            <label class="form-control-placeholder" for="username">Tên đăng nhập</label>
+                            @Html.ValidationMessageFor(model => model.TenTaiKhoan, "", new { @class = "text-danger" })
+                            @if (ViewBag.ErrorTenTaiKhoan != null)
+                            {
+                                <p class="text-danger">@ViewBag.ErrorTenTaiKhoan</p>
+                            }
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                            <label class="form-control-placeholder" for="password">Mật khẩu</label>
+                            <span toggle="#password-field"
+                                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                            @if (ViewBag.ErrorMatKhau != null)
+                            {
+                                <p class="text-danger">@ViewBag.ErrorMatKhau</p>
+                            }
+                        </div>
+                        <div class="form-group">
+                            @if (ViewBag.FailedMessage != null)
+                            {
+                                <p class="text-danger">@ViewBag.FailedMessage</p>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <button style="font-family: 14px" class="form-control btn btn-primary rounded submit px-3" type="submit">Đăng nhập</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/wwwroot/js/jquery.min.js"></script>
+<script src="~/wwwroot/js/popper.js"></script>
+<script src="~/wwwroot/js/bootstrap.min.js"></script>
+<script src="~/wwwroot/js/main.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

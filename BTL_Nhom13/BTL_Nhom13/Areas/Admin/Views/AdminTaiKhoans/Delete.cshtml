@@ -1,0 +1,63 @@
+﻿@model BTL_Nhom13.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Title{
+    Xóa tài khoản
+}
+<style>
+    .dl-horizontal {
+        padding-left: 10rem;
+    }
+
+    dl dd {
+        padding-left: 8rem;
+    }
+</style>
+<h3>Bạn có chắc muốn xóa tài khoản này?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTaiKhoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTaiKhoan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatKhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quyen)
+        </dt>
+
+        <dd>
+            Quản trị
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+
+        <dt>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
+                @Html.ActionLink("Quay lại", "Account", null, new { @class = "btn btn-sm btn-primary normal-text" })
+            }
+        </dt>
+    </dl>
+</div>

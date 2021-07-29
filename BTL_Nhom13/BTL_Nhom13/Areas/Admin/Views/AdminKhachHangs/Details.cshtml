@@ -5,12 +5,29 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+@section Title{
+    Chi tiết khách hàng
+}
+<style>
+    .dl-horizontal {
+        padding-left: 10rem;
+    }
+
+    dl dd {
+        padding-left: 8rem;
+    }
+</style>
 
 <div>
-    <h4>TaiKhoan</h4>
-    <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTaiKhoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTaiKhoan)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.MatKhau)
         </dt>
@@ -24,7 +41,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Quyen)
+            Người dùng
         </dd>
 
         <dt>
@@ -67,9 +84,10 @@
             @Html.DisplayFor(model => model.DiaChi)
         </dd>
 
+        <dt>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.TenTaiKhoan }, new { @class = "btn btn-sm btn-primary normal-text" })
+            @Html.ActionLink("Quay lại", "Customer", null, new { @class = "btn btn-sm btn-primary normal-text" })
+        </dt>
+
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TenTaiKhoan }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

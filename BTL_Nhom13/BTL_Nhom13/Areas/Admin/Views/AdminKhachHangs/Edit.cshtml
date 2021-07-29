@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 @section Title{
-    Sửa thông tin tài khoản
+    Chỉnh sửa thông tin khách hàng
 }
 <style>
     .form-horizontal {
@@ -20,6 +20,7 @@
         color: black;
     }
 </style>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -48,15 +49,42 @@
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.TenKhachHang)
-        @Html.HiddenFor(model => model.Email)
-        @Html.HiddenFor(model => model.SoDienThoai)
-        @Html.HiddenFor(model => model.DiaChi)
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenKhachHang, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenKhachHang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenKhachHang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoDienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Lưu" class="btn btn-sm btn-primary normal-text" />
-                @Html.ActionLink("Quay lại", "Account", null, new { @class = "btn btn-sm btn-primary normal-text" })
+                @Html.ActionLink("Quay lại", "Customer", null, new { @class = "btn btn-sm btn-primary normal-text" })
             </div>
         </div>
     </div>

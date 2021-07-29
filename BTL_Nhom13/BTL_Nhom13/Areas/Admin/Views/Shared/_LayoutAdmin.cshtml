@@ -18,9 +18,17 @@
           href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
     <link href="~/Areas/Admin/Assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+    <style>
+        * {
+            font-weight: 400;
+        }
+        .bmd-label-floating {
+            font-size:0.8rem;
+        }
+    </style>
 </head>
 
-<body class="">
+<body>
     <div class="wrapper">
         @{Html.RenderPartial("_Sidebar");}
         <div class="main-panel">
@@ -37,18 +45,24 @@
                     </div>
                     <div class="collapse navbar-collapse justify-content-end">
                         @*<form class="navbar-form">
-                            <div class="input-group no-border">
-                                <input type="text"
-                                       value=""
-                                       class="form-control"
-                                       placeholder="Tìm kiếm..." />
-                                <button type="submit"
-                                        class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </div>
-                        </form>*@
+                                <div class="input-group no-border">
+                                    <input type="text"
+                                           value=""
+                                           class="form-control"
+                                           placeholder="Tìm kiếm..." />
+                                    <button type="submit"
+                                            class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
+                            </form>*@
+                        @if (Session["TenTaiKhoan"] != null)
+                        {
+                            
+                                <p style="padding-top:1rem;">Xin chào, @Session["TenTaiKhoan"]</p>
+                            
+                        }
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link"
@@ -64,7 +78,7 @@
                                      aria-labelledby="navbarDropdownProfile">
                                     <a class="dropdown-item" href="#">Tài khoản</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="@Url.Action()">Đăng xuất</a>
+                                    <a class="dropdown-item" href="@Url.Action("Logout", "Home")">Đăng xuất</a>
                                 </div>
                             </li>
                         </ul>
@@ -126,6 +140,9 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="~/Areas/Admin/Assets/js/material-dashboard.js?v=2.1.2"
             type="text/javascript"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
             // Javascript method's body can be found in assets/js/demos.js

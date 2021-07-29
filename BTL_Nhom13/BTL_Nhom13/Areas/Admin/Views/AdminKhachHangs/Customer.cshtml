@@ -1,12 +1,12 @@
-﻿@model PagedList.IPagedList<BTL_Nhom13.Models.HoaDon>
+﻿@model PagedList.IPagedList<BTL_Nhom13.Models.TaiKhoan>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Receipt";
+    ViewBag.Title = "Customer";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Title{
-    Hóa đơn
+    Khách hàng
 }
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <style>
@@ -23,37 +23,39 @@
         <div class="col-sm-6">
         </div>
         <div class="col-sm-6" style="text-align:right">
-            @Html.PagedListPager(Model, page => Url.Action("Receipt", new { page }))
+            @Html.PagedListPager(Model, page => Url.Action("Customer", new { page }))
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Danh sách hóa đơn</h4>
+                    <h4 class="card-title">Danh sách khách hàng</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="text-primary">
-                            <th>Tên khách hàng</th>
-                            <th>Ngày đặt</th>
+                            <th>Tên tài khoản</th>
+                            <th>Mật khẩu</th>
                             <th>Tình trạng</th>
-                            <th>Phí vận chuyển</th>
+                            <th>Tên khách hàng</th>
+                            <th>Email</th>
                             <th>Hành động</th>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.GioHang.TaiKhoan.TenKhachHang)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.NgayDat)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TenTaiKhoan)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.MatKhau)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TinhTrang)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.PhiShip) VND</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TenKhachHang)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
                                         <td>
-                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                         </td>
                                     </tr>
                                 }
@@ -65,6 +67,6 @@
         </div>
     </div>
     <div style="text-align: right">
-        @Html.PagedListPager(Model, page => Url.Action("Receipt", new { page }))
+        @Html.PagedListPager(Model, page => Url.Action("Customer", new { page }))
     </div>
 </div>
