@@ -1,0 +1,57 @@
+﻿<section class="section_all" id="page_bg">
+    <div class="div_index" id="page_width">
+        <article class="article_center">
+            <div class="index_info">
+                <div class="index_1"
+                     style="background: #e6e6e6; margin-bottom: 0px">
+                    <div class="boloc">
+                        <div class="div_search">
+                            @using (Html.BeginForm())
+                            {
+                                <p>
+                                    @Html.TextBox("searchString")
+                                    <input type="submit"
+                                           placeholder="Nhập nôi dung tìm kiếm"
+                                           name="button"
+                                           id="button"
+                                           value="TÌM KIẾM"
+                                           class="div_search_submit" />
+                                </p>
+                            }
+                        </div>
+                        <div class="div_boloc">
+                            <ul class="ul_menu_pc" id="none_display_mb">
+                                <li class="ul_menu_pc_border">
+                                    <a href="@Url.Action("Index", "Home")">Danh Mục </a>
+                                    <ul class="mn_child ul_menu_pc_ul">
+                                        @{
+                                            Html.RenderAction("_DanhMuc", "Home");
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="div_boloc">
+                            <ul class="ul_menu_pc" id="none_display_mb">
+                                <li class="ul_menu_pc_border">
+                                    <a href="#">Tìm theo mức giá </a>
+                                    <ul class="mn_child ul_menu_pc_ul">
+                                        <li>
+                                            <a href="@Url.Action("Index","Home",new { beginPrice = 100000, endPrice = 0})">Dưới 100.000 VNĐ</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","Home",new { beginPrice = 100000, endPrice = 300000})">100.000 VNĐ - 300.000 VNĐ</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","Home",new {beginPrice = 0, endPrice = 300000})">Trên 300.000 VNĐ</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
