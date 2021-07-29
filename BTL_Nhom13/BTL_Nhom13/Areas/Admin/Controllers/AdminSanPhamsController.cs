@@ -151,9 +151,19 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             SanPham sanPham = db.SanPhams.Find(id);
-            db.SanPhams.Remove(sanPham);
-            db.SaveChanges();
-            return RedirectToAction("Product");
+
+            try
+            {
+                db.SanPhams.Remove(sanPham);
+                db.SaveChanges();
+                return RedirectToAction("Product");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Không thể xóa sản phẩm này, Mã lỗi: " + ex.Message;
+                return View(sanPham);
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
