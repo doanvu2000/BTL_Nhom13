@@ -4,6 +4,7 @@ $(document).ready(function () {
         $('#btnSuaThongTin').hide();
         $('#btnLuuThongTin').show();
         $('#btnHuy').show();
+        $("#MatKhau").attr("readonly", false); 
         $("#TenKhachHang").attr("readonly", false); 
         $("#Email").attr("readonly", false); 
         $("#SoDienThoai").attr("readonly", false); 
@@ -13,6 +14,7 @@ $(document).ready(function () {
         $('#btnHuy').hide();
         $('#btnLuuThongTin').hide();
         $('#btnSuaThongTin').show();
+        $("#MatKhau").attr("readonly", true); 
         $("#TenKhachHang").attr("readonly", true);
         $("#Email").attr("readonly", true);
         $("#SoDienThoai").attr("readonly", true);

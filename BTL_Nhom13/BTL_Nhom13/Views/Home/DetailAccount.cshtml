@@ -92,8 +92,8 @@
                             @Html.TextAreaFor(model => model.DiaChi, new { @class = "md-textarea form-control", @rows = 3, @readonly = "readonly" })
                             @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
                         </div>
-                        <input type="hidden" name="TinhTrang" value="true" />
-                        <input type="hidden" name="Quyen" value="0" />
+                        <input type="hidden" name="TinhTrang" value="@Url.Content(Model.TinhTrang.ToString())" />
+                        <input type="hidden" name="Quyen" value="@Url.Content(Model.Quyen.ToString())" />
                         <div class="form-group">
                             <button type="button" id="btnSuaThongTin" class="form-control btn btn-primary rounded submit px-3">Sửa thông tin</button>
                             <br />
