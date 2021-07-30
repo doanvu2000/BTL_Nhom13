@@ -127,7 +127,7 @@
                             <div class="boloc">
                                 <ul class="ul_menu_pc" id="none_display_mb">
                                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Home"? "active" : "") ul_menu_pc_border_active">
-                                        <a href="@Url.Action("Index","Home")" title="Trang chủ">Trang chủ</a>
+                                        <a href="@Url.Action("Home","Home")" title="Trang chủ">Trang chủ</a>
                                     </li>
                                     <li class="ul_menu_pc_border_active @(ViewContext.RouteData.Values["Action"].ToString() == "About"? "active" : "")">
                                         <a title="Giới thiệu" href="@Url.Action("About","Home")">Giới thiệu </a>
