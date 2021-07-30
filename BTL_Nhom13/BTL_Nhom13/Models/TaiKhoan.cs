@@ -19,11 +19,15 @@
         [Key]
         [StringLength(100)]
         [Required(ErrorMessage ="Tên đăng nhập không được để trống")]
+        [MaxLength(20, ErrorMessage = "Tên đăng nhập phải có tối đa 20 ký tự")]
+        [MinLength(3, ErrorMessage = "Tên đăng nhập phải có tối thiểu 3 ký tự")]
         [DisplayName("Tên tài khoản")]
         public string TenTaiKhoan { get; set; }
 
         [StringLength(100)]
         [Required(ErrorMessage = "Mật khẩu không được để trống")]
+        [MaxLength(20, ErrorMessage = "Mật khẩu phải có tối đa 20 ký tự")]
+        [MinLength(3, ErrorMessage = "Mật khẩu nhập phải có tối thiểu 3 ký tự")]
         [DisplayName("Mật khẩu"), DataType(DataType.Password)]
         public string MatKhau { get; set; }
 
@@ -36,6 +40,7 @@
 
         [StringLength(100)]
         [Required(ErrorMessage = "Tên khách hàng không được để trống")]
+        [MaxLength(30, ErrorMessage = "Mật khẩu phải có tối đa 30 ký tự")]
         [DisplayName("Tên khách hàng")]
         public string TenKhachHang { get; set; }
 
@@ -52,6 +57,7 @@
 
         [Column(TypeName = "ntext")]
         [DisplayName("Địa chỉ")]
+        [MaxLength(100, ErrorMessage = "Địa chỉ phải có tối đa 100 ký tự")]
         [Required(ErrorMessage = "Địa chỉ không được để trống")]
         public string DiaChi { get; set; }
 

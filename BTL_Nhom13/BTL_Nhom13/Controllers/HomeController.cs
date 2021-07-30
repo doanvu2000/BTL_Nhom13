@@ -75,17 +75,20 @@ namespace BTL_Nhom13.Controllers
                 var user = db.TaiKhoans.Where(t => t.TenTaiKhoan.Equals(TenTaiKhoan) && t.MatKhau.Equals(MatKhau)).ToList();
                 if (user.Count() > 0)
                 {
-                    //Su dung session: add Session
-                    Session["TaiKhoan"] = user.FirstOrDefault();
-                    Session["TenKhachHang"] = user.FirstOrDefault().TenKhachHang;
-                    Session["TenTaiKhoan"] = user.FirstOrDefault().TenTaiKhoan;
-                    if(user.FirstOrDefault().Quyen == 1)
+                    
+                    if(user.FirstOrDefault().TinhTrang == false)
                     {
-                        // Sang Admin
-                        return RedirectToAction("Home","Admin");
+                        // Hien thi thong bao loi
+                        ViewBag.error = "Tài khoản bị khóa. Đăng nhập không thành công";
+                    } else
+                    {
+                        //Su dung session: add Session
+                        Session["TaiKhoan"] = user.FirstOrDefault();
+                        Session["TenKhachHang"] = user.FirstOrDefault().TenKhachHang;
+                        Session["TenTaiKhoan"] = user.FirstOrDefault().TenTaiKhoan;
+                        // Sang trang ch
+                        return RedirectToAction("Index");
                     }
-                    // Sang trang ch
-                    return RedirectToAction("Index");
                 }
                 else
                 {
