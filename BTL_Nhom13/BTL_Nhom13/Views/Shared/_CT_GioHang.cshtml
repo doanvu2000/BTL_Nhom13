@@ -8,6 +8,7 @@
 {
     <tr id="box_cart">
         <td align="center" class="dita_td_info" id="display_cat_img" style="max-width:110px !important">
+            <p class="p_MaSP" style="display: none;">@item.MaSP</p>
             <a href="@Url.Action("DetailProduct","Home", new { masp = item.MaSP})">
                 <img src="@Url.Content("~/wwwroot/image/" + item.Anh)" alt="@item.TenSP" style="max-width:100px; width:100%">
             </a>
@@ -31,7 +32,7 @@
         b = string.Format("{0:0,000}", @a);
             } @b Đ  &nbsp;
         </strong></p>
-            <p> <a href="#"><span>» Xóa</span></a></p>
+            <p> <a href="#" class="btn-xoagiohang"><span>» Xóa</span></a></p>
         </td>
     </tr>
     tongtien += a;
@@ -70,3 +71,4 @@
         </div>
     </td>
 </tr>
+<script src="~/wwwroot/js/index.js"></script>

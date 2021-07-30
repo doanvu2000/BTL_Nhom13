@@ -60,4 +60,31 @@
         })
 
     });
+
+    $(".btn-xoagiohang").click(function () {
+        var self = $(this);
+        var MaSanPham = $(this).closest("tr").find(".p_MaSP").text();
+
+        //alert(MaSanPham);
+        //alert(masanpham + "-" + "-" + mamau + "-" + masize + "-" + machitietsanpham);
+
+        $.ajax({
+            url: "/Ajax/XoaGioHang",
+            type: "GET",
+            data: {
+                MaSanPham: MaSanPham
+            },
+            success: function (value) {
+                self.closest("tr").remove();
+                if (value != 0) {
+                    $("#giohang").html("<span>" + value + "</span>");
+                    $("#GioHang").html("<span>Giỏ hàng</span> <strong>" + value + "</strong>");
+                } else {
+                    $("#GioHang").html("<span>Giỏ hàng</span> <strong>" + "0" + "</strong>");
+                }
+                location.reload();
+            }
+        })
+
+    });
 });

@@ -73,5 +73,18 @@ namespace BTL_Nhom13.Controllers
             }
             return -1;
         }
+        public string XoaGioHang(int MaSanPham)
+        {
+            if(Session["GioHang"] != null)
+            {
+                List<SanPhamDTO> listSP = (List<SanPhamDTO>)Session["GioHang"];
+                int vitri = KiemTraSanPhamDaTonTaiGioHang(listSP, MaSanPham);
+                listSP.RemoveAt(vitri);
+                Session["GioHang"] = listSP;
+                Session["SoLuongSPGioHang"] = listSP.Count + "";
+                return listSP.Count + "";
+            }
+            return null;
+        }
     }
 }
