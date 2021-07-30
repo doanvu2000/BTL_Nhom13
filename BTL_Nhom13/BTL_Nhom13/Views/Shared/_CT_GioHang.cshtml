@@ -1,39 +1,39 @@
-﻿@model IEnumerable<BTL_Nhom13.Models.GioTam>
-
+﻿@model IEnumerable<BTL_Nhom13.Models.SanPhamDTO>
 @{
     Decimal tongtien = 0;
     Decimal a;
+    
 }
 @foreach (var item in Model)
 {
     <tr id="box_cart">
         <td align="center" class="dita_td_info" id="display_cat_img" style="max-width:110px !important">
-            <a href="@Url.Action("DetailProduct","Home", new { masp = item.masp})">
-                <img src="@Url.Content("~/wwwroot/image/" + item.anh)" alt="@item.tensp" style="max-width:100px; width:100%">
+            <a href="@Url.Action("DetailProduct","Home", new { masp = item.MaSP})">
+                <img src="@Url.Content("~/wwwroot/image/" + item.Anh)" alt="@item.TenSP" style="max-width:100px; width:100%">
             </a>
         </td>
         <td class="dita_td_info" valign="top">
-            <p><a href="@Url.Action("DetailProduct","Home", new { masp = item.masp})">@Html.DisplayFor(Model => item.tensp)</a></p>
+            <p><a href="@Url.Action("DetailProduct","Home", new { masp = item.MaSP})">@Html.DisplayFor(Model => item.TenSP)</a></p>
             <p>Giá bán: <strong>@{
-                a = decimal.Parse(@Html.DisplayFor(Model => item.gia).ToString());
+                a = decimal.Parse(@Html.DisplayFor(Model => item.Gia).ToString());
                 string b = string.Format("{0:0,000}", @a);
             } @b Đ &nbsp;</strong></p>
             <p>
                 Số lượng :
                 <select name="Amount" class="dita_cart_input">
-                    <option value="">@Html.DisplayFor(Model => item.sl)</option>
+                    <option value="">@Html.DisplayFor(Model => item.SoLuongMua)</option>
                 </select>
             </p>
             <p>Thành tiền: <strong>
     @{
-        a = decimal.Parse(@Html.DisplayFor(Model => item.tt).ToString());
+        a = decimal.Parse(@Html.DisplayFor(Model => item.Gia).ToString());
         b = string.Format("{0:0,000}", @a);
             } @b Đ  &nbsp;
         </strong></p>
             <p> <a href="#"><span>» Xóa</span></a></p>
         </td>
     </tr>
-    tongtien += decimal.Parse(@Html.DisplayFor(Model => item.tt).ToString());
+    tongtien += decimal.Parse(@Html.DisplayFor(Model => item.Gia).ToString());
 }
 @{ string tt = string.Format("{0:0,000}", @tongtien);}
 <tr>
