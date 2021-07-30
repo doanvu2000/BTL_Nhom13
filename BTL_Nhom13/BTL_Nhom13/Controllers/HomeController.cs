@@ -190,27 +190,6 @@ namespace BTL_Nhom13.Controllers
         }
         public PartialViewResult _CT_GioHang()
         {
-            //int magh = 2;//mã giỏ hàng lấy được khi đăng nhập.
-            //var ctgh = db.ChiTietGioHangs.Where(gh=>gh.MaGioHang==magh).Select(gh=>gh).ToList();
-            //var sp = db.SanPhams.Select(s => s).ToList();
-            //List<GioTam> list = new List<GioTam>();
-            //foreach (var gh in ctgh)
-            //{
-            //    foreach (var s in sp)
-            //    {
-            //        if (gh.MaSP==s.MaSP)
-            //        {
-            //            GioTam gt = new GioTam();
-            //            gt.masp = s.MaSP;
-            //            gt.tensp = s.TenSP;
-            //            gt.anh = s.Anh;
-            //            gt.gia = Convert.ToInt32(s.Gia);
-            //            gt.sl = gh.SoLuongMua;
-            //            gt.tt = gt.gia * gt.sl;
-            //            list.Add(gt);
-            //        }
-            //    }
-            //}
             List<SanPhamDTO> listSP = new List<SanPhamDTO>();
             if (Session["GioHang"] != null)
             {
@@ -220,8 +199,7 @@ namespace BTL_Nhom13.Controllers
         }
         public PartialViewResult _DC_GiaoHang()
         {
-            string tentk = "ngocnam";//tên tài khoản lấy đk khi đăng nhập.
-            TaiKhoan tk = db.TaiKhoans.Find(tentk);
+            TaiKhoan tk = (TaiKhoan)Session["TaiKhoan"];
             if (tk == null)
             {
                 return PartialView();
