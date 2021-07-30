@@ -180,7 +180,7 @@ namespace BTL_Nhom13.Controllers
         }
         public PartialViewResult _SP_BanChay()
         {
-            var sp = db.SanPhams.Select(d => d).OrderBy(s => s.SoLuongTon).Take(3);
+            var sp = db.SanPhams.Select(d => d).OrderBy(s => s.Gia).Take(3);
             return PartialView(sp);
         }
         public ActionResult GioHang()
