@@ -99,8 +99,16 @@
                         </div>
                         <div class="index_header_right" style="height: auto !important">
                             <div class="shopping-cart">
-                                <a href="@Url.Action("GioHang", "Home")">
-                                    <span>Giỏ hàng</span> <strong>0</strong>
+                                <a href="@Url.Action("GioHang", "Home")" id="GioHang">
+                                    @if (Session["SoLuongSPGioHang"] == null)
+                                    {
+                                        <span>Giỏ hàng</span> <strong>0</strong>
+                                    }
+                                    else
+                                    {
+                                        <span>Giỏ hàng</span> <strong>@Session["SoLuongSPGioHang"]</strong>
+                                    }
+
                                 </a>
                                 <img src="/wwwroot/image/gio_hang.png" />
                             </div>

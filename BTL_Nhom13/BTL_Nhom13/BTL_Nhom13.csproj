@@ -139,6 +139,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminSanPhamsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaiKhoansController.cs" />
     <Compile Include="Global.asax.cs">
@@ -150,6 +151,7 @@
     <Compile Include="Models\GioTam.cs" />
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\SanPhamDTO.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\TinhDauDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -483,6 +485,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Ajax\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

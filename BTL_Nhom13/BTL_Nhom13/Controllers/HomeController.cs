@@ -185,32 +185,38 @@ namespace BTL_Nhom13.Controllers
         }
         public ActionResult GioHang()
         {
+            
             return View();
         }
         public PartialViewResult _CT_GioHang()
         {
-            int magh = 2;//mã giỏ hàng lấy được khi đăng nhập.
-            var ctgh = db.ChiTietGioHangs.Where(gh=>gh.MaGioHang==magh).Select(gh=>gh).ToList();
-            var sp = db.SanPhams.Select(s => s).ToList();
-            List<GioTam> list = new List<GioTam>();
-            foreach (var gh in ctgh)
+            //int magh = 2;//mã giỏ hàng lấy được khi đăng nhập.
+            //var ctgh = db.ChiTietGioHangs.Where(gh=>gh.MaGioHang==magh).Select(gh=>gh).ToList();
+            //var sp = db.SanPhams.Select(s => s).ToList();
+            //List<GioTam> list = new List<GioTam>();
+            //foreach (var gh in ctgh)
+            //{
+            //    foreach (var s in sp)
+            //    {
+            //        if (gh.MaSP==s.MaSP)
+            //        {
+            //            GioTam gt = new GioTam();
+            //            gt.masp = s.MaSP;
+            //            gt.tensp = s.TenSP;
+            //            gt.anh = s.Anh;
+            //            gt.gia = Convert.ToInt32(s.Gia);
+            //            gt.sl = gh.SoLuongMua;
+            //            gt.tt = gt.gia * gt.sl;
+            //            list.Add(gt);
+            //        }
+            //    }
+            //}
+            List<SanPhamDTO> listSP = new List<SanPhamDTO>();
+            if (Session["GioHang"] != null)
             {
-                foreach (var s in sp)
-                {
-                    if (gh.MaSP==s.MaSP)
-                    {
-                        GioTam gt = new GioTam();
-                        gt.masp = s.MaSP;
-                        gt.tensp = s.TenSP;
-                        gt.anh = s.Anh;
-                        gt.gia = Convert.ToInt32(s.Gia);
-                        gt.sl = gh.SoLuongMua;
-                        gt.tt = gt.gia * gt.sl;
-                        list.Add(gt);
-                    }
-                }
+                listSP = (List<SanPhamDTO>)Session["GioHang"];
             }
-            return PartialView(list);
+            return PartialView(listSP);
         }
         public PartialViewResult _DC_GiaoHang()
         {

@@ -44,22 +44,13 @@
                             <div class="detail_P02_img  gallery clearfix">
                                 <dl>
                                     <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
+                                    <p class="Anh" style="display:none">@Model.Anh</p>
                                 </dl>
-
-                                <ol>
-                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
-                                </ol>
-                                <ol>
-                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
-                                </ol>
-                                <ol>
-                                    <a href="#"><img src="@Url.Content(path)" alt="@Url.Content(Model.TenSP)" /></a>
-                                </ol>
 
                             </div>
 
                             <div class="detail_P02_content">
-                                <h1>@Url.Content(Model.TenSP) </h1>
+                                <h1 class="TenSP">@Url.Content(Model.TenSP) </h1>
                                 <hr size="1">
                                 <dl class="detail_P02_rating">
                                     <div class="detail_P02_rating_box">
@@ -71,31 +62,33 @@
                                 </i>
                                 <hr size="1">
                                 <div class="detail_P02_left">
-                                    <p>Mã sản phẩm: <strong>@Model.MaSP</strong></p>
+                                    <p>Mã sản phẩm: <strong class="MaSP">@Model.MaSP</strong></p>
                                     <span itemprop="name">Nhà sản xuất</span>
-                                    : <strong itemprop="value">@Model.NhaSX</strong>
+                                    : <strong itemprop="value" class="NhaSX">@Model.NhaSX</strong>
                                     </p>
                                     <span itemprop="name">Tình trạng</span>
                                     @{
                                         int sl = Model.SoLuongTon;
                                         var tt = sl > 0 ? "Có sẵn " + sl + " sản phẩm" : "Hết hàng";
-                                    }
-                                    : <strong itemprop="value">@tt</strong>
+                                    }   <p class="SoLuongTon" style="display: none;">@Model.SoLuongTon</p>
+                                    : <p><strong itemprop="value">@tt</strong>
                                     </p>
                                     <span itemprop="name">Chất lượng</span>
-                                    : <strong itemprop="value">@Model.ChatLuong</strong>
+                                    : <strong itemprop="value" class="ChatLuong">@Model.ChatLuong</strong>
                                     </p>
                                     <span itemprop="name">Trọng lượng</span>
-                                    : <strong itemprop="value">@Model.TrongLuong g</strong>
+                                    : <strong itemprop="value" >@Model.TrongLuong g</strong>
+                                      <p class="TrongLuong" style="display: none;">@Model.TrongLuong</p>
                                     </p>
                                     <p><span>Giá bán: </span></p>
                                     <p style="float:left; width:280px; margin-top:5px">
                                         @{
                                             string gia = string.Format("{0:0,000}", Model.Gia);
                                         }
+                                        <p class="Gia" style="display: none;">@Model.Gia</p>
                                         <strong class="detail_P02_gb">@gia VNĐ</strong>
                                         <strong itemprop="priceCurrency" content="VND"></strong>
-                                        <a href="#"><span class="detail_P02_cart">Đặt Mua</span></a>
+                                        <a href="#"><span class="detail_P02_cart btn-giohang">Đặt Mua</span></a>
                                     </p>
 
                                 </div>
@@ -150,3 +143,4 @@
         </article>
     </div>
 </section>
+<script src="~/wwwroot/js/index.js"></script>
