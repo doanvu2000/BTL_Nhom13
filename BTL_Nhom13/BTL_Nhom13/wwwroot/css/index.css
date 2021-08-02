@@ -16,7 +16,6 @@
     float: left;
     padding-top: 4px;
     padding-right: 10px;
-    text-transform: uppercase !important;
     white-space: nowrap;
   }
   .shopping_01 strong {
@@ -47,7 +46,6 @@
     float: left;
     padding-top: 4px;
     padding-right: 10px;
-    text-transform: uppercase !important;
     white-space: nowrap;
   }
   .shopping_01 strong {
@@ -78,7 +76,6 @@
     float: left;
     padding-top: 4px;
     padding-right: 10px;
-    text-transform: uppercase !important;
     white-space: nowrap;
   }
   .shopping_01 strong {
@@ -108,7 +105,6 @@
     float: left;
     padding-top: 12px;
     padding-right: 10px;
-    text-transform: uppercase !important;
     white-space: nowrap;
   }
   .shopping_01 strong {
@@ -167,7 +163,6 @@
     background: #333;
     border-radius: 2px;
     padding: 7px 2%;
-    text-transform: uppercase;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -212,7 +207,6 @@
     background: #333;
     border-radius: 2px;
     padding: 7px 2%;
-    text-transform: uppercase;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -256,7 +250,6 @@
     background: #333;
     border-radius: 2px;
     padding: 7px 2%;
-    text-transform: uppercase;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -298,7 +291,6 @@
     background: #333;
     border-radius: 2px;
     padding: 7px 2%;
-    text-transform: uppercase;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -341,7 +333,6 @@
     background: #333;
     border-radius: 2px;
     padding: 7px 10px 7px 10px;
-    text-transform: uppercase;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -379,7 +370,6 @@
     background: #333;
     border-radius: 2px;
     padding: 7px 7px 7px 7px;
-    text-transform: uppercase;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -405,7 +395,6 @@
 .foreach_P50 h1 {
   margin-bottom: 10px;
   margin-top: 10px;
-  text-transform: uppercase;
   font-size: 17px;
   color: #333;
   line-height: 130%;
@@ -440,7 +429,6 @@
 .foreach_P50_title a {
   color: #333;
   font-size: 100%;
-  text-transform: uppercase;
 }
 .foreach_P50_title a:hover {
   color: #990000;
@@ -517,7 +505,6 @@
   background: #f07ec6;
   border-radius: 5px;
   padding: 3px 5px 3px 5px;
-  text-transform: uppercase;
   color: #fff;
   font-weight: bold;
   float: right;
@@ -821,7 +808,6 @@
 .detail_P02_content h1 {
   font-size: 1.5em;
   padding-bottom: 5px;
-  text-transform: uppercase;
 }
 
 .detail_P02_content .description {
@@ -1096,7 +1082,6 @@
 
 .totalcomment h3 {
   color: #060;
-  text-transform: uppercase;
   font-size: 16px;
   line-height: 1.5em;
   border-bottom: 1px solid #D8D7D7;

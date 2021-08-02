@@ -13,7 +13,7 @@
         </dl>
         <dl class="foreach_PTOP_title">
             <ol class="foreach_PTOP_name">
-                <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })"><span>@item.TenSP</span></a>
+                <a href="@Url.Action("DetailProduct", "Home", new { masp=item.MaSP })"><span style="text-transform:none !important;">@item.TenSP</span></a>
                 @{ 
                     string gia = string.Format("{0:0,000}", @item.Gia);
                 }
