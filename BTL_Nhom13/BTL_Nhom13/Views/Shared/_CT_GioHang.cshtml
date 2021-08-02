@@ -20,10 +20,8 @@
                 string b = string.Format("{0:0,000}", @a);
             } @b Đ &nbsp;</strong></p>
             <p>
-                Số lượng :
-                <select name="Amount" class="dita_cart_input">
-                    <option value="">@Html.DisplayFor(Model => item.SoLuongMua)</option>
-                </select>
+                Số lượng:
+                <input oninvalid="this.setCustomValidity('Số lượng mua không thể vượt quá @item.SoLuongTon')" data-slTon="@item.SoLuongTon" class="input_soLuongMua" name="SoLuongMua" type="number" value="@item.SoLuongMua" min="0" max="@item.SoLuongTon"/>
             </p>
             <p>Thành tiền: <strong>
     @{
@@ -37,9 +35,16 @@
     </tr>
     tongtien += a;
 }
+
 @{ string tt = string.Format("{0:0,000}", @tongtien);}
+
 <tr>
+    
     <td colspan="2" align="left">
+        @if (Session["GioHang"] != null)
+        {
+            <center><button class="dita_register_login btn-xoaAll" style="background: red;border: none;">Xóa giỏ hàng</button></center>
+        }
         <div style="float:left; border:0px solid #F00; width:100%; height:auto; ">
             <div style="float:left; padding:10px">
             </div>
