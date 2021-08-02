@@ -62,6 +62,7 @@
     });
 
     $(".btn-xoagiohang").click(function () {
+        //alert("Helo");
         var self = $(this);
         var MaSanPham = $(this).closest("tr").find(".p_MaSP").text();
 
@@ -87,4 +88,65 @@
         })
 
     });
+
+    $(".input_soLuongMua").change(function () {
+        var SoLuongMua = $(this).val();
+        
+        var MaSanPham = $(this).closest("tr").find(".p_MaSP").text();
+        var SoLuongTon = parseInt($(this).attr("data-slTon"));
+        //alert(SoLuongTon)
+        if (SoLuongMua > SoLuongTon) {
+            alert("Số lượng hàng trong kho không đủ cung cấp");
+        } else {
+            if (SoLuongMua == 0) {
+                var self = $(this);
+                $.ajax({
+                    url: "/Ajax/XoaGioHang",
+                    type: "GET",
+                    data: {
+                        MaSanPham: MaSanPham
+                    },
+                    success: function (value) {
+                        self.closest("tr").remove();
+                        if (value != 0) {
+                            $("#giohang").html("<span>" + value + "</span>");
+                            $("#GioHang").html("<span>Giỏ hàng</span> <strong>" + value + "</strong>");
+                        } else {
+                            $("#GioHang").html("<span>Giỏ hàng</span> <strong>" + "0" + "</strong>");
+                        }
+                        location.reload();
+                    }
+                })
+            } else {
+
+                $.ajax({
+                    url: "/Ajax/CapNhatSoLuongMua",
+                    type: "GET",
+                    data: {
+                        SoLuongMua: SoLuongMua,
+                        MaSanPham: MaSanPham
+
+                    },
+                    success: function (value) {
+                        location.reload();
+                    }
+                })
+            }
+        }
+        
+        
+    })
+
+    $(".btn-xoaAll").click(function () {
+        $.ajax({
+            url: "/Ajax/XoaTatCaGioHang",
+            type: "GET",
+            data: {
+            },
+            success: function (value) {
+                location.reload();
+            }
+        })
+
+    })
 });
