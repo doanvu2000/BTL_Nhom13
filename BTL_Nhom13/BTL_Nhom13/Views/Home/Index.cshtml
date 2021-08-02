@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<BTL_Nhom13.Models.SanPham>
 @using PagedList.Mvc;
 
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 
 <section class="section_all" id="page_bg">
@@ -16,7 +16,14 @@
                             <span style="margin-left:20px"><a href="@Url.Action("Index","Home",new { sortOrder = "giaGiam"})">Giá từ cao xuống thấp</a></span>
                         </div>
                         <div>
-                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new
+                            {
+                                page,
+                                sortOrder = Request.QueryString["sortOrder"],
+                           madm = Request.QueryString["madm"],
+                                beginPrice = Request.QueryString["beginPrice"],
+                                endPrice = Request.QueryString["endPrice"]
+                            }))
                         </div>
                     </div>
                     <div itemscope>
@@ -35,7 +42,7 @@
                                             @{
                                                 string path = "~/wwwroot/image/" + item.Anh;
                                             }
-                                            <img src="@Url.Content(path)" alt="@Url.Content(item.TenSP)" />
+                                            <img src="@Url.Content(path)" alt="@Url.Content(item.TenSP)" width="350" height="350" />
                                         </a>
                                     </dl>
                                     <dl class="foreach_P50_title">
@@ -44,7 +51,7 @@
                                     </dl>
                                     <dl class="foreach_P50_price">
                                         <p>
-                                            @{ 
+                                            @{
                                                 string gia = string.Format("{0:0,000}", item.Gia);
                                             }
                                             <span class="price-custom">@Url.Content(@gia) VND</span>
@@ -55,7 +62,14 @@
                         </ul>
                     </div>
                     <div class="paging_news">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new
+                        {
+                            page,
+                            sortOrder = Request.QueryString["sortOrder"],
+                          madm = Request.QueryString["madm"],
+                            beginPrice = Request.QueryString["beginPrice"],
+                            endPrice = Request.QueryString["endPrice"]
+                        }))
                     </div>
                 </div>
             </div>

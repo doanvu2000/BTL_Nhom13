@@ -25,6 +25,7 @@ namespace BTL_Nhom13.Controllers
             if (madm > 0)
             {
                 sp = sp.Where(s => s.MaDM == madm).ToList();
+                return View(sp.Where(s => s.MaDM == madm).ToPagedList(pageNumber, pageSize));
             }
             if (sortOrder != null)
             {
@@ -72,7 +73,7 @@ namespace BTL_Nhom13.Controllers
             }
             if (ModelState.IsValid)
             {
-                var user = db.TaiKhoans.Where(t => t.TenTaiKhoan.Equals(TenTaiKhoan) && t.MatKhau.Equals(MatKhau)).ToList();
+                var user = db.TaiKhoans.Where(t => t.TenTaiKhoan.Equals(TenTaiKhoan) && t.MatKhau.Equals(MatKhau) && t.Quyen == 0).ToList();
                 if (user.Count() > 0)
                 {
                     
