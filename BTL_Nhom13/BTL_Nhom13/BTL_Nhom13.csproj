@@ -176,6 +176,7 @@
     <Content Include="Areas\Admin\Assets\img\sidebar-2.jpg" />
     <Content Include="Areas\Admin\Assets\img\sidebar-3.jpg" />
     <Content Include="Areas\Admin\Assets\img\sidebar-4.jpg" />
+    <Content Include="Areas\Admin\Assets\js\controller\account_status.js" />
     <Content Include="Areas\Admin\Assets\js\core\bootstrap-material-design.min.js" />
     <Content Include="Areas\Admin\Assets\js\core\jquery.min.js" />
     <Content Include="Areas\Admin\Assets\js\core\popper.min.js" />

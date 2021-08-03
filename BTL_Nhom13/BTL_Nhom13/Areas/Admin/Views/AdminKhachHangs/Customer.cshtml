@@ -39,23 +39,22 @@
                             <thead class="text-primary">
                             <th>Tên tài khoản</th>
                             <th>Mật khẩu</th>
-                            <th>Tình trạng</th>
                             <th>Tên khách hàng</th>
                             <th>Email</th>
+                            <th>Tình trạng</th>
                             <th>Hành động</th>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.TenTaiKhoan)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.MatKhau)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.TinhTrang)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.TenKhachHang)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                        <td>@item.TenTaiKhoan</td>
+                                        <td>@item.MatKhau</td>
+                                        <td>@item.TenKhachHang</td>
+                                        <td>@item.Email</td>
+                                        <td><a href="#" class="btn-active" data-id="@item.TenTaiKhoan">@(item.TinhTrang == true ? "Kích hoạt" : "Khóa")</a></td>
                                         <td>
                                             @Html.ActionLink("Chi tiết", "Details", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                         </td>
                                     </tr>
                                 }
@@ -70,3 +69,10 @@
         @Html.PagedListPager(Model, page => Url.Action("Customer", new { page }))
     </div>
 </div>
+<script src="~/wwwroot/js/jquery.min.js"></script>
+<script src="~/wwwroot/js/popper.js"></script>
+<script src="~/wwwroot/js/bootstrap.min.js"></script>
+<script src="~/wwwroot/js/main.js"></script>
+@section Scripts {
+    <script src="~/Areas/Admin/Assets/js/controller/account_status.js"></script>
+}
