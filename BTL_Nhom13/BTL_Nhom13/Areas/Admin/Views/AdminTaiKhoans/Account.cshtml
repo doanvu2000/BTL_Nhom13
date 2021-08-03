@@ -48,13 +48,56 @@
                                 {
                                     <tr>
                                         <td>@Html.DisplayFor(modelItem => item.TenTaiKhoan)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.MatKhau)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.TinhTrang)</td>
+                                        <td>@item.MatKhau</td>
+                                        <td>
+                                            @if (item.TinhTrang == true)
+                                            {
+                                                if (!item.TenTaiKhoan.Equals(Session["TenTaiKhoan"]))
+                                                {
+                                                    <div class="togglebutton">
+                                                        <label>
+                                                            <input type="checkbox" checked="checked" class="btn-active" data-id="@item.TenTaiKhoan">
+                                                            <span class="toggle"></span>
+                                                        </label>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="togglebutton">
+                                                        <label>
+                                                            <input type="checkbox" checked="checked" class="btn-active" data-id="@item.TenTaiKhoan" disabled="disabled">
+                                                            <span class="toggle"></span>
+                                                        </label>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (!item.TenTaiKhoan.Equals(Session["TenTaiKhoan"]))
+                                                {
+                                                    <div class="togglebutton">
+                                                        <label>
+                                                            <input type="checkbox" class="btn-active" data-id="@item.TenTaiKhoan">
+                                                            <span class="toggle"></span>
+                                                        </label>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="togglebutton">
+                                                        <label>
+                                                            <input type="checkbox" class="btn-active" data-id="@item.TenTaiKhoan" disabled="disabled">
+                                                            <span class="toggle"></span>
+                                                        </label>
+                                                    </div>
+                                                }
+                                            }
+                                        </td>
                                         <td>
                                             @if (!item.TenTaiKhoan.Equals(Session["TenTaiKhoan"]))
                                             {
-                                                @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                                 @Html.ActionLink("Xóa", "Delete", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                                @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                             }
                                             else
                                             {
@@ -74,3 +117,10 @@
         @Html.PagedListPager(Model, page => Url.Action("Account", new { page }))
     </div>
 </div>
+<script src="~/wwwroot/js/jquery.min.js"></script>
+<script src="~/wwwroot/js/popper.js"></script>
+<script src="~/wwwroot/js/bootstrap.min.js"></script>
+<script src="~/wwwroot/js/main.js"></script>
+@section Scripts {
+    <script src="~/Areas/Admin/Assets/js/controller/tkquantri_status.js"></script>
+}

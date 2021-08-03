@@ -24,20 +24,22 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.TenTaiKhoan)
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.TenTaiKhoan)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", @Value = Model.MatKhau } })
-                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", @Value = Model.MatKhau } })
+            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @Html.HiddenFor(model => model.Quyen)
+    @Html.HiddenFor(model => model.Quyen)
 
+    @if (!Model.TenTaiKhoan.Equals(Session["TenTaiKhoan"]))
+    {
         <div class="form-group">
             @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -47,19 +49,23 @@
                 </div>
             </div>
         </div>
+    } else
+                {
+                    @Html.HiddenFor(model => model.TinhTrang)
+                }
 
-        @Html.HiddenFor(model => model.TenKhachHang)
-        @Html.HiddenFor(model => model.Email)
-        @Html.HiddenFor(model => model.SoDienThoai)
-        @Html.HiddenFor(model => model.DiaChi)
+    @Html.HiddenFor(model => model.TenKhachHang)
+    @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.SoDienThoai)
+    @Html.HiddenFor(model => model.DiaChi)
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lưu" class="btn btn-sm btn-primary normal-text" />
-                @Html.ActionLink("Quay lại", "Account", null, new { @class = "btn btn-sm btn-primary normal-text" })
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-sm btn-primary normal-text" />
+            @Html.ActionLink("Quay lại", "Account", null, new { @class = "btn btn-sm btn-primary normal-text" })
         </div>
     </div>
+</div>
 }
 @if (ViewBag.Error != null)
 {
