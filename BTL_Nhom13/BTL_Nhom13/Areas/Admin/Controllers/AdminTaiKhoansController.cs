@@ -120,6 +120,23 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             return RedirectToAction("Account");
 
         }
+        public bool toggleStatus(string id)
+        {
+            var user = db.TaiKhoans.Find(id);
+            user.TinhTrang = !user.TinhTrang;
+            db.SaveChanges();
+            return user.TinhTrang;
+        }
+
+        [HttpPost]
+        public JsonResult ChangeStatus(string id)
+        {
+            var result = toggleStatus(id);
+            return Json(new
+            {
+                status = result
+            });
+        }
 
         protected override void Dispose(bool disposing)
         {
