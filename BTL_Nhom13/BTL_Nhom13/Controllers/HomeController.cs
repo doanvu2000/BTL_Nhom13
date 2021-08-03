@@ -189,6 +189,91 @@ namespace BTL_Nhom13.Controllers
             
             return View();
         }
+        public ActionResult DatHang()
+        {
+            List<SanPhamDTO> ListSP = new List<SanPhamDTO>();
+            if (Session["GioHang"] != null)
+            {
+                ListSP = (List<SanPhamDTO>)Session["GioHang"];
+            }
+            string tk = "";
+            if (Session["TenTaiKhoan"] != null)
+            {
+                tk = Session["TenTaiKhoan"] as string;
+            }
+            if (tk==null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                List<GioHang> gh = db.GioHangs.ToList();
+                int magh = -1;
+                foreach (var item in gh)
+                {
+                    if (item.TenTaiKhoan == tk)
+                    {
+                        magh = item.MaGioHang;
+                    }
+                }
+                if (magh == -1)
+                {
+                    GioHang giohang = new GioHang();
+                    giohang.TenTaiKhoan = tk;
+                    db.GioHangs.Add(giohang);
+                    db.SaveChanges();
+                    gh = db.GioHangs.ToList();
+                    foreach (var item in gh)
+                    {
+                        if (item.TenTaiKhoan == tk)
+                        {
+                            magh = item.MaGioHang;
+                        }
+                    }
+
+                    foreach (var item in ListSP)
+                    {
+                        ChiTietGioHang ct = new ChiTietGioHang();
+                        ct.MaGioHang = magh;
+                        ct.MaSP = item.MaSP;
+                        ct.SoLuongMua = item.SoLuongMua;
+                        db.ChiTietGioHangs.Add(ct);
+                        db.SaveChanges();
+                    }
+                    HoaDon hd = new HoaDon();
+                    hd.NgayDat = DateTime.Now;
+                    hd.TinhTrang = "Chờ xác nhận";
+                    hd.PhiShip = 15000;
+                    hd.GhiChu = "abc";
+                    hd.MaGioHang = Convert.ToInt32(gh);
+                    db.HoaDons.Add(hd);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    foreach (var item in ListSP)
+                    {
+                        ChiTietGioHang ct = new ChiTietGioHang();
+                        ct.MaGioHang = magh;
+                        ct.MaSP = item.MaSP;
+                        ct.SoLuongMua = item.SoLuongMua;
+                        db.ChiTietGioHangs.Add(ct);
+                        db.SaveChanges();
+                    }
+                    HoaDon hd = new HoaDon();
+                    hd.NgayDat = DateTime.Now;
+                    hd.TinhTrang = "Chờ xác nhận";
+                    hd.PhiShip = 15000;
+                    hd.GhiChu = "abc";
+                    hd.MaGioHang = magh;
+                    db.HoaDons.Add(hd);
+                    db.SaveChanges();
+                }
+            }
+            Session["GioHang"] = null;
+            Session["SoLuongSPGioHang"]=null;
+            return RedirectToAction("Home");
+        }
         public PartialViewResult _CT_GioHang()
         {
             List<SanPhamDTO> listSP = new List<SanPhamDTO>();
