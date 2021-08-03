@@ -14,10 +14,11 @@
                 type: "POST",
                 success: function (response) {
                     if (response.status == true) {
-                        btn.text('Kích hoạt');
+                        btn.attr('checked', true);
                     } else {
-                        btn.text('Khóa');
+                        btn.attr('checked', false);
                     }
+                    location.reload();
                 }
             });
         });

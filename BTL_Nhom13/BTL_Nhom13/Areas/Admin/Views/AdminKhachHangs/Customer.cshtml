@@ -52,7 +52,27 @@
                                         <td>@item.MatKhau</td>
                                         <td>@item.TenKhachHang</td>
                                         <td>@item.Email</td>
-                                        <td><a href="#" class="btn-active" data-id="@item.TenTaiKhoan">@(item.TinhTrang == true ? "Kích hoạt" : "Khóa")</a></td>
+                                        @*<td><a href="#" class="btn-active" data-id="@item.TenTaiKhoan">@(item.TinhTrang == true ? "Kích hoạt" : "Khóa")</a></td>*@
+                                    <td>
+                                        @if (item.TinhTrang == true)
+                                        {
+                                            <div class="togglebutton">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" class="btn-active" data-id="@item.TenTaiKhoan">
+                                                    <span class="toggle"></span>
+                                                </label>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="togglebutton">
+                                                <label>
+                                                    <input type="checkbox" class="btn-active" data-id="@item.TenTaiKhoan">
+                                                    <span class="toggle"></span>
+                                                </label>
+                                            </div>
+                                        }
+                                    </td>
                                         <td>
                                             @Html.ActionLink("Chi tiết", "Details", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                         </td>
@@ -74,5 +94,5 @@
 <script src="~/wwwroot/js/bootstrap.min.js"></script>
 <script src="~/wwwroot/js/main.js"></script>
 @section Scripts {
-    <script src="~/Areas/Admin/Assets/js/controller/account_status.js"></script>
+    <script src="~/Areas/Admin/Assets/js/controller/tkkhachhang_status.js"></script>
 }
