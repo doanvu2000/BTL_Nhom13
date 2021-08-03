@@ -237,6 +237,7 @@ namespace BTL_Nhom13.Controllers
                         ct.MaGioHang = magh;
                         ct.MaSP = item.MaSP;
                         ct.SoLuongMua = item.SoLuongMua;
+                        ct.Gia = item.Gia;
                         db.ChiTietGioHangs.Add(ct);
                         db.SaveChanges();
                     }
@@ -244,7 +245,7 @@ namespace BTL_Nhom13.Controllers
                     hd.NgayDat = DateTime.Now;
                     hd.TinhTrang = "Chờ xác nhận";
                     hd.PhiShip = 15000;
-                    hd.GhiChu = "abc";
+                    hd.GhiChu = "Thanh toán khi nhận hàng";
                     hd.MaGioHang = Convert.ToInt32(gh);
                     db.HoaDons.Add(hd);
                     db.SaveChanges();
@@ -257,6 +258,7 @@ namespace BTL_Nhom13.Controllers
                         ct.MaGioHang = magh;
                         ct.MaSP = item.MaSP;
                         ct.SoLuongMua = item.SoLuongMua;
+                        ct.Gia = item.Gia;
                         db.ChiTietGioHangs.Add(ct);
                         db.SaveChanges();
                     }
@@ -264,14 +266,14 @@ namespace BTL_Nhom13.Controllers
                     hd.NgayDat = DateTime.Now;
                     hd.TinhTrang = "Chờ xác nhận";
                     hd.PhiShip = 15000;
-                    hd.GhiChu = "abc";
+                    hd.GhiChu = "Thanh toán khi nhận hàng";
                     hd.MaGioHang = magh;
                     db.HoaDons.Add(hd);
                     db.SaveChanges();
                 }
             }
             Session["GioHang"] = null;
-            Session["SoLuongSPGioHang"]=null;
+            Session["SoLuongSPGioHang"] = null;
             return RedirectToAction("Home");
         }
         public PartialViewResult _CT_GioHang()
