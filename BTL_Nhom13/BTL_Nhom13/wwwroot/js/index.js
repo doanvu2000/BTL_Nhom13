@@ -91,7 +91,6 @@
 
     $(".input_soLuongMua").change(function () {
         var SoLuongMua = $(this).val();
-        
         var MaSanPham = $(this).closest("tr").find(".p_MaSP").text();
         var SoLuongTon = parseInt($(this).attr("data-slTon"));
         //alert(SoLuongTon)
@@ -147,6 +146,5 @@
                 location.reload();
             }
         })
-
     })
 });

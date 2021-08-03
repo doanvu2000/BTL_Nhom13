@@ -39,7 +39,6 @@
 @{ string tt = string.Format("{0:0,000}", @tongtien);}
 
 <tr>
-    
     <td colspan="2" align="left">
         @if (Session["GioHang"] != null)
         {
@@ -68,6 +67,18 @@
                             <td align="left">
                                 <span> Phí ship 20.000đ - 40.000đ tùy khu vực, nhân viên của HSV sẽ liên hệ để báo cụ thể cho khách hàng</span>
                                 <p>Miễn phí ship cho đơn hàng &gt;500.000đ tại nội thành HCM, HN và &gt;800.000đ tại ngoại tỉnh </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td align="right" width="200">
+                                <center><a class="dita_register_login" href="@Url.Action("Home", "Home") ">Tiếp tục mua sắm</a></center>
+                            </td>
+                            <td align="right" width="600">
+                                <a class="dita_register_login" href="@Url.Action("DatHang", "Home") ">Đặt hàng</a>
                             </td>
                         </tr>
                     </tbody>

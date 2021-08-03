@@ -2,52 +2,14 @@
 <ul>
     @if (Session["TaiKhoan"] != null)
     {
-        <li><input type="text" id="firstname" name="firstname" size="50" value="@Model.TenKhachHang" placeholder="Họ và Tên *" class="dita_input_350 dita_input_width">	</li>
-        <li><input type="text" id="mobile" name="mobile" size="50" value="@Model.SoDienThoai" placeholder="Điện Thoại *" class="dita_input_350 dita_input_width" onkeyup="valid(this,'notnumbers')" maxlength="20"></li>
-        <li><input type="text" id="address" name="address" size="50" value="@Model.DiaChi" placeholder="Địa Chỉ  *" class="dita_input_350 dita_input_width"></li>
-        <li><textarea cols="76" rows="10" name="note" id="note" class="dita_input_350 dita_input_width" placeholder="Địa chỉ giao hàng (số nhà/đường - tổ/thôn/xóm - xã/phường/thị trấn - quận/huyện - tỉnh/thành phố)" style="height:50px" maxlength="200"></textarea></li>
-        <li><textarea cols="76" rows="10" name="note" id="note" class="dita_input_350 dita_input_width" placeholder="Ghi Chú (Giá tinh dầu mặc định là 10ml, ghi chú tại đây nếu muốn mua tinh dầu size lớn hơn, giá chi tiết xem trong mục mô tả sản phẩm trên website)" style="height:100px" maxlength="200"></textarea></li>
-        <li>
-            <input type="hidden" id="thanhtoan" name="thanhtoan" value="1">
-            <input type="submit" name="btn_submit" id="btn_submit" value="Mua hàng" class="dita_register_login" onclick="">
-        </li>
+        using (Html.BeginForm("DatHang", "Home"))
+        {
+            <li><input type="text" id="firstname" name="firstname" size="50" value="@Model.TenKhachHang" placeholder="Họ và Tên *" class="dita_input_350 dita_input_width">	</li>
+            <li><input type="text" id="mobile" name="mobile" size="50" value="@Model.SoDienThoai" placeholder="Điện Thoại *" class="dita_input_350 dita_input_width" onkeyup="valid(this,'notnumbers')" maxlength="20"></li>
+            <li><input type="text" id="address" name="address" size="50" value="@Model.DiaChi" placeholder="Địa Chỉ  *" class="dita_input_350 dita_input_width"></li>
+            <li><textarea cols="76" rows="10" name="note" id="note" class="dita_input_350 dita_input_width" placeholder="Địa chỉ giao hàng (số nhà/đường - tổ/thôn/xóm - xã/phường/thị trấn - quận/huyện - tỉnh/thành phố)" style="height:50px" maxlength="200"></textarea></li>
+            <li><textarea cols="76" rows="10" name="note" id="note" class="dita_input_350 dita_input_width" placeholder="Ghi Chú (Giá tinh dầu mặc định là 10ml, ghi chú tại đây nếu muốn mua tinh dầu size lớn hơn, giá chi tiết xem trong mục mô tả sản phẩm trên website)" style="height:100px" maxlength="200"></textarea></li>
+        }
     }
-    else
-    {
-        <li><input type="text" id="firstname" name="firstname" size="50" value="" placeholder="Họ và Tên *" class="dita_input_350 dita_input_width">	</li>
-        <li><input type="text" id="mobile" name="mobile" size="50" value="" placeholder="Điện Thoại *" class="dita_input_350 dita_input_width" onkeyup="valid(this,'notnumbers')" maxlength="20"></li>
-        <li><input type="text" id="address" name="address" size="50" value="" placeholder="Địa Chỉ  *" class="dita_input_350 dita_input_width"></li>
-        <li>
-            <select name="namecity" id="namecity" class="dita_input_cart dita_input_width" onchange="pb_display(this.value);">
-                <option value="">Chọn Tỉnh Thành &nbsp;*</option>
-                <option value="1">Hồ Chí Minh</option>
-                <option value="2">Hà Nội</option>
-                <option value="3">Đồng Nai</option>
-                <option value="4">Bình Dương</option>
-                <option value="5">Tây Ninh</option>
-                <option value="6">Long An</option>
-                <option value="7">Tiền Giang</option>
-                <option value="8">Cần Thơ</option>
-                <option value="9">An Giang</option>
-                <option value="10">Sóc Trăng</option>
-                <option value="11">Kiên Giang</option>
-                <option value="12">Vĩnh Long</option>
-                <option value="13">Bạc Liêu</option>
-            </select>
-        </li>
-        <li>
-            <div id="huyen">
-                <select name="district" id="district" class="dita_input_cart dita_input_width">
-                    <option value="">Chọn Quận Huyện</option>
-                </select>
-            </div>
-        </li>
-        <li><textarea cols="76" rows="10" name="note" id="note" class="dita_input_350 dita_input_width" placeholder="Ghi Chú (Giá tinh dầu mặc định là 10ml, ghi chú tại đây nếu muốn mua tinh dầu size lớn hơn, giá chi tiết xem trong mục mô tả sản phẩm trên website)" style="height:100px" maxlength="200"></textarea></li>
-        <li>
-            <input type="hidden" id="thanhtoan" name="thanhtoan" value="1">
-            <input type="submit" name="btn_submit" id="btn_submit" value="Mua hàng" class="dita_register_login" onclick="">
-        </li>
-    }
-    
 </ul>
 
