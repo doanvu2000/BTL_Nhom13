@@ -246,7 +246,7 @@ namespace BTL_Nhom13.Controllers
                     hd.TinhTrang = "Chờ xác nhận";
                     hd.PhiShip = 15000;
                     hd.GhiChu = "Thanh toán khi nhận hàng";
-                    hd.MaGioHang = Convert.ToInt32(gh);
+                    hd.MaGioHang = magh;
                     db.HoaDons.Add(hd);
                     db.SaveChanges();
                 }
