@@ -65,8 +65,16 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
                         f.SaveAs(UploadPath);
                         sanPham.Anh = FileName;
                     }
-                    db.SanPhams.Add(sanPham);
-                    db.SaveChanges();
+                    if(db.SanPhams.Where(s =>s.TenSP.ToLower().Equals(sanPham.TenSP.ToLower())).ToList().Count == 0)
+                    {
+                        db.SanPhams.Add(sanPham);
+                        db.SaveChanges();
+                    } else
+                    {
+                        ViewBag.Error = "Tên sản phẩm đã tồn tại";
+                        ViewBag.MaDM = new SelectList(db.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
+                        return View(sanPham);
+                    }
                 }
                 return RedirectToAction("Product");
             } catch (Exception ex)

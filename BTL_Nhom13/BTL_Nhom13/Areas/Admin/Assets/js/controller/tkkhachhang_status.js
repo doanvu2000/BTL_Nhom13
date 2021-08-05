@@ -14,11 +14,10 @@
                 type: "POST",
                 success: function (response) {
                     if (response.status == true) {
-                        btn.attr('checked', true);
+                        btn.prop('checked', true);
                     } else {
-                        btn.attr('checked', false);
+                        btn.prop('checked', false);
                     }
-                    location.reload();
                 }
             });
         });
