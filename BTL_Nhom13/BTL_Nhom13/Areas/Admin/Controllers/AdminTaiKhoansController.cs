@@ -55,44 +55,6 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/AdminTaiKhoans/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
-            if (taiKhoan == null)
-            {
-                return HttpNotFound();
-            }
-            return View(taiKhoan);
-        }
-
-        // POST: Admin/AdminTaiKhoans/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    db.Entry(taiKhoan).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                return RedirectToAction("Account");
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
-                return View(taiKhoan);
-            }
-        }
-
         // GET: Admin/AdminTaiKhoans/Delete/5
         public ActionResult Delete(string id)
         {

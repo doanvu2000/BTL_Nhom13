@@ -438,7 +438,6 @@
     <Content Include="Areas\Admin\Views\AdminHoaDons\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHoaDons\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AdminTaiKhoans\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminTaiKhoans\Edit.cshtml" />
     <Content Include="wwwroot\js\popper.js" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Boolean.cshtml" />
