@@ -138,6 +138,17 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             });
         }
 
+        [HttpPost]
+        public JsonResult ChangePassword(string id, string pass)
+        {
+            var account = db.TaiKhoans.Find(id);
+            var result = account.MatKhau.Equals(pass);
+            return Json(new
+            {
+                status = result
+            });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -29,10 +29,24 @@
     @Html.HiddenFor(model => model.TenTaiKhoan)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">Mật khẩu cũ</label>
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", @Value = Model.MatKhau } })
+            <input type="password" class="form-control" data-id="@Model.TenTaiKhoan" id="old_pass" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Mật khẩu mới</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly", @Value = Model.MatKhau, @id = "new_pass" } })
             @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nhập lại mật khẩu mới</label>
+        <div class="col-md-10">
+            <input type="password" class="form-control" data-id="@Model.TenTaiKhoan" id="again_pass" />
         </div>
     </div>
 
@@ -49,10 +63,11 @@
                 </div>
             </div>
         </div>
-    } else
-                {
-                    @Html.HiddenFor(model => model.TinhTrang)
-                }
+    }
+    else
+    {
+        @Html.HiddenFor(model => model.TinhTrang)
+    }
 
     @Html.HiddenFor(model => model.TenKhachHang)
     @Html.HiddenFor(model => model.Email)
@@ -61,7 +76,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Lưu" class="btn btn-sm btn-primary normal-text" />
+            <input type="submit" value="Lưu" id="btn-submit" class="btn btn-sm btn-primary normal-text" />
             @Html.ActionLink("Quay lại", "Account", null, new { @class = "btn btn-sm btn-primary normal-text" })
         </div>
     </div>
@@ -74,4 +89,5 @@
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Areas/Admin/Assets/js/controller/change_password.js"></script>
 }
