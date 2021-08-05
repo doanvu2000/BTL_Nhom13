@@ -219,7 +219,8 @@ namespace BTL_Nhom13.Controllers
         }
         public ActionResult GioHang()
         {
-
+            if (Session["TenTaiKhoan"] == null)
+                return RedirectToAction("Login");
             return View();
         }
         public ActionResult DatHang()
