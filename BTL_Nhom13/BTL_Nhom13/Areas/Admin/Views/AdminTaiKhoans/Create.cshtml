@@ -25,45 +25,60 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.TenTaiKhoan, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TenTaiKhoan, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenTaiKhoan, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenTaiKhoan, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.TinhTrang)
-                @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+        @{
+            var selectList = new SelectList(
+                new List<SelectListItem>
+                {
+            new SelectListItem {Text = "Quản trị viên", Value = "1"},
+            new SelectListItem {Text = "Nhân viên", Value = "2"},
+                            }, "Value", "Text");
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quyen, "Quyền", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Quyen, selectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Quyen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.TinhTrang)
+                    @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.TenKhachHang, new { @Value = "Người quản trị" })
+        @Html.HiddenFor(model => model.Email, new { @Value = "quantrivien@gmail.com" })
+        @Html.HiddenFor(model => model.SoDienThoai, new { @Value = "0378951234" })
+        @Html.HiddenFor(model => model.DiaChi, new { @Value = "Hà Nội" })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-sm btn-primary normal-text" />
+                @Html.ActionLink("Quay lại", "Account", null, new { @class = "btn btn-sm btn-primary normal-text" })
             </div>
         </div>
     </div>
-    @Html.HiddenFor(model => model.TenKhachHang, new { @Value = "Người quản trị" })
-    @Html.HiddenFor(model => model.Email, new { @Value = "quantrivien@gmail.com" })
-    @Html.HiddenFor(model => model.SoDienThoai, new { @Value = "0378951234" })
-    @Html.HiddenFor(model => model.DiaChi, new { @Value = "Hà Nội" })
-    
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Thêm" class="btn btn-sm btn-primary normal-text" />
-            @Html.ActionLink("Quay lại", "Account", null, new { @class = "btn btn-sm btn-primary normal-text" })
-        </div>
-    </div>
-</div>
 }
 
 @if (ViewBag.Error != null)

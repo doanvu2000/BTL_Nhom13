@@ -18,7 +18,7 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         public ActionResult Account(int? page)
         {
             // select only admin account
-            var taiKhoans = db.TaiKhoans.Where(t => t.Quyen == 1).Select(t => t);
+            var taiKhoans = db.TaiKhoans.Where(t => t.Quyen == 1 || t.Quyen == 2).Select(t => t);
             taiKhoans = taiKhoans.OrderBy(t => t.TenTaiKhoan);
             int pageSize = 5;
             int pageNumber = (page ?? 1);
@@ -38,7 +38,7 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         public ActionResult Create([Bind(Include = "TenTaiKhoan,MatKhau," +
             "Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
-            taiKhoan.Quyen = 1;
+            /*taiKhoan.Quyen = 1;*/
             try
             {
                 if (ModelState.IsValid)

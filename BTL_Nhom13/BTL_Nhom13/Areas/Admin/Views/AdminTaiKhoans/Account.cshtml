@@ -9,6 +9,7 @@
 @section Title{
     Tài khoản
 }
+@*0: KH 1: Admin 2: Employee*@
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <style>
     .normal-text {
@@ -41,6 +42,7 @@
                             <thead class="text-primary">
                             <th>Tên tài khoản</th>
                             <th>Mật khẩu</th>
+                            <th>Quyền</th>
                             <th>Tình trạng</th>
                             <th>Hành động</th>
                             </thead>
@@ -58,6 +60,19 @@
                                             }
                                         }
                                         <td>@Html.Raw(pattern)</td>
+                                        @if (item.Quyen == 1)
+                                        {
+                                            <td>
+                                                Quản trị
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                Nhân viên
+                                            </td>
+                                        }
+
                                         <td>
                                             @if (item.TinhTrang == true)
                                             {
