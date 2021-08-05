@@ -46,8 +46,8 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             ViewBag.soLuongDh = hds.Count;
             ViewBag.soLuongTk = accounts.Count;
             System.Globalization.CultureInfo cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");   // try with "en-US"
-            string tongTien = tongTienNum.ToString("#,###", cul.NumberFormat);
-            string tongTienTrongNam = tongTienTrongNamNum.ToString("#,###", cul.NumberFormat);
+            string tongTien = string.Format("{0:0,000}", tongTienNum);
+            string tongTienTrongNam = string.Format("{0:0,000}", tongTienTrongNamNum);
             ViewBag.tongTienThangNay = tongTien;
             ViewBag.tongTienTrongNam = tongTienTrongNam;
 
