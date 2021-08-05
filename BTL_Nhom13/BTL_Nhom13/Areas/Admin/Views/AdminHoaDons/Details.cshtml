@@ -32,7 +32,11 @@
         <div class="col-md-3">
             <div class="form-group">
                 @Html.LabelFor(model => model.PhiShip, htmlAttributes: new { @class = "bmd-label-floating" })
-                @Html.EditorFor(model => model.PhiShip, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @{ 
+                    decimal phiShipNum = Model.PhiShip;
+                    string phiShipStr = string.Format("{0:0,000}", phiShipNum) + " VND";
+                }
+                <input class="form-control" type="text" disabled="disabled" value="@phiShipStr"/>
             </div>
         </div>
     </div>
@@ -75,8 +79,7 @@
                     </div>
                     @{
                         decimal thanhTien = Model.GioHang.ChiTietGioHangs.Select(c => c.SoLuongMua * c.Gia).Sum() + Model.PhiShip;
-                        System.Globalization.CultureInfo cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");   // try with "en-US"
-                        string tong = thanhTien.ToString("#,###", cul.NumberFormat);
+                        string tong = string.Format("{0:0,000}", thanhTien);
                     }
                     <hr />
                     <div class="row">

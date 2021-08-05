@@ -72,10 +72,25 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             }
 
             var user = db.TaiKhoans.Where(t => t.TenTaiKhoan.Equals(TenTaiKhoan) &&
-            t.MatKhau.Equals(MatKhau) && t.Quyen == 1 && t.TinhTrang == true).ToList();
+            t.MatKhau.Equals(MatKhau) && t.TinhTrang == true).ToList();
             if (user.Count() > 0)
             {
+                if (user.First().Quyen == 0)
+                {
+                    ViewBag.FailedMessage = "Thông tin đăng nhập không chính xác!";
+                    return View();
+                }
                 Session["TenTaiKhoan"] = user.FirstOrDefault().TenTaiKhoan;
+                if (user.First().Quyen == 1)
+                {
+                    Session["Quyen"] = "Admin";
+
+                }
+                if (user.First().Quyen == 2)
+                {
+                    Session["Quyen"] = "Employee";
+
+                }
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -87,7 +102,7 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
-            Session.Remove("TenTaiKhoan");
+            Session.Clear();
             return RedirectToAction("Index", "Home", new { area = "" });
         }
         [HttpGet]
@@ -108,7 +123,9 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
                     db.Entry(taiKhoan).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-                return RedirectToAction("Account", "AdminTaiKhoans");
+                if(Session["Quyen"].Equals("Admin"))
+                    return RedirectToAction("Account", "AdminTaiKhoans");
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {

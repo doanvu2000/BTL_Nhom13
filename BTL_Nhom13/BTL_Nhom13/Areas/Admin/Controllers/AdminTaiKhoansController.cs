@@ -108,6 +108,21 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             return View(taiKhoan);
         }
 
+
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(taiKhoan);
+        }
+
         // POST: Admin/AdminTaiKhoans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

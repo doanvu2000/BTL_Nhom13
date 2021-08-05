@@ -17,6 +17,7 @@
                         $('#again_pass').prop('readonly', false);
                     } else {
                         $('#new_pass').prop('readonly', true);
+                        $('#again_pass').prop('readonly', false);
                     }
                 }
             });

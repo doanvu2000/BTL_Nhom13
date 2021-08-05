@@ -42,20 +42,23 @@
                     <p>Hóa đơn</p>
                 </a>
             </li>
-            <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminTaiKhoans"?
+            @if (Session["Quyen"].Equals("Admin"))
+            {
+                <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminTaiKhoans"?
                 "nav-item active" : "nav-item")">
-                <a class="nav-link" href="@Url.Action("Account", "AdminTaiKhoans")">
-                    <i class="material-icons">portrait</i>
-                    <p>Tài khoản quản trị</p>
-                </a>
-            </li>
-            <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminKhachHangs"?
+                    <a class="nav-link" href="@Url.Action("Account", "AdminTaiKhoans")">
+                        <i class="material-icons">portrait</i>
+                        <p>Tài khoản</p>
+                    </a>
+                </li>
+                <li class="@(ViewContext.RouteData.Values["controller"].ToString()=="AdminKhachHangs"?
                 "nav-item active" : "nav-item")">
-                <a class="nav-link" href="@Url.Action("Customer", "AdminKhachHangs")">
-                    <i class="material-icons">supervisor_account</i>
-                    <p>Khách hàng</p>
-                </a>
-            </li>
+                    <a class="nav-link" href="@Url.Action("Customer", "AdminKhachHangs")">
+                        <i class="material-icons">supervisor_account</i>
+                        <p>Khách hàng</p>
+                    </a>
+                </li>
+            }
         </ul>
     </div>
 </div>

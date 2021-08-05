@@ -63,7 +63,7 @@
                                         @if (item.Quyen == 1)
                                         {
                                             <td>
-                                                Quản trị
+                                                Quản trị viên
                                             </td>
                                         }
                                         else
@@ -118,6 +118,7 @@
                                             }
                                         </td>
                                         <td>
+                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                             @if (!item.TenTaiKhoan.Equals(Session["TenTaiKhoan"]))
                                             {
                                                 @Html.ActionLink("Xóa", "Delete", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
