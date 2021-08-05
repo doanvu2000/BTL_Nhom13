@@ -74,7 +74,7 @@
                         </table>
                     </div>
                     @{
-                        decimal thanhTien = Model.GioHang.ChiTietGioHangs.Select(c => c.SoLuongMua * c.SanPham.Gia).Sum() + Model.PhiShip;
+                        decimal thanhTien = Model.GioHang.ChiTietGioHangs.Select(c => c.SoLuongMua * c.Gia).Sum() + Model.PhiShip;
                         System.Globalization.CultureInfo cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");   // try with "en-US"
                         string tong = thanhTien.ToString("#,###", cul.NumberFormat);
                     }
