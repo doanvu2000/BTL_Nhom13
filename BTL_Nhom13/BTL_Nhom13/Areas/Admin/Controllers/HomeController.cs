@@ -90,5 +90,31 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             Session.Remove("TenTaiKhoan");
             return RedirectToAction("Index", "Home", new { area = "" });
         }
+        [HttpGet]
+        public ActionResult ChangePassword(string tenTK)
+        {
+            var account = db.TaiKhoans.Find(tenTK);
+            return View(account);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(taiKhoan).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Account", "AdminTaiKhoans");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! " + ex.Message;
+                return View(taiKhoan);
+            }
+        }
     }
 }

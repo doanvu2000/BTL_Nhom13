@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<BTL_Nhom13.Models.TaiKhoan>
 @using PagedList.Mvc;
+@using System.Text;
 @{
     ViewBag.Title = "Account";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -48,7 +49,15 @@
                                 {
                                     <tr>
                                         <td>@Html.DisplayFor(modelItem => item.TenTaiKhoan)</td>
-                                        <td>@item.MatKhau</td>
+                                        @{
+                                            int lengthPass = item.MatKhau.Count();
+                                            StringBuilder pattern = new StringBuilder();
+                                            for (int i = 0; i < lengthPass; i++)
+                                            {
+                                                pattern.Append("\u2022");
+                                            }
+                                        }
+                                        <td>@Html.Raw(pattern)</td>
                                         <td>
                                             @if (item.TinhTrang == true)
                                             {
@@ -97,11 +106,6 @@
                                             @if (!item.TenTaiKhoan.Equals(Session["TenTaiKhoan"]))
                                             {
                                                 @Html.ActionLink("Xóa", "Delete", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                                @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            }
-                                            else
-                                            {
-                                                @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                             }
                                         </td>
                                     </tr>
