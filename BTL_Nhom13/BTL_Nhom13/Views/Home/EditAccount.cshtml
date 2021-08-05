@@ -1,0 +1,141 @@
+﻿@model BTL_Nhom13.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "DetailAccount";
+}
+
+
+@section ImportLibraryLogin {
+    <link rel="stylesheet" href="~/wwwroot/css/style.css" />
+
+    <style>
+        .container {
+        }
+
+        .container {
+            /*position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);*/
+        }
+
+        @*.signin-form {
+            margin-top: 50px;
+        }*@
+
+            .signin-form .form-group {
+                margin-bottom: 15px !important;
+            }
+
+        body .signin-form .form-group label {
+            text-transform: none !important;
+            font-size: 16px !important;
+            color: gray !important;
+        }
+
+        body {
+            font-family: Arial !important;
+        }
+
+        .edit_lable {
+            color: #01d28e;
+        }
+
+        .form-control-placeholder {
+            position: relative;
+        }
+    </style>
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="wrap">
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="w-200">
+                        <h3 class="mb-4" style="font-family: Arial;text-align: center; font-weight: 700; color: #01d28e;margin-top: 30px;">
+                            Sửa thông tin tài khoản
+                        </h3>
+                    </div>
+
+                    @using (Html.BeginForm("EditAccount", "Home", FormMethod.Post, new { @class = "signin-form" }))
+                    {
+
+                        @Html.AntiForgeryToken()
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div>Tên đăng nhập</div>
+                                        @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.TenTaiKhoan, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div>Tên khách hàng</div>
+                                        @Html.EditorFor(model => model.TenKhachHang, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                                        @Html.ValidationMessageFor(model => model.TenKhachHang, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div>Email</div>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div>Số điện thoại</div>
+                                        @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                                        @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div>Địa chỉ</div>
+                                        @Html.TextAreaFor(model => model.DiaChi, new { @class = "md-textarea form-control", @rows = 2 })
+                                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.HiddenFor(model => model.MatKhau)
+                            @Html.HiddenFor(model => model.TinhTrang)
+                            @Html.HiddenFor(model => model.Quyen)
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6" style="text-align: center;">
+                                        <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+                                    </div>
+                                    <div class="col-md-6" style="text-align: center;">
+                                        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-warning" })
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/wwwroot/js/jquery.min.js"></script>
+    <script src="~/wwwroot/js/popper.js"></script>
+    <script src="~/wwwroot/js/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/wwwroot/js/index.js"></script>
+    @if (ViewBag.Message1 != null)
+    {
+        <script>
+            alert('Cập nhật thông tin tài khoản thất bại!');
+        </script>
+        ViewBag.Message1 = null;
+    }
+}
+

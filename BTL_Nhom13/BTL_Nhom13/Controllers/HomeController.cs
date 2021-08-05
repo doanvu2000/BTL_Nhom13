@@ -12,11 +12,13 @@ namespace BTL_Nhom13.Controllers
     public class HomeController : Controller
     {
         TinhDauDB db = new TinhDauDB();
-        public ActionResult Index(string sortOrder, int? madm, int? beginPrice, int? endPrice,string searchString,int? page)
+        public ActionResult Index(string sortOrder, int? madm, int? beginPrice, int? endPrice, string searchString, int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var sp = db.SanPhams.Select(s=>s).ToList();
+            var sp = db.SanPhams.Select(s => s).ToList();
+            ViewBag.Message = (string)TempData["message"];
+            ViewBag.Message1 = (string)TempData["message1"];
             if (!string.IsNullOrEmpty(searchString))
             {
                 sp = sp.Where(s => s.TenSP.ToLower().Contains(searchString.ToLower())).ToList();
@@ -76,12 +78,13 @@ namespace BTL_Nhom13.Controllers
                 var user = db.TaiKhoans.Where(t => t.TenTaiKhoan.Equals(TenTaiKhoan) && t.MatKhau.Equals(MatKhau) && t.Quyen == 0).ToList();
                 if (user.Count() > 0)
                 {
-                    
-                    if(user.FirstOrDefault().TinhTrang == false)
+
+                    if (user.FirstOrDefault().TinhTrang == false)
                     {
                         // Hien thi thong bao loi
                         ViewBag.error = "Tài khoản bị khóa. Đăng nhập không thành công";
-                    } else
+                    }
+                    else
                     {
                         //Su dung session: add Session
                         Session["TaiKhoan"] = user.FirstOrDefault();
@@ -111,12 +114,13 @@ namespace BTL_Nhom13.Controllers
             if (ModelState.IsValid)
             {
                 var taiKhoanFind = db.TaiKhoans.Find(taiKhoan.TenTaiKhoan);
-                if(taiKhoanFind == null)
+                if (taiKhoanFind == null)
                 {
                     db.TaiKhoans.Add(taiKhoan);
                     db.SaveChanges();
                     return RedirectToAction("Login");
-                } else
+                }
+                else
                 {
                     ViewBag.ErrorSign = "Tên tài khoản trùng. Vui lòng nhập tên khác";
                 }
@@ -125,32 +129,61 @@ namespace BTL_Nhom13.Controllers
             return View(taiKhoan);
         }
         [HttpGet]
-        public ActionResult DetailAccount()
+        public ActionResult EditAccount(string TenTK)
         {
-            if(Session["TenTaiKhoan"] == null)
-            {
-                return RedirectToAction("Login");
-            } else
-            {
-                TaiKhoan taiKhoan = (TaiKhoan)Session["TaiKhoan"];
-                return View(taiKhoan);
-            }
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(TenTK);
+            return View(taiKhoan);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DetailAccount([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
+        public ActionResult EditAccount([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(taiKhoan).State = EntityState.Modified;
                 db.SaveChanges();
-                ViewBag.Message = "Cập nhật thông tin thành công";
-            } else
+                TempData["message1"] = "Thành công";
+                return RedirectToAction("Index");
+            }
+            ViewBag.Message1 = "Thất bại";
+            return View(taiKhoan);
+        }
+
+        public ActionResult ChangePassword(string TenTK)
+        {
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(TenTK);
+            return View(taiKhoan);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan,
+            string OldPassword)
+        {
+            string old_pass = db.TaiKhoans.AsNoTracking().
+                Where(t => t.TenTaiKhoan.Equals(taiKhoan.TenTaiKhoan)).
+                FirstOrDefault().MatKhau;
+            if (old_pass.Equals(OldPassword))
             {
-                ViewBag.Message = "Cập nhật thông tin thất bại";
+                if (ModelState.IsValid)
+                {
+                    db.Entry(taiKhoan).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["message"] = "Thành công";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "Lỗi nhập dữ liệu!!!";
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Mật khẩu cũ không chính xác!!!";
             }
             return View(taiKhoan);
         }
+
         public ActionResult Logout()
         {
             Session.Clear();
@@ -186,7 +219,7 @@ namespace BTL_Nhom13.Controllers
         }
         public ActionResult GioHang()
         {
-            
+
             return View();
         }
         public ActionResult DatHang()
@@ -201,7 +234,7 @@ namespace BTL_Nhom13.Controllers
             {
                 tk = Session["TenTaiKhoan"] as string;
             }
-            if (tk==null)
+            if (tk == null)
             {
                 return RedirectToAction("Login");
             }

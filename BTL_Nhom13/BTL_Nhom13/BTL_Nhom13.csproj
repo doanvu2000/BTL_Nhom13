@@ -222,6 +222,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="wwwroot\css\bootstrap.css" />
     <Content Include="wwwroot\css\bootstrap.min.css" />
+    <Content Include="wwwroot\css\drop_down.css" />
     <Content Include="wwwroot\css\font-awesome.min.css.css" />
     <Content Include="wwwroot\css\index.css" />
     <Content Include="wwwroot\css\style.css" />
@@ -251,6 +252,7 @@
     <Content Include="wwwroot\image\TN43.jpg" />
     <Content Include="wwwroot\image\voquyt.jpg" />
     <Content Include="wwwroot\js\bootstrap.min.js" />
+    <Content Include="wwwroot\js\change_password.js" />
     <Content Include="wwwroot\js\index.js" />
     <Content Include="wwwroot\js\jquery.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -492,7 +494,8 @@
     <Content Include="Views\TaiKhoans\Edit.cshtml" />
     <Content Include="Views\TaiKhoans\Index.cshtml" />
     <Content Include="Views\Shared\_Banner.cshtml" />
-    <Content Include="Views\Home\DetailAccount.cshtml" />
+    <Content Include="Views\Home\EditAccount.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
