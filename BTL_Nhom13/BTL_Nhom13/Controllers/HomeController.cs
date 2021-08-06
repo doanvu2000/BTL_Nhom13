@@ -202,6 +202,15 @@ namespace BTL_Nhom13.Controllers
             }
             return View(sp);
         }
+        [HttpGet]
+        public ActionResult CancelOrder(int MaHD)
+        {
+            HoaDon hd = db.HoaDons.Find(MaHD);
+            hd.TinhTrang = "Đã hủy";
+            db.SaveChanges();
+            return RedirectToAction("ViewOrder", new { TenTK = Session["TenTaiKhoan"] });
+        }
+
         public PartialViewResult _DanhMuc()
         {
             var danhmuc = db.DanhMucs.Select(d => d);
@@ -330,6 +339,16 @@ namespace BTL_Nhom13.Controllers
             {
                 return PartialView(tk);
             }
+        }
+        public ActionResult ViewOrder(string TenTK)
+        {
+            var carts = db.GioHangs.Where(g => g.TenTaiKhoan.Equals(TenTK)).ToList();
+            List<HoaDon> receipts = new List<HoaDon>();
+            foreach (var cart in carts)
+            {
+                receipts.AddRange(cart.HoaDons);
+            }
+            return View(receipts);
         }
         public ActionResult Home(string sortOrder, int? madm, int? beginPrice, int? endPrice, string searchString, int? page)
         {

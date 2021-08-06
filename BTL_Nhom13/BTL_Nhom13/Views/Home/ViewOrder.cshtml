@@ -1,0 +1,122 @@
+﻿@model IEnumerable<BTL_Nhom13.Models.HoaDon>
+@{
+    ViewBag.Title = "ViewOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="container">
+    <h2>Thông tin các đơn hàng</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tình trạng</th>
+                <th>Phí vận chuyển</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.TinhTrang.Equals("Chờ xác nhận"))
+                {
+                    <tr class="secondary">
+                        <td>@item.MaHoaDon</td>
+                        <td>@item.NgayDat</td>
+                        <td id="status">@item.TinhTrang</td>
+                        @{
+                            decimal phiShipNum = @item.PhiShip;
+                            string phiShipStr = string.Format("{0:0,000}", phiShipNum);
+                        }
+                        <td>@phiShipStr VND</td>
+                        <td>
+                            <a href="#" class="btn btn-primary">Chi tiết</a>
+                            <a href="@Url.Action("CancelOrder", "Home", new { MaHD=item.MaHoaDon})" id="btn-cancel" class="btn btn-danger">Hủy</a>
+                        </td>
+                    </tr>
+                }
+                else if (item.TinhTrang.Equals("Đã xác nhận"))
+                {
+                    <tr class="info">
+                        <td>@item.MaHoaDon</td>
+                        <td>@item.NgayDat</td>
+                        <td>@item.TinhTrang</td>
+                        @{
+                            decimal phiShipNum = @item.PhiShip;
+                            string phiShipStr = string.Format("{0:0,000}", phiShipNum);
+                        }
+                        <td>@phiShipStr VND</td>
+                        <td><a href="#" class="btn btn-primary">Chi tiết</a></td>
+                    </tr>
+                }
+                else if (item.TinhTrang.Equals("Đang lấy hàng"))
+                {
+                    <tr class="primary">
+                        <td>@item.MaHoaDon</td>
+                        <td>@item.NgayDat</td>
+                        <td>@item.TinhTrang</td>
+                        @{
+                            decimal phiShipNum = @item.PhiShip;
+                            string phiShipStr = string.Format("{0:0,000}", phiShipNum);
+                        }
+                        <td>@phiShipStr VND</td>
+                        <td><a href="#" class="btn btn-primary">Chi tiết</a></td>
+                    </tr>
+                }
+                else if (item.TinhTrang.Equals("Đang vận chuyển"))
+                {
+                    <tr class="warning">
+                        <td>@item.MaHoaDon</td>
+                        <td>@item.NgayDat</td>
+                        <td>@item.TinhTrang</td>
+                        @{
+                            decimal phiShipNum = @item.PhiShip;
+                            string phiShipStr = string.Format("{0:0,000}", phiShipNum);
+                        }
+                        <td>@phiShipStr VND</td>
+                        <td><a href="#" class="btn btn-primary">Chi tiết</a></td>
+                    </tr>
+                }
+                else if (item.TinhTrang.Equals("Đã giao"))
+                {
+                    <tr class="success">
+                        <td>@item.MaHoaDon</td>
+                        <td>@item.NgayDat</td>
+                        <td>@item.TinhTrang</td>
+                        @{
+                            decimal phiShipNum = @item.PhiShip;
+                            string phiShipStr = string.Format("{0:0,000}", phiShipNum);
+                        }
+                        <td>@phiShipStr VND</td>
+                        <td><a href="#" class="btn btn-primary">Chi tiết</a></td>
+                    </tr>
+                }
+                else if (item.TinhTrang.Equals("Đã hủy"))
+                {
+                    <tr class="danger">
+                        <td>@item.MaHoaDon</td>
+                        <td>@item.NgayDat</td>
+                        <td>@item.TinhTrang</td>
+                        @{
+                            decimal phiShipNum = @item.PhiShip;
+                            string phiShipStr = string.Format("{0:0,000}", phiShipNum);
+                        }
+                        <td>@phiShipStr VND</td>
+                        <td>
+                            <a href="#" class="btn btn-primary">Chi tiết</a>
+                            <span class="label label-default" style="font-size:100%">Đã hủy</span>
+
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script src="~/wwwroot/js/cancel_order.js"></script>
+}

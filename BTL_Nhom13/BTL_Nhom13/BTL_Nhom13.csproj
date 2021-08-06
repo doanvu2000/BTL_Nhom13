@@ -496,6 +496,7 @@
     <Content Include="Views\Shared\_Banner.cshtml" />
     <Content Include="Views\Home\EditAccount.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Home\ViewOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

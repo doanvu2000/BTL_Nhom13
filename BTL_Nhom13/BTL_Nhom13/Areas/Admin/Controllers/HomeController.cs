@@ -25,14 +25,15 @@ namespace BTL_Nhom13.Areas.Admin.Controllers
             var receipts = db.HoaDons.ToList();
             DateTime today = DateTime.Today;
             List<HoaDon> hds = db.HoaDons.Where(h => h.NgayDat.Month == today.Month &&
-                    h.NgayDat.Year == today.Year).ToList();
+                    h.NgayDat.Year == today.Year && h.TinhTrang.Equals("Đã giao")).ToList();
             decimal tongTienNum = 0;
             foreach (var item in hds)
             {
                 tongTienNum += item.GioHang.ChiTietGioHangs.Select(c => c.SoLuongMua * c.Gia).Sum();
             }
 
-            List<HoaDon> hd_trong_nam = hds.Where(h => h.NgayDat.Year == today.Year).ToList();
+            List<HoaDon> hd_trong_nam = hds.Where(h => h.NgayDat.Year == today.Year
+                    && h.TinhTrang.Equals("Đã giao")).ToList();
             decimal tongTienTrongNamNum = 0;
             foreach (var item in hd_trong_nam)
             {
