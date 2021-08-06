@@ -239,81 +239,35 @@ namespace BTL_Nhom13.Controllers
             {
                 ListSP = (List<SanPhamDTO>)Session["GioHang"];
             }
-            string tk = "";
             if (Session["TenTaiKhoan"] != null)
             {
-                tk = Session["TenTaiKhoan"] as string;
-            }
-            if (tk == null)
-            {
-                return RedirectToAction("Login");
+                GioHang giohang = new GioHang();
+                giohang.TenTaiKhoan = (string)Session["TenTaiKhoan"];
+                db.GioHangs.Add(giohang);
+                db.SaveChanges();
+                int generatedId = giohang.MaGioHang;
+                foreach (var item in ListSP)
+                {
+                    ChiTietGioHang ct = new ChiTietGioHang();
+                    ct.MaGioHang = generatedId;
+                    ct.MaSP = item.MaSP;
+                    ct.SoLuongMua = item.SoLuongMua;
+                    ct.Gia = item.Gia;
+                    db.ChiTietGioHangs.Add(ct);
+                    db.SaveChanges();
+                }
+                HoaDon hd = new HoaDon();
+                hd.NgayDat = DateTime.Now;
+                hd.TinhTrang = "Chờ xác nhận";
+                hd.PhiShip = 15000;
+                hd.GhiChu = "Thanh toán khi nhận hàng";
+                hd.MaGioHang = generatedId;
+                db.HoaDons.Add(hd);
+                db.SaveChanges();
             }
             else
             {
-                List<GioHang> gh = db.GioHangs.ToList();
-                int magh = -1;
-                foreach (var item in gh)
-                {
-                    if (item.TenTaiKhoan == tk)
-                    {
-                        magh = item.MaGioHang;
-                    }
-                }
-                if (magh == -1)
-                {
-                    GioHang giohang = new GioHang();
-                    giohang.TenTaiKhoan = tk;
-                    db.GioHangs.Add(giohang);
-                    db.SaveChanges();
-                    gh = db.GioHangs.ToList();
-                    foreach (var item in gh)
-                    {
-                        if (item.TenTaiKhoan == tk)
-                        {
-                            magh = item.MaGioHang;
-                        }
-                    }
-
-                    foreach (var item in ListSP)
-                    {
-                        ChiTietGioHang ct = new ChiTietGioHang();
-                        ct.MaGioHang = magh;
-                        ct.MaSP = item.MaSP;
-                        ct.SoLuongMua = item.SoLuongMua;
-                        ct.Gia = item.Gia;
-                        db.ChiTietGioHangs.Add(ct);
-                        db.SaveChanges();
-                    }
-                    HoaDon hd = new HoaDon();
-                    hd.NgayDat = DateTime.Now;
-                    hd.TinhTrang = "Chờ xác nhận";
-                    hd.PhiShip = 15000;
-                    hd.GhiChu = "Thanh toán khi nhận hàng";
-                    hd.MaGioHang = magh;
-                    db.HoaDons.Add(hd);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    foreach (var item in ListSP)
-                    {
-                        ChiTietGioHang ct = new ChiTietGioHang();
-                        ct.MaGioHang = magh;
-                        ct.MaSP = item.MaSP;
-                        ct.SoLuongMua = item.SoLuongMua;
-                        ct.Gia = item.Gia;
-                        db.ChiTietGioHangs.Add(ct);
-                        db.SaveChanges();
-                    }
-                    HoaDon hd = new HoaDon();
-                    hd.NgayDat = DateTime.Now;
-                    hd.TinhTrang = "Chờ xác nhận";
-                    hd.PhiShip = 15000;
-                    hd.GhiChu = "Thanh toán khi nhận hàng";
-                    hd.MaGioHang = magh;
-                    db.HoaDons.Add(hd);
-                    db.SaveChanges();
-                }
+                return RedirectToAction("Login");
             }
             Session["GioHang"] = null;
             Session["SoLuongSPGioHang"] = null;
@@ -343,11 +297,8 @@ namespace BTL_Nhom13.Controllers
         public ActionResult ViewOrder(string TenTK)
         {
             var carts = db.GioHangs.Where(g => g.TenTaiKhoan.Equals(TenTK)).ToList();
-            List<HoaDon> receipts = new List<HoaDon>();
-            foreach (var cart in carts)
-            {
-                receipts.AddRange(cart.HoaDons);
-            }
+            var hds = db.HoaDons;
+            var receipts = from x in carts join y in hds on x.MaGioHang equals y.MaGioHang select y;
             return View(receipts);
         }
         public ActionResult Home(string sortOrder, int? madm, int? beginPrice, int? endPrice, string searchString, int? page)
