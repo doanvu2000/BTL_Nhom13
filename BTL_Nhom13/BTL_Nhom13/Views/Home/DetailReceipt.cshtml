@@ -1,0 +1,118 @@
+﻿@model BTL_Nhom13.Models.HoaDon
+@{
+    ViewBag.Title = "DetailReceipt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<div class="container" style="padding-top:7rem">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.GioHang.TaiKhoan.TenKhachHang, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.GioHang.TaiKhoan.TenKhachHang, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.NgayDat, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.TinhTrang, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhiShip, htmlAttributes: new { @class = "bmd-label-floating" })
+                @{
+                    decimal phiShipNum = Model.PhiShip;
+                    string phiShipStr = string.Format("{0:0,000}", phiShipNum) + " VND";
+                }
+                <input class="form-control" type="text" disabled="disabled" value="@phiShipStr" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DcNhanHang, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.DcNhanHang, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Sản phẩm</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-primary">
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Chất lượng</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.GioHang.ChiTietGioHangs)
+                                {
+                                    <tr>
+                                        <td>
+                                            @{
+                                                string imagePath = "~/wwwroot/image/" + item.SanPham.Anh;
+                                            }
+                                            <img src="@Url.Content(imagePath)" width="70" class="img-thumbnail" />
+                                            <br />
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.SanPham.TenSP)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SanPham.ChatLuong)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Gia) VND</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SoLuongMua)</td>
+                                    </tr>
+                                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    @{
+                        decimal thanhTien = Model.GioHang.ChiTietGioHangs.Select(c => c.SoLuongMua * c.Gia).Sum() + Model.PhiShip;
+                        string tong = string.Format("{0:0,000}", thanhTien);
+                    }
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-9">
+                            @if (Model.TinhTrang.Equals("Chờ xác nhận"))
+                            {
+                                @Html.ActionLink("Hủy đơn hàng", "CancelOrder", new { id = Model.MaHoaDon }, new { @class = "btn btn-danger" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Hủy đơn hàng", "CancelOrder", new { id = Model.MaHoaDon }, new { @class = "btn btn-info", @disabled = "@disabled" })
+                            }
+                            @Html.ActionLink("Quay lại", "ViewOrder", new { TenTK=Session["TenTaiKhoan"]}, new { @class = "btn btn-success" })
+                        </div>
+                        <div class="col-md-3" style="font-weight:bold;">
+                            Thành tiền: @tong VND
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+

@@ -31,6 +31,10 @@
         [DisplayName("Ghi chú")]
         public string GhiChu { get; set; }
 
+        [Column(TypeName = "ntext")]
+        [DisplayName("Địa chỉ nhận hàng")]
+        public string DcNhanHang { get; set; }
+
         [DisplayName("Mã giỏ hàng")]
         public int MaGioHang { get; set; }
 

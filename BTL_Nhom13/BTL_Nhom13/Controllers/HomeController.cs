@@ -232,7 +232,7 @@ namespace BTL_Nhom13.Controllers
                 return RedirectToAction("Login");
             return View();
         }
-        public ActionResult DatHang()
+        public ActionResult DatHang(string DcNhanHang, string GhiChu)
         {
             List<SanPhamDTO> ListSP = new List<SanPhamDTO>();
             if (Session["GioHang"] != null)
@@ -260,8 +260,17 @@ namespace BTL_Nhom13.Controllers
                 hd.NgayDat = DateTime.Now;
                 hd.TinhTrang = "Chờ xác nhận";
                 hd.PhiShip = 15000;
-                hd.GhiChu = "Thanh toán khi nhận hàng";
+                hd.GhiChu = GhiChu;
                 hd.MaGioHang = generatedId;
+                if(Session["TaiKhoan"] != null)
+                {
+                    hd.DcNhanHang = DcNhanHang;
+                } else
+                {
+                    TaiKhoan tk = Session["TaiKhoan"] as TaiKhoan;
+                    hd.DcNhanHang = tk.DiaChi;
+                }
+                
                 db.HoaDons.Add(hd);
                 db.SaveChanges();
             }
@@ -300,6 +309,11 @@ namespace BTL_Nhom13.Controllers
             var hds = db.HoaDons;
             var receipts = from x in carts join y in hds on x.MaGioHang equals y.MaGioHang select y;
             return View(receipts);
+        }
+        public ActionResult DetailReceipt(int MaHD)
+        {
+            HoaDon hd = db.HoaDons.Find(MaHD);
+            return View(hd);
         }
         public ActionResult Home(string sortOrder, int? madm, int? beginPrice, int? endPrice, string searchString, int? page)
         {

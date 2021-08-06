@@ -497,6 +497,7 @@
     <Content Include="Views\Home\EditAccount.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Home\ViewOrder.cshtml" />
+    <Content Include="Views\Home\DetailReceipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
