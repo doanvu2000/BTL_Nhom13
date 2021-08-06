@@ -105,17 +105,18 @@
                             string phiShipStr = string.Format("{0:0,000}", phiShipNum);
                         }
                         <td>@phiShipStr VND</td>
+                        
                         <td>
-                        <td><a href="@Url.Action("DetailReceipt", "Home", new { MaHD=item.MaHoaDon})" class="btn btn-primary">Chi tiết</a></td>
+                            <a href="@Url.Action("DetailReceipt", "Home", new { MaHD=item.MaHoaDon})" class="btn btn-primary">Chi tiết</a>
                             <span class="label label-default" style="font-size:100%">Đã hủy</span>
-
                         </td>
+                        
                     </tr>
                 }
-
             }
         </tbody>
     </table>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-danger">Quay lại</a>
 </div>
 @section Scripts {
     <script src="~/wwwroot/js/cancel_order.js"></script>
