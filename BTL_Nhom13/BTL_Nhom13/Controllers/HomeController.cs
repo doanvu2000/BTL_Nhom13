@@ -136,17 +136,29 @@ namespace BTL_Nhom13.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAccount([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
+        public ActionResult EditAccount([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang," +
+            "TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan, string PassValidate)
         {
-            if (ModelState.IsValid)
+            string Pass = db.TaiKhoans.AsNoTracking().
+                Where(t => t.TenTaiKhoan.Equals(taiKhoan.TenTaiKhoan)).
+                FirstOrDefault().MatKhau;
+            if (Pass.Equals(PassValidate))
             {
-                db.Entry(taiKhoan).State = EntityState.Modified;
-                db.SaveChanges();
-                TempData["message1"] = "Thành công";
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(taiKhoan).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["message1"] = "Thành công";
+                    return RedirectToAction("Index");
+                }
+                ViewBag.Message2 = "Msg2";
+                return View(taiKhoan);
             }
-            ViewBag.Message1 = "Thất bại";
-            return View(taiKhoan);
+            else
+            {
+                ViewBag.Message3 = "Msg3";
+                return View(taiKhoan);
+            }
         }
 
         public ActionResult ChangePassword(string TenTK)
