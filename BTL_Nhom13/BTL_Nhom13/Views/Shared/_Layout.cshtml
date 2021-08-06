@@ -7,11 +7,14 @@
         Tinh Dầu Thiên Nhiên Hương Sắc Việt - 100% tự nhiên, nguyên chất
     </title>
     <script src="~/wwwroot/js/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <link rel="stylesheet" href="~/wwwroot/css/theme/ditacom_index.css" />
     <link rel="stylesheet" href="~/wwwroot/css/theme/ditacom_pulic.css" />
     <link rel="stylesheet" href="~/wwwroot/css/index.css" />
+    <link href="~/wwwroot/css/drop_down.css" rel="stylesheet" />
     @RenderSection("ImportLibraryLogin", required: false)
-<style>
+    <style>
         .active {
             background: green;
         }
@@ -53,36 +56,38 @@
                 width: 1200px;
             }
         }
- 
-</style>
+    </style>
 </head>
 <body class="bg_full">
     <div class="logo_web" style="">
         <img src="~/wwwroot/image/logo.png" style="position:absolute;top:-6px!important;left:0;
-                                padding:0;margin:0" height="90px" width="90px" />
+                                padding:0;margin:0;height:4.3rem;width:4rem;" />
     </div>
     <!-------------------------------------header--------------------------------------------->
     <section class="section_all top_full" id="page_bg" style="">
         <div class="div_index" id="page_width">
             <article class="article_center">
-                <div class="index_top top_full">
-                    
-                    @if (Session["TenTaiKhoan"] != null)
+                <!--<div class="index_top top_full">
+                                @*
+
+                    <!--@if (Session["TenTaiKhoan"] != null)
                     {
-                        <div class="header_lang">
-                            @*<a href="@Url.Action("DetailAccount","Home", new {TenTaiKhoan= Session["TenTaiKhoan"]})" title="Xem thông tin tài khoản">Xin chào, @Session["TenTaiKhoan"] </a>*@
-                            <a href="@Url.Action("DetailAccount","Home")" title="Xem thông tin tài khoản">Xin chào, @Session["TenTaiKhoan"] </a>|
-                            <a href="@Url.Action("LogOut","Home")" title="">Đăng xuất</a>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="header_lang">
-                            <a href="@Url.Action("Signin","Home")" title=""> Đăng Ký </a> |
-                            <a href="@Url.Action("Login","Home")" title=""> Đăng Nhập </a>
-                        </div>
-                    }
-                </div>
+                        <div class="header_lang">-->
+                            @*<a href="@Url.Action("DetailAccount","Home", new {TenTaiKhoan= Session["TenTaiKhoan"]})" title="Xem thông tin tài khoản">Xin chào, @Session["TenTaiKhoan"] </a>
+                                <!--<a href="@Url.Action("DetailAccount","Home")" title="Xem thông tin tài khoản">Xin chào, @Session["TenTaiKhoan"] </a>|
+                        <a href="@Url.Action("LogOut","Home")" title="">Đăng xuất</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="header_lang">
+                        <a href="@Url.Action("Signin","Home")" title=""> Đăng Ký </a> |
+                        <a href="@Url.Action("Login","Home")" title=""> Đăng Nhập </a>
+                    </div>
+                }-->
+                                *@
+
+                            </div>-->
             </article>
         </div>
     </section>
@@ -161,12 +166,34 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
                 </div>
             </article>
         </div>
+        <div class="dropdown" style="float:right">
+            <span class="material-icons" style="font-size: 37px; cursor: pointer;
+                    margin-right: 17px;margin-top:10px;">
+                account_box
+            </span>
+            @if (Session["TenTaiKhoan"] == null)
+            {
+                <div class="dropdown-content">
+                    <a href="@Url.Action("Signin","Home")">Đăng ký</a>
+                    <a href="@Url.Action("Login","Home")">Đăng nhập</a>
+                </div>
+            }
+            else
+            {
+                <div class="dropdown-content">
+                    <a href="@Url.Action("EditAccount","Home", new {TenTK= Session["TenTaiKhoan"]})">Sửa thông tin</a>
+                    <a href="@Url.Action("ChangePassword","Home", new {TenTK= Session["TenTaiKhoan"] })">Đổi mật khẩu</a>
+                    <a href="@Url.Action("ViewOrder","Home",new {TenTK= Session["TenTaiKhoan"]})">Xem đơn hàng</a>
+                    <a href="@Url.Action("LogOut","Home")">Đăng xuất</a>
+                </div>
+            }
+        </div>
     </section>
     <!-------------------------------------banner--------------------------------------------->
-
     <!-------------------------------------Body--------------------------------------------->
     @RenderBody()
 
@@ -209,8 +236,8 @@
         </div>
     </section>
 </body>
-@RenderSection("Scripts", required: false)
 <script src="~/wwwroot/js/index.js"></script>
+@RenderSection("Scripts", required: false)
 <script>
     var header = document.getElementById("none_display_mb");
     var lis = header.getElementsByClassName("ul_menu_pc_border_active");

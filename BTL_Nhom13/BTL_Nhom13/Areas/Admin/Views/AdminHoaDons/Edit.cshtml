@@ -44,13 +44,32 @@
         </div>
     </div>
 
+    @{
+        var selectList = new SelectList(
+            new List<SelectListItem>
+            {
+            new SelectListItem {Text = "Chờ xác nhận", Value = "Chờ xác nhận"},
+            new SelectListItem {Text = "Đã xác nhận", Value = "Đã xác nhận"},
+            new SelectListItem {Text = "Đang lấy hàng", Value = "Đang lấy hàng"},
+            new SelectListItem {Text = "Đang vận chuyển", Value = "Đang vận chuyển"},
+            new SelectListItem {Text = "Đã giao", Value = "Đã giao"},
+            new SelectListItem {Text = "Đã hủy", Value = "Đã hủy"},
+                                }, "Value", "Text");
+    }
     <div class="form-group">
-        @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.TinhTrang, "Tình trạng", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TinhTrang, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.TinhTrang, selectList, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
         </div>
     </div>
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TinhTrang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.PhiShip, htmlAttributes: new { @class = "control-label col-md-2" })

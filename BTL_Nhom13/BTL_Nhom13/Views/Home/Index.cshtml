@@ -76,3 +76,19 @@
         </article>
     </div>
 </section>
+@section Scripts {
+    @if (ViewBag.Message != null)
+    {
+        <script>
+            alert("Cập nhật mật khẩu thành công");
+        </script>
+        ViewBag.Message = null;
+    }
+    @if (ViewBag.Message1 != null)
+    {
+        <script>
+            alert("Cập nhật thông tin tài khoản thành công");
+        </script>
+        ViewBag.Message1 = null;
+    }
+}

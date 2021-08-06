@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<BTL_Nhom13.Models.TaiKhoan>
 @using PagedList.Mvc;
+@using System.Text;
 @{
     ViewBag.Title = "Customer";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -47,12 +48,20 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>@item.TenTaiKhoan</td>
-                                        <td>@item.MatKhau</td>
-                                        <td>@item.TenKhachHang</td>
-                                        <td>@item.Email</td>
-                                        @*<td><a href="#" class="btn-active" data-id="@item.TenTaiKhoan">@(item.TinhTrang == true ? "Kích hoạt" : "Khóa")</a></td>*@
+                                <tr>
+                                    <td>@item.TenTaiKhoan</td>
+                                    @{
+                                        int lengthPass = item.MatKhau.Count();
+                                        StringBuilder pattern = new StringBuilder();
+                                        for (int i = 0; i < lengthPass; i++)
+                                        {
+                                            pattern.Append("\u2022");
+                                        }
+                                    }
+                                    <td>@Html.Raw(pattern)</td>
+                                    <td>@item.TenKhachHang</td>
+                                    <td>@item.Email</td>
+                                    @*<td><a href="#" class="btn-active" data-id="@item.TenTaiKhoan">@(item.TinhTrang == true ? "Kích hoạt" : "Khóa")</a></td>*@
                                     <td>
                                         @if (item.TinhTrang == true)
                                         {
@@ -73,10 +82,10 @@
                                             </div>
                                         }
                                     </td>
-                                        <td>
-                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                        </td>
-                                    </tr>
+                                    <td>
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

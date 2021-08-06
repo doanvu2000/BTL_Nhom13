@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<BTL_Nhom13.Models.TaiKhoan>
 @using PagedList.Mvc;
+@using System.Text;
 @{
     ViewBag.Title = "Account";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -8,6 +9,7 @@
 @section Title{
     Tài khoản
 }
+@*0: KH 1: Admin 2: Employee*@
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <style>
     .normal-text {
@@ -40,6 +42,7 @@
                             <thead class="text-primary">
                             <th>Tên tài khoản</th>
                             <th>Mật khẩu</th>
+                            <th>Quyền</th>
                             <th>Tình trạng</th>
                             <th>Hành động</th>
                             </thead>
@@ -48,7 +51,28 @@
                                 {
                                     <tr>
                                         <td>@Html.DisplayFor(modelItem => item.TenTaiKhoan)</td>
-                                        <td>@item.MatKhau</td>
+                                        @{
+                                            int lengthPass = item.MatKhau.Count();
+                                            StringBuilder pattern = new StringBuilder();
+                                            for (int i = 0; i < lengthPass; i++)
+                                            {
+                                                pattern.Append("\u2022");
+                                            }
+                                        }
+                                        <td>@Html.Raw(pattern)</td>
+                                        @if (item.Quyen == 1)
+                                        {
+                                            <td>
+                                                Quản trị viên
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                Nhân viên
+                                            </td>
+                                        }
+
                                         <td>
                                             @if (item.TinhTrang == true)
                                             {
@@ -94,14 +118,10 @@
                                             }
                                         </td>
                                         <td>
+                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                             @if (!item.TenTaiKhoan.Equals(Session["TenTaiKhoan"]))
                                             {
                                                 @Html.ActionLink("Xóa", "Delete", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                                @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            }
-                                            else
-                                            {
-                                                @Html.ActionLink("Sửa", "Edit", new { id = item.TenTaiKhoan.Trim() }, new { @class = "btn btn-sm btn-primary normal-text" })
                                             }
                                         </td>
                                     </tr>
