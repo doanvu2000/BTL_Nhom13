@@ -32,11 +32,26 @@
         <div class="col-md-3">
             <div class="form-group">
                 @Html.LabelFor(model => model.PhiShip, htmlAttributes: new { @class = "bmd-label-floating" })
-                @{ 
+                @{
                     decimal phiShipNum = Model.PhiShip;
                     string phiShipStr = string.Format("{0:0,000}", phiShipNum) + " VND";
                 }
-                <input class="form-control" type="text" disabled="disabled" value="@phiShipStr"/>
+                <input class="form-control" type="text" disabled="disabled" value="@phiShipStr" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DcNhanHang, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.DcNhanHang, new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
             </div>
         </div>
     </div>

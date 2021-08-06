@@ -262,7 +262,7 @@ namespace BTL_Nhom13.Controllers
                 hd.PhiShip = 15000;
                 hd.GhiChu = GhiChu;
                 hd.MaGioHang = generatedId;
-                if(Session["TaiKhoan"] != null)
+                if(DcNhanHang != "")
                 {
                     hd.DcNhanHang = DcNhanHang;
                 } else
