@@ -96,11 +96,11 @@
                         <div class="col-md-9">
                             @if (Model.TinhTrang.Equals("Chờ xác nhận"))
                             {
-                                @Html.ActionLink("Hủy đơn hàng", "CancelOrder", new { id = Model.MaHoaDon }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Hủy đơn hàng", "CancelOrder", new { MaHD = Model.MaHoaDon }, new { @class = "btn btn-danger" })
                             }
                             else
                             {
-                                @Html.ActionLink("Hủy đơn hàng", "CancelOrder", new { id = Model.MaHoaDon }, new { @class = "btn btn-info", @disabled = "@disabled" })
+                                @Html.ActionLink("Hủy đơn hàng", "CancelOrder", new { MaHD = Model.MaHoaDon }, new { @class = "btn btn-info", @disabled = "@disabled" })
                             }
                             @Html.ActionLink("Quay lại", "ViewOrder", new { TenTK=Session["TenTaiKhoan"]}, new { @class = "btn btn-success" })
                         </div>
