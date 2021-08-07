@@ -50,11 +50,21 @@
                                         <td>@Html.DisplayFor(modelItem => item.NgayDat)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TinhTrang)</td>
                                         <td>@Html.DisplayFor(modelItem => item.PhiShip) VND</td>
-                                        <td>
-                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
-                                        </td>
+                                        @if (!item.TinhTrang.Equals("Đã hủy") && !item.TinhTrang.Equals("Đã giao"))
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                                @Html.ActionLink("Sửa", "Edit", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                                @Html.ActionLink("Xóa", "Delete", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                                @Html.ActionLink("Xóa", "Delete", new { id = item.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             </tbody>

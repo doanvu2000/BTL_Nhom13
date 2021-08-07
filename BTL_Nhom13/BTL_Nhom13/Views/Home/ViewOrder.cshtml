@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="container">
-    <h2>Thông tin các đơn hàng</h2>
+    <h2 style="text-align:center; margin-top:90px;margin-bottom:15px;">Thông tin các đơn hàng</h2>
     <table class="table">
         <thead>
             <tr>
@@ -33,7 +33,7 @@
                         }
                         <td>@phiShipStr VND</td>
                         <td>
-                            <a href="#" class="btn btn-primary">Chi tiết</a>
+                            <a href="@Url.Action("DetailReceipt", "Home", new { MaHD=item.MaHoaDon})" class="btn btn-primary">Chi tiết</a>
                             <a href="@Url.Action("CancelOrder", "Home", new { MaHD=item.MaHoaDon})" id="btn-cancel" class="btn btn-danger">Hủy</a>
                         </td>
                     </tr>
@@ -49,7 +49,7 @@
                             string phiShipStr = string.Format("{0:0,000}", phiShipNum);
                         }
                         <td>@phiShipStr VND</td>
-                        <td><a href="#" class="btn btn-primary">Chi tiết</a></td>
+                        <td><a href="@Url.Action("DetailReceipt", "Home", new { MaHD=item.MaHoaDon})" class="btn btn-primary">Chi tiết</a></td>
                     </tr>
                 }
                 else if (item.TinhTrang.Equals("Đang lấy hàng"))
@@ -63,7 +63,7 @@
                             string phiShipStr = string.Format("{0:0,000}", phiShipNum);
                         }
                         <td>@phiShipStr VND</td>
-                        <td><a href="#" class="btn btn-primary">Chi tiết</a></td>
+                        <td><a href="@Url.Action("DetailReceipt", "Home", new { MaHD=item.MaHoaDon})" class="btn btn-primary">Chi tiết</a></td>
                     </tr>
                 }
                 else if (item.TinhTrang.Equals("Đang vận chuyển"))
@@ -77,7 +77,7 @@
                             string phiShipStr = string.Format("{0:0,000}", phiShipNum);
                         }
                         <td>@phiShipStr VND</td>
-                        <td><a href="#" class="btn btn-primary">Chi tiết</a></td>
+                        <td><a href="@Url.Action("DetailReceipt", "Home", new { MaHD=item.MaHoaDon})" class="btn btn-primary">Chi tiết</a></td>
                     </tr>
                 }
                 else if (item.TinhTrang.Equals("Đã giao"))
@@ -91,7 +91,7 @@
                             string phiShipStr = string.Format("{0:0,000}", phiShipNum);
                         }
                         <td>@phiShipStr VND</td>
-                        <td><a href="#" class="btn btn-primary">Chi tiết</a></td>
+                        <td><a href="@Url.Action("DetailReceipt", "Home", new { MaHD=item.MaHoaDon})" class="btn btn-primary">Chi tiết</a></td>
                     </tr>
                 }
                 else if (item.TinhTrang.Equals("Đã hủy"))
@@ -105,17 +105,18 @@
                             string phiShipStr = string.Format("{0:0,000}", phiShipNum);
                         }
                         <td>@phiShipStr VND</td>
+                        
                         <td>
-                            <a href="#" class="btn btn-primary">Chi tiết</a>
+                            <a href="@Url.Action("DetailReceipt", "Home", new { MaHD=item.MaHoaDon})" class="btn btn-primary">Chi tiết</a>
                             <span class="label label-default" style="font-size:100%">Đã hủy</span>
-
                         </td>
+                        
                     </tr>
                 }
-
             }
         </tbody>
     </table>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-danger">Quay lại</a>
 </div>
 @section Scripts {
     <script src="~/wwwroot/js/cancel_order.js"></script>

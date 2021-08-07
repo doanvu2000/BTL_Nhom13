@@ -78,7 +78,8 @@
                                 <center><a class="dita_register_login" href="@Url.Action("Home", "Home") ">Tiếp tục mua sắm</a></center>
                             </td>
                             <td align="right" width="600">
-                                <a class="dita_register_login" href="@Url.Action("DatHang", "Home") ">Đặt hàng</a>
+                                @*<a class="dita_register_login" href="@Url.Action("DatHang", "Home") ">Đặt hàng</a>*@
+                                @Html.ActionLink("Đặt hàng", "DatHang", "Home", new { DcNhanHang = "abc", GhiChu="xyz"}, new { @class= "dita_register_login",@id="btn-dat-hang" } )
                             </td>
                         </tr>
                     </tbody>
@@ -88,3 +89,13 @@
     </td>
 </tr>
 <script src="~/wwwroot/js/index.js"></script>
+<script>
+    $(function () {
+        $('#btn-dat-hang').click(function () {
+            var dc_nhan_hang = $("#DcGiaoHang").val();
+            var ghi_chu = $("#GhiChu").val();
+            this.href = this.href.replace("abc", dc_nhan_hang);
+            this.href = this.href.replace("xyz", ghi_chu);
+        });
+    });
+</script>

@@ -185,7 +185,7 @@
             else
             {
                 <div class="dropdown-content">
-                    <a href="@Url.Action("EditAccount","Home", new {TenTK= Session["TenTaiKhoan"]})">Sửa thông tin</a>
+                    <a href="@Url.Action("EditAccount","Home", new {TenTK= Session["TenTaiKhoan"]})">Sửa thông tin cá nhân</a>
                     <a href="@Url.Action("ChangePassword","Home", new {TenTK= Session["TenTaiKhoan"] })">Đổi mật khẩu</a>
                     <a href="@Url.Action("ViewOrder","Home",new {TenTK= Session["TenTaiKhoan"]})">Xem đơn hàng</a>
                     <a href="@Url.Action("LogOut","Home")">Đăng xuất</a>

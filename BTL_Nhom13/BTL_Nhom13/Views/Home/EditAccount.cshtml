@@ -103,6 +103,16 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div>Nhập mật khẩu xác nhận</div>
+                                        <input type="password" name="PassValidate" class="form-control form-control-sm" />
+                                    </div>
+                                </div>
+                            </div>
+
                             @Html.HiddenFor(model => model.MatKhau)
                             @Html.HiddenFor(model => model.TinhTrang)
                             @Html.HiddenFor(model => model.Quyen)
@@ -130,12 +140,19 @@
     <script src="~/wwwroot/js/bootstrap.min.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/wwwroot/js/index.js"></script>
-    @if (ViewBag.Message1 != null)
+    @if (ViewBag.Message2 != null)
     {
         <script>
             alert('Cập nhật thông tin tài khoản thất bại!');
         </script>
-        ViewBag.Message1 = null;
+        ViewBag.Message2 = null;
+    }
+    @if (ViewBag.Message3 != null)
+    {
+        <script>
+            alert('Mật khẩu xác nhận không chính xác!');
+        </script>
+        ViewBag.Message3 = null;
     }
 }
 

@@ -1,31 +1,27 @@
 ﻿@model BTL_Nhom13.Models.HoaDon
-
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "DetailReceipt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section Title{
-    Chi tiết hóa đơn
-}
-
-<div class="container-fluid">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<div class="container" style="padding-top:7rem">
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
                 @Html.LabelFor(model => model.GioHang.TaiKhoan.TenKhachHang, htmlAttributes: new { @class = "bmd-label-floating" })
-                @Html.EditorFor(model => model.GioHang.TaiKhoan.TenKhachHang, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.EditorFor(model => model.GioHang.TaiKhoan.TenKhachHang, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 @Html.LabelFor(model => model.NgayDat, htmlAttributes: new { @class = "bmd-label-floating" })
-                @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "bmd-label-floating" })
-                @Html.EditorFor(model => model.TinhTrang, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.EditorFor(model => model.TinhTrang, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
             </div>
         </div>
 
@@ -40,18 +36,17 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "bmd-label-floating" })
-                @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+                @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 @Html.LabelFor(model => model.DcNhanHang, htmlAttributes: new { @class = "bmd-label-floating" })
-                @Html.EditorFor(model => model.DcNhanHang, new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+                @Html.EditorFor(model => model.DcNhanHang, new { htmlAttributes = new { @class = "form-control", @readonly = "@readonly" } })
             </div>
         </div>
     </div>
@@ -80,7 +75,7 @@
                                             @{
                                                 string imagePath = "~/wwwroot/image/" + item.SanPham.Anh;
                                             }
-                                            <img src="@Url.Content(imagePath)" width="50" class="img-thumbnail" />
+                                            <img src="@Url.Content(imagePath)" width="70" class="img-thumbnail" />
                                             <br />
                                         </td>
                                         <td>@Html.DisplayFor(modelItem => item.SanPham.TenSP)</td>
@@ -88,7 +83,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.Gia) VND</td>
                                         <td>@Html.DisplayFor(modelItem => item.SoLuongMua)</td>
                                     </tr>
-                                }
+                                                }
                             </tbody>
                         </table>
                     </div>
@@ -99,8 +94,15 @@
                     <hr />
                     <div class="row">
                         <div class="col-md-9">
-                            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaHoaDon }, new { @class = "btn btn-sm btn-primary normal-text" })
-                            @Html.ActionLink("Quay lại", "Receipt", null, new { @class = "btn btn-sm btn-primary normal-text" })
+                            @if (Model.TinhTrang.Equals("Chờ xác nhận"))
+                            {
+                                @Html.ActionLink("Hủy đơn hàng", "CancelOrder", new { MaHD = Model.MaHoaDon }, new { @class = "btn btn-danger" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Hủy đơn hàng", "CancelOrder", new { MaHD = Model.MaHoaDon }, new { @class = "btn btn-info", @disabled = "@disabled" })
+                            }
+                            @Html.ActionLink("Quay lại", "ViewOrder", new { TenTK=Session["TenTaiKhoan"]}, new { @class = "btn btn-success" })
                         </div>
                         <div class="col-md-3" style="font-weight:bold;">
                             Thành tiền: @tong VND
@@ -110,5 +112,7 @@
             </div>
         </div>
     </div>
-
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
