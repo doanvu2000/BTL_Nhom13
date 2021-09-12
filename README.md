@@ -1,7 +1,7 @@
 # BTL_Nhom13
 # Cách sử dụng:
 ## Bước 1: Clone project về local
-## Bước 2: Mở file script để chạy lấy database(sql server)
+## Bước 2: Mở file script.sql để chạy lấy database(sql server)
 ## Bước 3: Chỉnh sửa 2 file sau:
 ** Mở file Web.config:  BTL_Nhom13/BTL_Nhom13/Web.config  ** , sửa "doan-vu-it" thành server name của sqlserver các bạn đang chạy
 ** Mở file applicationhost.config:  BTL_Nhom13/.vs/BTL_Nhom13/config/applicationhost.config ** , sửa "D:\Learning\School\Extra_Semester\ASP.NET\BTL_ASP.NET_MVC" thành đường dẫn chứa project
