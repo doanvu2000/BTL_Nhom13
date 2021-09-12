@@ -1,4 +1,4 @@
-# BTL_Nhom13
+# BTL_Nhom13: Xây dựng website bán máy xông tinh dầu, sử dụng ASP.NET MVC. Website tham khảo: https://tinhdaulachampa.net/
 # Cách sử dụng:
 ## Bước 1: Clone project về local
 ## Bước 2: Mở file [script.sql](https://github.com/doanvu2000/BTL_Nhom13/blob/master/script.sql) để chạy lấy database(sql server)
